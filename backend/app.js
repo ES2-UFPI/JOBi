@@ -1,11 +1,29 @@
-const express = require("express")
+import dotenv from "dotenv"
+dotenv.config()
 
-const app = express()
+import express from "express"
+import homeRoutes from "./src/routes/homeRoutes";
 
-app.get("/", (req,res) => {
-    res.send("Backend JOBi rodando!");
-})
+class App{
+    constructor(){
+        this.app = express()
+        this.middlewares();
+        this.routes();
+    }
 
-app.listen(3333, () => {
-    console.log("Rodando na 3333");
-});
+    middlewares(){
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json())
+    }
+
+    routes(){
+        this.app.use('/', homeRoutes)
+        
+    }
+}
+
+App = new App()
+
+export default(App.app);
+
+
