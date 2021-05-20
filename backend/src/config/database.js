@@ -9,11 +9,10 @@ module.exports = {
     database: process.env.DATABASE,
     define: {
         timestamps: true,
-        underscores: true,
-        underscoresall: true,
+        underscored: true,
+        underscoredAll: true,
         createdAt: 'created_at',
         UpdatedAt: 'updated_at',
-
     },
     dialectOptions: {
         timezone: 'America/Sao_Paulo',
