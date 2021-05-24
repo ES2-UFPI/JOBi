@@ -6,6 +6,7 @@ import express from "express"
 import homeRoutes from "./src/routes/homeRoutes";
 import userRoutes from "./src/routes/userRoutes";
 import contratanteRoutes from "./src/routes/contratanteRoutes";
+import prestadorRoutes from "./src/routes/prestadorRoutes";
 
 class App{
     constructor(){
@@ -23,6 +24,7 @@ class App{
         this.app.use('/', homeRoutes)
         this.app.use('/users/', userRoutes)
         this.app.use('/contratante/', contratanteRoutes)
+        this.app.use('/prestador', prestadorRoutes)
     }
 }
 
