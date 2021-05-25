@@ -20,6 +20,6 @@ export default class Prestador extends Model {
         return this;
     }
     static associate_1(models){
-        this.belongsTo(models.Prestador, { foreignKey: 'user_id' });
+        this.belongsTo(models.User, { foreignKey: 'user_id' });
     }
 }
