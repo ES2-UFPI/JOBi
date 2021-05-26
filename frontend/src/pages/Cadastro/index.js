@@ -4,6 +4,7 @@ import axios from '../../services/axios';
 
 function Cadastro() {
     const [ nome, setNome ] = useState('');
+    
     //const [ senha, setSenha ] = useState('');
     const [ email, setEmail ] = useState('');
     /*
