@@ -20,6 +20,7 @@
   "dependencies": {
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
+    "install": "^0.13.0",
     "mariadb": "^2.5.3",
     "sequelize": "^6.6.2",
     "socket.io": "^4.1.1"

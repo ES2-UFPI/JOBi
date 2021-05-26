@@ -1,0 +1,35 @@
+.cadastro {
+    background: #fff;
+    padding: 30px;
+    margin: 50px auto;
+    border-radius: 4px;
+}
+
+.cadastro form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+.cadastro form label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+}
+
+.cadastro form input{
+    height: 40px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    padding: 0 10px;
+    border-radius: 4px;
+
+}
+
+.cadastro form input:focus{
+    border: 1px solid #000;
+
+}
