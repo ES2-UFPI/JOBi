@@ -4,9 +4,9 @@ import axios from '../../services/axios';
 
 function Cadastro() {
     const [ nome, setNome ] = useState('');
-    /*
-    const [ senha, setSenha ] = useState('');
+    //const [ senha, setSenha ] = useState('');
     const [ email, setEmail ] = useState('');
+    /*
     const [ telefone, setTelefone ] = useState('');
     const [ endereco, setEndereco ] = useState('');
     const [ descricao, setDescricao ] = useState('');
@@ -18,18 +18,22 @@ function Cadastro() {
         setNome(event.target.value);
     }
 
+    function handleEmailChange (event) {
+        setEmail(event.target.value);
+    }
+
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(nome);
+        
         axios.post('contratante', {
-            'nome': nome,
-            'senha': 'teste',
-            'email': 'teste@teste.com',      
-            'telefone': 'testetesteaa',
-            'endereco': 'teste',
-            'descricao': 'teste',
-            'status': 1
-          })
+            "nome": nome,
+            "senha": "testeteste123",
+            "email": email,      
+            "telefone": "testeteste",
+            "endereco": "teste",
+            "descricao": "teste",
+            "status": 1
+        })
           .then(function (response) {
             console.log(response);
           })
@@ -52,6 +56,16 @@ function Cadastro() {
                         value={nome}
                         onChange={handleNomeChange}
                         placeholder="Seu nome"
+                    />
+                </label>
+
+                <label htmlFor="email">
+                    E-mail:
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={handleEmailChange}
+                        placeholder="Seu e-mail"
                     />
                 </label>
 
