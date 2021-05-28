@@ -1,6 +1,5 @@
 import './App.css';
 
-import Main from './components/Main';
 
 import history from './services/history';
 import Header from './components/Header';
@@ -12,7 +11,6 @@ function App() {
     <div className="App">
       <Router history={history}>
         <Header />
-        <Main />
         <Routes />
       </Router>
     </div>
