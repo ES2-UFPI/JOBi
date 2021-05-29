@@ -10,6 +10,7 @@ function Header() {
         <Link to="user">Usuário</Link>
         <Link to="sobre">Sobre</Link>
         <Link to="contato">Contato</Link>
+        <Link to="chat_temp">Chat</Link>
       </div>    
     );
   }
