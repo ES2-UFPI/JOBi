@@ -1,8 +1,7 @@
-import { json } from 'sequelize/types';
 import Conexao from '../models/Conexao'
 
 class ConexaoController {
-    async store(req, res){
+    async store(params){
         try{
             const novaConexao = await Conexao.create(req.body);
 
@@ -30,7 +29,7 @@ class ConexaoController {
                  });
             }
 
-            const conexao = await Conexao.findByPk(req.params.id);
+            const conexao = await Conexao.findOne({ where: {prestador_id: params.id_prestador, contratante_id: params.id_prestador,} });
             return res.json(conexao);
 
         }catch(e){

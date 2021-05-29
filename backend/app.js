@@ -3,6 +3,8 @@ dotenv.config()
 
 import './src/database'
 import express from "express"
+import socketio from "socket.io";
+import http from "http";
 import homeRoutes from "./src/routes/homeRoutes";
 import userRoutes from "./src/routes/userRoutes";
 import contratanteRoutes from "./src/routes/contratanteRoutes";
@@ -12,6 +14,12 @@ import cors from 'cors'
 class App{
     constructor(){
         this.app = express()
+        this.server = http.createServer(this.app);
+        this.io = socketio(this.server, {
+            cors: true,
+            origins:["http://localhost:3000"],
+        
+        });
         this.middlewares();
         this.routes();
     }
@@ -40,6 +48,6 @@ class App{
 
 App = new App()
 
-export default(App.app);
+export default (App);
 
 

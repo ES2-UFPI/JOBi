@@ -14,7 +14,8 @@ export default class Conexao extends Model {
             },
           
         },{
-            sequelize
+            sequelize,
+            tableName: 'conexoes',
         });
         return this;
     }

@@ -1,5 +1,6 @@
-import app from "./app"
+import {server} from './http';
+import './src/websocket/socket';
 
-app.listen(3333, () => {
+server.listen(3333, () => {
     console.log("Rodando na 3333");
 });
