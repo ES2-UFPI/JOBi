@@ -17,15 +17,20 @@
     padding-left: 10%;
     color: #040404;
     font-family: 'Montserrat', sans-serif;
-    font-size: 75px;
+    font-size: 46px;
     font-weight: 400;
 }
+
+.informe span{
+    color: #008AEE;
+}
+
 .informe h2{
     margin-top: 40px;
     padding-left: 10%;
     color: #040404;
     font-family: 'Montserrat', sans-serif;
-    font-size: 30px;
+    font-size: 18px;
     font-weight: 400;
 }
 .login {
@@ -33,24 +38,25 @@
     float: right;
     color: #f5f5f5;
     width: 25%;
-    height: 700px;
+    height: 100%;
     background: #040404;
     padding: 30px;
 }
 
 .login h1 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 65px;
+    font-size: 44px;
     font-weight: 400;
     text-align: left;
     margin-left: 5%;
+    margin-top: 15%;
 }
 
 .login form {
     
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 10%;
     margin: 0 auto;
     max-width: 400px;
 }
@@ -58,7 +64,6 @@
 .login form label {
     display: flex;
     flex-direction: column;
-    margin-bottom: 70px;
 
 }
 
@@ -67,10 +72,10 @@
     font-weight: 500;
     color: #040404;
     height: 40px;
-    font-size: 18px;
-    border: 1px solid #f5f5f5;
+    font-size: 14px;
     padding: 0 10px;
     border-radius: 4px;
+    margin-bottom: 45px;
 
 }
 
@@ -81,11 +86,16 @@
 
 .login form button{
     font-family: 'Montserrat', sans-serif;
-    font-size: 200%;
+    font-size: 18px;
     border-radius: 15px;
     border: 1px solid #008AEE;
     background-color: #008AEE;
     height: 50px;
     color: #f5f5f5;
+}
+
+.login p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
 }
 

@@ -1,6 +1,7 @@
 import './Cadastro.css';
 import { useState } from "react";
 import axios from '../../services/axios';
+import { Link, useHistory } from 'react-router-dom';
 
 function Cadastro() {
     const [ nome, setNome ] = useState('');
@@ -12,6 +13,7 @@ function Cadastro() {
     //const [ descricao, setDescricao ] = useState('');
     //const [ status, setStatus ] = useState('');
     //const [ img_perfil, setImg_perfil ] = useState('');
+    const history = useHistory();
 
     function handleNomeChange (event) {
         setNome(event.target.value);
@@ -32,29 +34,51 @@ function Cadastro() {
     function handleTelefoneChange (event) {
         setTelefone(event.target.value);
     }
+
     function handleEnderecoChange (event) {
         setEndereco(event.target.value);
     }
+
     function handleSubmit(event) {
         event.preventDefault();
         
         axios.post('contratante', {
             "nome": nome,
-            "senha": "testeteste123",
+            "senha": senha,
             "email": email,      
-            telefone: telefone,
-            "endereco": "teste",
-            "descricao": "teste",
-            "status": 1
+            "telefone": telefone,
+            "endereco": endereco,
+            "status": 2
         })
-          .then(function (response) {
+        .then(function (response) {
             console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });  
 
-        alert('Cadastro enviado: ' + nome);
+            let obj = { 
+                "user": { 
+                  id: response.data.user.id,
+                  nome: response.data.user.nome,
+                  email: response.data.user.email,
+                  telefone: response.data.user.telefone,
+                  endereco: response.data.user.endereco,
+                  descricao: response.data.user.descricao,
+                  status: response.data.user.status,
+                  img_perfil: response.data.user.img_perfil
+                },
+              
+                "typeUser": {
+                  id: response.data.contratante.id,
+                  estrelas: response.data.contratante.estrelas
+                }
+            }
+
+            localStorage.setItem('userData', JSON.stringify(obj));
+        
+            history.push('/contratante');
+        })
+        .catch(function (error) {
+        console.log(error);
+        });
+     
     }
 
     return (
@@ -68,6 +92,7 @@ function Cadastro() {
                 </div>
                 
             </div>
+
             <div className="cadastro">
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="nome">
@@ -111,7 +136,7 @@ function Cadastro() {
                         Telefone:
                         <input
                             type="text"
-                            value={nome}
+                            value={telefone}
                             onChange={handleTelefoneChange}
                             placeholder="Ex. (00) 0 0000-0000"
                         />
@@ -120,12 +145,12 @@ function Cadastro() {
                         Endereço:
                         <input
                             type="text"
-                            value={nome}
+                            value={endereco}
                             onChange={handleEnderecoChange}
                             placeholder="Ex. (00) 0 0000-0000"
                         />
                     </label>
-                    <p>Já possui cadastro? Faça seu login!</p>
+                    <p>Já possui cadastro?  <Link to="login">Faça seu login!</Link> </p>
                     <button type="submit">Cadastrar</button>
                 </form>
             </div>

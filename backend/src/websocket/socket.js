@@ -14,7 +14,7 @@ io.on('connection', (socket) => {
         //O params vai receber o id do contratante, e o id do prestador
         console.log(params.id_p, params.id_c);
         try{
-            if(params.id_p =! null && params.id_c != null){
+            if(params.id_p != null && params.id_c != null){
                const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
                console.log(conexao)
                 if(conexao){
