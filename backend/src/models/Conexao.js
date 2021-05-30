@@ -3,7 +3,6 @@ import {Sequelize, Model} from "sequelize";
 export default class Conexao extends Model {
     static init(sequelize) {
         super.init({
-          
         },{
             sequelize,
             tableName: 'conexoes',
