@@ -3,12 +3,6 @@ import Conexao from "../models/Conexao";
 import Mensagem from "../models/Mensagem";
 
 //Observações:
-//Problema em distinguir qual usuario mandou a mensagem
-//Será necessário um campo a mais no banco pra saber se quem mandou
-//a mensagem foi o prestador ou o contratante
-//Criar foreign key entre o id da conexao e a mensagem
-//É importante diferenciar quem enviou cada mensagem para se fazer
-//o tratamento de exibição de mensagens no frontend
 //Criar table de prestadores interessados com foreign key prestadores
 
 io.on('connection', (socket) => {

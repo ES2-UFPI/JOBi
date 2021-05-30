@@ -1,4 +1,7 @@
-import User from '../models/User'
+import User from '../models/User';
+import Contratante from '../models/Contratante';
+import Prestador from '../models/Prestador';
+
 
 class UserController {
     async store(req, res){
@@ -13,18 +16,30 @@ class UserController {
     }
     async select(req,res){
         try{
+            
+            const user = await User.findOne({ where: { email: req.body.email, senha: req.body.senha }});
+            
+            if(user){
+                const contratante = await Contratante.findOne({ where: { user_id: user.id }});
+                console.log(contratante);
+                if(contratante){
+                    return res.json({user, contratante});
+                }else{
+                    const prestador = await Prestador.findOne({ where: { user_id: user.id }});
+                    console.log(prestador);
+                    return res.json({user, prestador});
+                }
 
-            if(!req.params.id){
+            }else{
                 return res.status(400).json({ 
-                    errors: ['ID não enviado']
+                    errors: ['Dados nao batem']
                  });
             }
-
-            const user_buscado = await User.findByPk(req.params.id);
-            return res.json(user_buscado);
-
+            
         }catch(e){
-            return res.json(null)
+            return res.status(400).json({ 
+                errors: ['Dados nao batem']
+             });
         }
     }
 }

@@ -4,17 +4,25 @@ import User from '../models/User'
 class PrestadorController {
     async store(req, res){
         try{
-            const novoUser = await User.create(req.body)
-
-            const novoPrestador = await Prestador.create({
+            const user = await User.create(req.body)
+            const prestador = await Prestador.create({
                 "user_id": novoUser.id
             });
 
-            res.json(novoUser);
+            res.json({user, prestador});
         }catch(e){
             res.status(400).json({ errors: e.errors.map((err) => err.message)})
         }
+    }
+    async index(req, res){
+        var users = []
+        try{
+            var prestadores = await Prestador.findAll()
         
+                res.json(prestadores);
+        }catch(e){
+            res.status(400).json({ errors: e.errors.map((err) => err.message)})
+        }
     }
 }
 
