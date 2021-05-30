@@ -3,16 +3,7 @@ import {Sequelize, Model} from "sequelize";
 export default class Mensagem extends Model {
     static init(sequelize) {
         super.init({
-            id_Socket: {
-                type: Sequelize.STRING,
-                defaultValue: '',
-                validate: {
-                    notEmpty: {
-                        msg: 'Campo não pode ficar vazio',
-                      },
-                }
-            },
-            text: {
+            texto: {
                 type: Sequelize.STRING(1234),
                 defaultValue: '',
                 validate: {
@@ -26,18 +17,19 @@ export default class Mensagem extends Model {
                 type: Sequelize.INTEGER,
                 defaultValue: '',
             },
+            is_prest: {
+                type: Sequelize.INTEGER,
+                defaultValue: '',
+            },
         },{
-            sequelize
+            sequelize,
+            tableName: 'mensagens',
         });
         return this;
     }
     static associate(models) {
-        this.belongsTo(models.Prestador, { foreignKey: 'prestador_id' });
-        this.belongsTo(models.Contratante, { foreignKey: 'contratante_id' });
+        this.belongsTo(models.Conexao, { foreignKey: 'conexao_id' })
 
     }
-    //static associate_4(models) {
-    //    this.belongsTo(models.Contratante, { foreignKey: 'contratante_id' });
-    //}
     
 }

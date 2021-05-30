@@ -1,4 +1,3 @@
-import { json } from 'sequelize/types';
 import Mensagem from '../models/Mensagem'
 
 class MensagemController {

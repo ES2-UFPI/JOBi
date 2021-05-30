@@ -1,5 +1,6 @@
 import { io } from '../../http';
 import Conexao from "../models/Conexao";
+import Mensagem from "../models/Mensagem";
 
 //Observações:
 //Problema em distinguir qual usuario mandou a mensagem
@@ -18,9 +19,26 @@ io.on('connection', (socket) => {
     socket.on('iniciar_chat', async(params, callback) => {
         //O params vai receber o id do contratante, e o id do prestador
         console.log(params.id_p, params.id_c);
-        //Verificar o valor dos parametros
-        //Se tudo ok, inserir uma conexão entre os dois na table
-        socket.join(1)
+        try{
+            if(params.id_p =! null && params.id_c != null){
+               const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
+               console.log(conexao)
+                if(conexao){
+                    socket.join(conexao.id);
+                }else{
+                   const new_conexao = await Conexao.create({
+                       prestador_id: params.id_p,
+                       contratante_id: params.id_c
+                   });
+                   socket.join(new_conexao.id);
+                }
+            }else{
+                callback({error: 'Algum parametro passado errado'})
+            }
+        }catch(e){
+            callback({error: e})
+        }
+        
         //Criar mensagem de entrada ao contratante
         //socket.emit('novo_chat', { user: admin, message: 'Boa sorte na sua conversa!' });
         //Criar mensagem de entrada ao prestador
@@ -35,22 +53,37 @@ io.on('connection', (socket) => {
          //O params vai receber o id do prestador, id do contrantante, o texto da mensagem
          //, e um campo true ou false para saber se quem enviou a mensagem foi o prestador ou o contratante
         console.log(params.id_p, params.id_c);
-        //Verificar o valor dos parametros
-        //Se tudo ok, buscar pelo id da conexão entre os dois
-        //Achada a conexao
-
-        if(params.isPrest=false){
-            socket.to(1).emit('message', {user: params.id_c, text: params.texto});
-        }else{
-            socket.to(1).emit('message', {user: params.id_p, text: params.texto});
+        try{
+            if(params.id_p =! null && params.id_c != null){
+               const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
+                if(conexao){
+                    if(params.isPrest == false){
+                        socket.to(conexao.id).emit('message', {user: params.id_c, texto: params.texto});
+                        await Mensagem.create({
+                            conexao_id: conexao.id,
+                            texto: params.texto,
+                            emissor: params.id_c,
+                            is_prest: 2,
+                        })
+                    }else{
+                        socket.to(conexao.id).emit('message', {user: params.id_p, texto: params.texto});
+                        await Mensagem.create({
+                            conexao_id: conexao.id,
+                            texto: params.texto,
+                            emissor: params.id_p,
+                            is_prest: 1,
+                        })
+                    }
+                    
+                }else{
+                    callback({error: 'Nao ha nenhuma conexao com esses usuarios'});
+                }
+            }else{
+                callback({error: 'Valores de id invalidos'});
+            }
+        }catch(e){
+            callback({error: e})
         }
-        
-        //Inserir mensagem no banco
-        //OU
-        //Se quem enviou foi o prestador(params.isPrest=true) fazer:
-        //
-        //Inserir mensagem no banco
-         //callback devolve erro o se o se tiver
     })
 
     socket.on('apagar_chat', async(params, callback) => {

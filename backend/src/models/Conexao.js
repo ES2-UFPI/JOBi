@@ -3,15 +3,6 @@ import {Sequelize, Model} from "sequelize";
 export default class Conexao extends Model {
     static init(sequelize) {
         super.init({
-            id_Socket: {
-                type: Sequelize.STRING,
-                defaultValue: '',
-                validate: {
-                    notEmpty: {
-                        msg: 'Campo não pode ficar vazio',
-                      },
-                }
-            },
           
         },{
             sequelize,
