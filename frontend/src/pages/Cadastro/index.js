@@ -4,94 +4,111 @@ import axios from '../../services/axios';
 import { Link, useHistory } from 'react-router-dom';
 
 function Cadastro() {
-    const [ nome, setNome ] = useState('');
-    const [ senha, setSenha ] = useState('');
-    const [ rsenha, setRSenha ] = useState('');
-    const [ email, setEmail ] = useState('');
-    const [ telefone, setTelefone ] = useState('');
-    const [ endereco, setEndereco ] = useState('');
+    const [nome, setNome] = useState('');
+    const [senha, setSenha] = useState('');
+    const [rsenha, setRSenha] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefone, setTelefone] = useState('');
+    const [endereco, setEndereco] = useState('');
     //const [ descricao, setDescricao ] = useState('');
     //const [ status, setStatus ] = useState('');
     //const [ img_perfil, setImg_perfil ] = useState('');
     const history = useHistory();
 
-    function handleNomeChange (event) {
+    function handleNomeChange(event) {
         setNome(event.target.value);
     }
 
-    function handleEmailChange (event) {
+    function handleEmailChange(event) {
         setEmail(event.target.value);
     }
 
-    function handleSenhaChange (event) {
+    function handleSenhaChange(event) {
         setSenha(event.target.value);
     }
 
-    function handleRSenhaChange (event) {
+    function handleRSenhaChange(event) {
         setRSenha(event.target.value);
     }
 
-    function handleTelefoneChange (event) {
+    function handleTelefoneChange(event) {
         setTelefone(event.target.value);
     }
 
-    function handleEnderecoChange (event) {
+    function handleEnderecoChange(event) {
         setEndereco(event.target.value);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
-        
+
         axios.post('contratante', {
             "nome": nome,
             "senha": senha,
-            "email": email,      
+            "email": email,
             "telefone": telefone,
             "endereco": endereco,
             "status": 2
         })
-        .then(function (response) {
-            console.log(response);
+            .then(function (response) {
+                console.log(response);
 
-            let obj = { 
-                "user": { 
-                  id: response.data.user.id,
-                  nome: response.data.user.nome,
-                  email: response.data.user.email,
-                  telefone: response.data.user.telefone,
-                  endereco: response.data.user.endereco,
-                  descricao: response.data.user.descricao,
-                  status: response.data.user.status,
-                  img_perfil: response.data.user.img_perfil
-                },
-              
-                "typeUser": {
-                  id: response.data.contratante.id,
-                  estrelas: response.data.contratante.estrelas
+                let obj = {
+                    "user": {
+                        id: response.data.user.id,
+                        nome: response.data.user.nome,
+                        email: response.data.user.email,
+                        telefone: response.data.user.telefone,
+                        endereco: response.data.user.endereco,
+                        descricao: response.data.user.descricao,
+                        status: response.data.user.status,
+                        img_perfil: response.data.user.img_perfil
+                    },
+
+                    "typeUser": {
+                        id: response.data.contratante.id,
+                        estrelas: response.data.contratante.estrelas
+                    }
                 }
-            }
 
-            localStorage.setItem('userData', JSON.stringify(obj));
-        
-            history.push('/contratante');
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-     
+                localStorage.setItem('userData', JSON.stringify(obj));
+
+                history.push('/contratante');
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
 
     return (
         <div className="pagina2">
             <div className="titulos">
-                <div className='titulo1'>
-                    <h1>Cadastro</h1>
+                <div className="jobi">JOB<span>i</span>:
+                    <div className='titulo1'>
+                        <h1>Cadastro</h1>
+                    </div>
                 </div>
+
                 <div className='titulo2'>
-                    <h1>Qual o seu objetivo no aplicativo? Ofertar vagas de emprego ou Procurar vagas?</h1>
+                    <h1>Qual o seu objetivo no aplicativo?</h1>
+
+                    <label className="container">
+                        <input type="checkbox" checked="checked" />
+                        <span class="checkmark"></span>
+                        <span className="text">Procurar vagas</span>
+                    </label>
+
+                    <label className="container">
+                        <input type="checkbox" />
+                        <span class="checkmark"></span>
+                        <span className="text">Ofertar vagas de emprego</span>
+                    </label>
+
                 </div>
-                
+
             </div>
+
 
             <div className="cadastro">
                 <form onSubmit={handleSubmit}>
@@ -133,7 +150,7 @@ function Cadastro() {
                         />
                     </label>
                     <label htmlFor="telefone">
-                        Telefone:
+                        <span className="label"> Telefone: </span>
                         <input
                             type="text"
                             value={telefone}
@@ -141,8 +158,9 @@ function Cadastro() {
                             placeholder="Ex. (00) 0 0000-0000"
                         />
                     </label>
+                    
+                    <span className="label"> Endereço: </span>
                     <label htmlFor="endereço">
-                        Endereço:
                         <input
                             type="text"
                             value={endereco}
@@ -156,6 +174,6 @@ function Cadastro() {
             </div>
         </div>
     );
-  }
-  
-  export default Cadastro;
+}
+
+export default Cadastro;
