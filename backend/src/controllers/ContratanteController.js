@@ -17,6 +17,18 @@ class ContratanteController {
         }
         
     }
+
+    async index(req, res){
+        try{
+            const contratantes = await Contratante.findAll()
+        
+                res.json(contratantes);
+        }catch(e){
+            res.status(400).json({ errors: e.errors.map((err) => err.message)})
+        }
+    }
+
+    
 }
 
 export default new ContratanteController();

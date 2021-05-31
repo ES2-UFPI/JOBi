@@ -38,6 +38,10 @@ class UserController {
              });
         }
     }
+
+    async modifyStatus(req,res){
+        
+    }
 }
 
 export default new UserController();
