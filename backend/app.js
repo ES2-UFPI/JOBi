@@ -44,7 +44,7 @@ class App{
         this.app.use('/', homeRoutes)
         this.app.use('/users/', userRoutes)
         this.app.use('/contratante/', contratanteRoutes)
-        this.app.use('/prestador', prestadorRoutes)
+        this.app.use('/prestador/', prestadorRoutes)
         this.app.use('/conexao', conexaoRoutes)
         this.app.use('/mensagem', mensagemRoutes)
     }
