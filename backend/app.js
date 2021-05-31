@@ -1,0 +1,57 @@
+import dotenv from "dotenv"
+dotenv.config()
+
+import './src/database'
+import express from "express"
+import socketio from "socket.io";
+import http from "http";
+import homeRoutes from "./src/routes/homeRoutes";
+import userRoutes from "./src/routes/userRoutes";
+import contratanteRoutes from "./src/routes/contratanteRoutes";
+import prestadorRoutes from "./src/routes/prestadorRoutes";
+import conexaoRoutes from "./src/routes/conexaoRoutes";
+import mensagemRoutes from "./src/routes/mensagemRoutes";
+import cors from 'cors'
+
+class App{
+    constructor(){
+        this.app = express()
+        this.server = http.createServer(this.app);
+        this.io = socketio(this.server, {
+            cors: true,
+            origins:["http://localhost:3000"],
+        
+        });
+        this.middlewares();
+        this.routes();
+    }
+
+    middlewares(){
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json())
+
+        this.app.use((req, res, next) => {
+            res.setHeader("Access-Control-Allow-Origin", "*");
+            res.setHeader("Access-Control-Allow-Credentials", "true");
+            res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+            this.app.use(cors());
+            next();
+        });
+    }
+
+    routes(){
+        this.app.use('/', homeRoutes)
+        this.app.use('/users/', userRoutes)
+        this.app.use('/contratante/', contratanteRoutes)
+        this.app.use('/prestador/', prestadorRoutes)
+        this.app.use('/conexao', conexaoRoutes)
+        this.app.use('/mensagem', mensagemRoutes)
+    }
+}
+
+App = new App()
+
+export default (App);
+
+
