@@ -21,5 +21,6 @@ export default class Contratante extends Model {
     }
     static associate(models) {
         this.belongsTo(models.User, { foreignKey: 'user_id' });
+        this.hasMany(models.Conexao, { foreignKey: 'contratante_id' })
     }
 }

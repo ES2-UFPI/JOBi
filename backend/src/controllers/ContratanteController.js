@@ -5,15 +5,15 @@ class ContratanteController {
     async store(req, res){
         try{
 
-            const novoUser = await User.create(req.body)
+            const user = await User.create(req.body)
 
-            const novoContratante = await Contratante.create({
-                "user_id": novoUser.id
+            const contratante = await Contratante.create({
+                "user_id": user.id
             });
 
-            res.json(novoUser);
+            res.json({user, contratante});
         }catch(e){
-            res.status(400).json({ errors: e.errors.map((err) => err.message)})
+            res.status(400).json({ errors: e})
         }
         
     }

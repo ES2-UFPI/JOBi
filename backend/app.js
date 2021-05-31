@@ -3,15 +3,25 @@ dotenv.config()
 
 import './src/database'
 import express from "express"
+import socketio from "socket.io";
+import http from "http";
 import homeRoutes from "./src/routes/homeRoutes";
 import userRoutes from "./src/routes/userRoutes";
 import contratanteRoutes from "./src/routes/contratanteRoutes";
 import prestadorRoutes from "./src/routes/prestadorRoutes";
+import conexaoRoutes from "./src/routes/conexaoRoutes";
+import mensagemRoutes from "./src/routes/mensagemRoutes";
 import cors from 'cors'
 
 class App{
     constructor(){
         this.app = express()
+        this.server = http.createServer(this.app);
+        this.io = socketio(this.server, {
+            cors: true,
+            origins:["http://localhost:3000"],
+        
+        });
         this.middlewares();
         this.routes();
     }
@@ -35,11 +45,13 @@ class App{
         this.app.use('/users/', userRoutes)
         this.app.use('/contratante/', contratanteRoutes)
         this.app.use('/prestador', prestadorRoutes)
+        this.app.use('/conexao', conexaoRoutes)
+        this.app.use('/mensagem', mensagemRoutes)
     }
 }
 
 App = new App()
 
-export default(App.app);
+export default (App);
 
 

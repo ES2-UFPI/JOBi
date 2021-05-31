@@ -19,7 +19,9 @@ export default class Prestador extends Model {
         });
         return this;
     }
-    static associate_1(models){
+    static associate(models){
         this.belongsTo(models.User, { foreignKey: 'user_id' });
+        this.hasMany(models.Conexao, { foreignKey: 'prestador_id' })
+
     }
 }
