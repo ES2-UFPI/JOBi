@@ -8,12 +8,29 @@ import InfoBar from '../../components/InfoBar/InfoBar';
 import Input from '../../components/Input/Input';
 
 const Chat = ({ location }) => {
+      const { id } = queryString.parse(location.search);
+      console.log(id);
+
+      let data = localStorage.getItem('userData');
+      data = JSON.parse(data);
+      console.log(data);
       
       const [message, setMessage] = useState('');
       const [messages, setMessages] = useState([]);
+      
+      var id_p = 0;
+      var id_c = 0;
+      var isPrest = true;
 
-      var id_p = 2;
-      var id_c = 4;
+      if(data.status === 1){
+        id_p = data.typeUser.id;
+        id_c = id;
+        isPrest = true;
+      }else{
+        id_p = id;
+        id_c = data.typeUser.id;
+        isPrest = false;
+      }
 
       const API = 'localhost:3333'
 
@@ -51,7 +68,7 @@ const Chat = ({ location }) => {
         event.preventDefault();
     
         if(message) {
-          socket.emit('enviar_mensagem', { id_p: id_p, id_c: id_c, texto: message, isPrest: false }, () => setMessage(''));
+          socket.emit('enviar_mensagem', { id_p: id_p, id_c: id_c, texto: message, isPrest: isPrest }, () => setMessage(''));
         }
       }
 
@@ -59,7 +76,7 @@ const Chat = ({ location }) => {
       <div className="outerContainer">
       <div className="container">
           <InfoBar />
-          <Messages messages={messages} name={4} />
+          <Messages messages={messages} name={data.typeUser.id} />
           <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
       
