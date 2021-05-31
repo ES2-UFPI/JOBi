@@ -21,20 +21,23 @@ class ConexaoController {
             return res.json(null)
         }
     }
-    async select(req,res){
+    async chats_prestador(req,res){
         try{
-
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
-
-            const conexao = await Conexao.findOne({ where: {prestador_id: params.id_prestador, contratante_id: params.id_prestador,} });
+            const conexao = await Conexao.findAll({ where: {prestador_id: req.body.id} });
             return res.json(conexao);
 
         }catch(e){
             return res.json(null)
+        }
+    }
+
+    async chats_contratante(req,res){
+        try{
+            const conexao = await Conexao.findAll({ where: {contratante_id: req.body.id} });
+            return res.json(conexao);
+
+        }catch(e){
+            return res.status(400).json(null)
         }
     }
 

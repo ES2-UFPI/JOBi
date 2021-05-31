@@ -5,14 +5,14 @@ import Mensagem from "../models/Mensagem";
 //Observações:
 //Criar table de prestadores interessados com foreign key prestadores
 
-io.on('connection', (socket) => {
+io.on('connect', (socket) => {
     console.log('Nova conexao', socket.id);
     
 
     //Quando o contratante abrir iniciar o chat com o usuário
     socket.on('iniciar_chat', async(params, callback) => {
         //O params vai receber o id do contratante, e o id do prestador
-        console.log(params.id_p, params.id_c);
+        //console.log(params.id_p, params.id_c);
         try{
             if(params.id_p != null && params.id_c != null){
                const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
@@ -24,6 +24,7 @@ io.on('connection', (socket) => {
                        prestador_id: params.id_p,
                        contratante_id: params.id_c
                    });
+                   console.log(new_conexao.id);
                    socket.join(new_conexao.id);
                 }
             }else{

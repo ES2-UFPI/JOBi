@@ -2,6 +2,9 @@ import './Login.css';
 import { useState } from "react";
 import axios from '../../services/axios';
 import { Link, useHistory } from 'react-router-dom';
+import  work_chat  from '../../images/work_chat2.svg';
+import  coffee_break  from '../../images/coffee_break.svg';
+import  freelancer  from '../../images/freelancer.svg';
 
 function Login() {
   const [ email, setNome ] = useState('');
@@ -66,8 +69,20 @@ function Login() {
   return (
     <div className="pagina"> 
       <div className="informe">
-      <h1>JOB<span>i</span>:</h1>
+      <h1>JOB<span>i</span></h1>
       <h2>Trabalhe do seu jeito...</h2>
+        <div className="imagens">
+              <div className="work">
+              <img className="work-chat" src={work_chat} alt="work_chat"/>
+              </div>
+              <div className="coffee">
+              <img className="coffee-break" src={coffee_break} alt="coffee_break"/>
+              </div>
+              <div className="freela">
+              <img className="freelancer" src={freelancer} alt="freelancer"/>
+              </div>
+              
+        </div>
       </div>
       <div className="login">
           <hr/>
@@ -79,7 +94,7 @@ function Login() {
                       type="text"
                       value={email}
                       onChange={handleEmailChange}
-                      placeholder="Seu E-mail"
+                      placeholder="E-mail"
                   />
               </label>
 
@@ -88,13 +103,13 @@ function Login() {
                       type="password"
                       value={senha}
                       onChange={handleSenhaChange}
-                      placeholder="Sua Senha"
+                      placeholder="Senha"
                   />
               </label>
 
               <button type="submit">Entrar</button>
           </form>
-          <p>Ainda não faz parte? <Link to="cadastro">Cadastre-se agora!</Link> </p>
+          <p>Ainda não faz parte? <Link to="cadastro">Cadastre-se agora!</Link></p>
           
           </div>
 

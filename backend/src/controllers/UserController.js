@@ -20,27 +20,27 @@ class UserController {
             const user = await User.findOne({ where: { email: req.body.email, senha: req.body.senha }});
             
             if(user){
-                const contratante = await Contratante.findOne({ where: { user_id: user.id }});
-                console.log(contratante);
-                if(contratante){
+                if(user.status==2){
+                    const contratante = await Contratante.findOne({ where: { user_id: user.id }});
                     return res.json({user, contratante});
                 }else{
                     const prestador = await Prestador.findOne({ where: { user_id: user.id }});
-                    console.log(prestador);
                     return res.json({user, prestador});
                 }
-
             }else{
                 return res.status(400).json({ 
-                    errors: ['Dados nao batem']
+                    errors: ['Usuario ou senha invalidos']
                  });
             }
-            
         }catch(e){
             return res.status(400).json({ 
                 errors: ['Dados nao batem']
              });
         }
+    }
+
+    async modifyStatus(req,res){
+        
     }
 }
 

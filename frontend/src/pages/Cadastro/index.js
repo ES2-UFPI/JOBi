@@ -9,7 +9,13 @@ function Cadastro() {
     const [rsenha, setRSenha] = useState('');
     const [email, setEmail] = useState('');
     const [telefone, setTelefone] = useState('');
-    const [endereco, setEndereco] = useState('');
+    const [ celular, setCelular ] = useState('');
+    const [ endereco, setEndereco ] = useState('');
+    const [ cidade, setCidade ] = useState('');
+    const [ estado, setEstado ] = useState('');
+    const [ cep, setCEP ] = useState('');
+    const [ pais, setPais ] = useState('');
+
     //const [ descricao, setDescricao ] = useState('');
     //const [ status, setStatus ] = useState('');
     //const [ img_perfil, setImg_perfil ] = useState('');
@@ -35,8 +41,27 @@ function Cadastro() {
         setTelefone(event.target.value);
     }
 
-    function handleEnderecoChange(event) {
+    function handleCelularChange (event) {
+        setCelular(event.target.value);
+    }
+
+    function handleEnderecoChange (event) {
         setEndereco(event.target.value);
+    }
+
+    function handleCidadeChange (event) {
+        setCidade(event.target.value);
+    }
+
+    function handleEstadoChange (event) {
+        setEstado(event.target.value);
+    }
+
+    function handlePaisChange (event) {
+        setPais(event.target.value);
+    }
+    function handleCEPChange (event) {
+        setCEP(event.target.value);
     }
 
     function handleSubmit(event) {
@@ -50,30 +75,30 @@ function Cadastro() {
             "endereco": endereco,
             "status": 2
         })
-            .then(function (response) {
-                console.log(response);
+        .then(function (response) {
+            console.log(response);
 
-                let obj = {
-                    "user": {
-                        id: response.data.user.id,
-                        nome: response.data.user.nome,
-                        email: response.data.user.email,
-                        telefone: response.data.user.telefone,
-                        endereco: response.data.user.endereco,
-                        descricao: response.data.user.descricao,
-                        status: response.data.user.status,
-                        img_perfil: response.data.user.img_perfil
-                    },
+            let obj = {
+                "user": {
+                    id: response.data.user.id,
+                    nome: response.data.user.nome,
+                    email: response.data.user.email,
+                    telefone: response.data.user.telefone,
+                    endereco: response.data.user.endereco,
+                    descricao: response.data.user.descricao,
+                    status: response.data.user.status,
+                    img_perfil: response.data.user.img_perfil
+                },
 
-                    "typeUser": {
-                        id: response.data.contratante.id,
-                        estrelas: response.data.contratante.estrelas
-                    }
+                "typeUser": {
+                    id: response.data.contratante.id,
+                    estrelas: response.data.contratante.estrelas
                 }
+            }
 
-                localStorage.setItem('userData', JSON.stringify(obj));
+            localStorage.setItem('userData', JSON.stringify(obj));
 
-                history.push('/contratante');
+            history.push('/contratante');
             })
             .catch(function (error) {
                 console.log(error);
@@ -112,64 +137,109 @@ function Cadastro() {
 
             <div className="cadastro">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="nome">
-                        Nome:
-                        <input
-                            type="text"
-                            value={nome}
-                            onChange={handleNomeChange}
-                            placeholder="Ex. Álvaro Campos"
-                        />
-                    </label>
+                <row>
+                        <label htmlFor="nome">
+                            <input
+                                type="text"
+                                value={nome}
+                                onChange={handleNomeChange}
+                                placeholder="Nome Completo"
+                            />
+                        </label>
 
-                    <label htmlFor="email">
-                        E-mail:
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={handleEmailChange}
-                            placeholder="Ex. mpg123@example.com"
-                        />
-                    </label>
-                    <label htmlFor="senha">
-                        Senha:
-                        <input
-                            type="password"
-                            value={senha}
-                            onChange={handleSenhaChange}
-                            placeholder="Ex. Ash3FF23lkkjn55FACsd "
-                        />
-                    </label>
-                    <label htmlFor="senha">
-                        Redigite a Senha:
-                        <input
-                            type="password"
-                            value={rsenha}
-                            onChange={handleRSenhaChange}
-                            placeholder="Ex. Ash3FF23lkkjn55FACsd "
-                        />
-                    </label>
-                    <label htmlFor="telefone">
-                        <span className="label"> Telefone: </span>
-                        <input
-                            type="text"
-                            value={telefone}
-                            onChange={handleTelefoneChange}
-                            placeholder="Ex. (00) 0 0000-0000"
-                        />
-                    </label>
-                    
-                    <span className="label"> Endereço: </span>
-                    <label htmlFor="endereço">
-                        <input
-                            type="text"
-                            value={endereco}
-                            onChange={handleEnderecoChange}
-                            placeholder="Ex. (00) 0 0000-0000"
-                        />
-                    </label>
+                        <label htmlFor="email">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={handleEmailChange}
+                                placeholder="E-mail"
+                            />
+                        </label>
+                    </row>
+                    <row>
+                        <label htmlFor="senha">
+                            <input
+                                type="password"
+                                value={senha}
+                                onChange={handleSenhaChange}
+                                placeholder="Senha"
+                            />
+                        </label>
+                        <label htmlFor="senha">
+                            <input
+                                type="password"
+                                value={rsenha}
+                                onChange={handleRSenhaChange}
+                                placeholder="Redigite a Senha"
+                            />
+                        </label>
+                    </row>
+                    <row>
+                        <label htmlFor="telefone">
+                            <input
+                                type="text"
+                                value={telefone}
+                                onChange={handleTelefoneChange}
+                                placeholder="Telefone"
+                            />
+                        </label>
+                        <label htmlFor="celular">
+                            <input
+                                type="text"
+                                value={celular}
+                                onChange={handleCelularChange}
+                                placeholder="Celular"
+                            />
+                        </label>
+                    </row>
+                    <row className="endereco">
+                        <label htmlFor="endereço">
+                            <input
+                                type="text"
+                                value={endereco}
+                                onChange={handleEnderecoChange}
+                                placeholder="Endereço"
+                            />
+                        </label>
+                    </row>
+                    <row>
+                        <label htmlFor="cidade">
+                            <input
+                                type="text"
+                                value={cidade}
+                                onChange={handleCidadeChange}
+                                placeholder="Cidade"
+                            />
+                        </label>
+                        <label htmlFor="estado">
+                            <input
+                                type="text"
+                                value={estado}
+                                onChange={handleEstadoChange}
+                                placeholder="Estado"
+                            />
+                        </label>
+                    </row>
+                    <row>
+                        <label htmlFor="pais">
+                            <input
+                                type="text"
+                                value={pais}
+                                onChange={handlePaisChange}
+                                placeholder="País"
+                            />
+                        </label>
+                        <label htmlFor="cep">
+                            <input
+                                type="text"
+                                value={cep}
+                                onChange={handleCEPChange}
+                                placeholder="CEP"
+                            />
+                        </label>
+                    </row>
                     <p>Já possui cadastro?  <Link to="login">Faça seu login!</Link> </p>
-                    <button type="submit">Cadastrar</button>
+                    <row><button type="submit">Cadastrar</button></row>
                 </form>
             </div>
         </div>

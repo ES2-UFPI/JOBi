@@ -52,52 +52,61 @@
 }
 
 .cadastro form {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    margin: 0 auto;
-    max-width: 600px;
+  border: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin: 0 auto;
+  max-width: 90%;
 }
+
 
 .cadastro form label {
-    flex-direction: row;
-    margin-bottom: 2%;
+  display: inline-table;
+  flex-direction: row;
+  margin-bottom: 40px;
+
 }
 
-.cadastro form .label {
-    flex-direction: column;
-    margin-bottom: 2%;
+.endereco input{
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #f5f5f5;
+  padding: 0 10px;
+  width: 498px;
+  margin-left: 40px;
+  border-radius: 4px;
 }
 
 .cadastro form input{
-    margin-top: 5%;
-    height: 40px;
-    font-size: 18px;
-    border: 1px solid #f5f5f5;
-    padding: 0 10px;
-    border-radius: 4px;
-    display: inline-block;
+  height: 40px;
+  font-size: 18px;
+  border: 1px solid #f5f5f5;
+  padding: 0 10px;
+  margin-left: 40px;
+  border-radius: 4px;
+
 }
 
 .cadastro form input:focus{
-    border: 1px solid #040404;
+  border: 1px solid #040404;
 
 }
 
 .cadastro form button{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 200%;
-    border-radius: 15px;
-    border: 1px solid #008AEE;
-    background-color: #008AEE;
-    height: 50px;
-    color: #f5f5f5;
-    cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 200%;
+  border-radius: 15px;
+  border: 1px solid #008AEE;
+  background-color: #008AEE;
+  height: 50px;
+  width: 300px;
+  color: #f5f5f5;
+  cursor: pointer;
 }
-
 .cadastro a{
-    color: #008AEE;
-    text-decoration: none;
+  text-decoration: none;
+  color:#008AEE;
 }
 
 /*Estilização do botão checkbox
