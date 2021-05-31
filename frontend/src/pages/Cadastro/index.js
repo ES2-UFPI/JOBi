@@ -17,7 +17,7 @@ function Cadastro() {
     const [ pais, setPais ] = useState('');
 
     //const [ descricao, setDescricao ] = useState('');
-    //const [ status, setStatus ] = useState('');
+    const [ status, setStatus ] = useState('1');
     //const [ img_perfil, setImg_perfil ] = useState('');
     const history = useHistory();
 
@@ -60,20 +60,32 @@ function Cadastro() {
     function handlePaisChange (event) {
         setPais(event.target.value);
     }
+
     function handleCEPChange (event) {
         setCEP(event.target.value);
+    }
+
+    function handleStatusChange (event) {
+        setStatus(event.target.value);
     }
 
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post('contratante', {
+        var route = '';
+        if(status === "1"){
+            route = '/prestador';
+        }else{
+            route = 'contratante';
+        }
+
+        axios.post(route, {
             "nome": nome,
             "senha": senha,
             "email": email,
             "telefone": telefone,
             "endereco": endereco,
-            "status": 2
+            "status": status
         })
         .then(function (response) {
             console.log(response);
@@ -98,7 +110,7 @@ function Cadastro() {
 
             localStorage.setItem('userData', JSON.stringify(obj));
 
-            history.push('/contratante');
+            history.push(route);
             })
             .catch(function (error) {
                 console.log(error);
@@ -115,18 +127,29 @@ function Cadastro() {
                     </div>
                 </div>
 
-                <div className='titulo2'>
+                <div className='titulo2' onChange={handleStatusChange}>
                     <h1>Qual o seu objetivo no aplicativo?</h1>
 
                     <label className="container">
-                        <input type="checkbox" checked="checked" />
-                        <span class="checkmark"></span>
+                        <input
+                            name="status"
+                            id="status"
+                            type="radio"
+                            value="1"
+                            defaultChecked={status === "1"}
+                        />
+                        <span className="checkmark"></span>
                         <span className="text">Procurar vagas</span>
                     </label>
 
                     <label className="container">
-                        <input type="checkbox" />
-                        <span class="checkmark"></span>
+                        <input
+                            name="status"
+                            id="status"
+                            type="radio"
+                            value="2"
+                        />
+                        <span className="checkmark"></span>
                         <span className="text">Ofertar vagas de emprego</span>
                     </label>
 

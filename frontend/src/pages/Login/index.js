@@ -75,13 +75,14 @@ function Login() {
               <div className="work">
               <img className="work-chat" src={work_chat} alt="work_chat"/>
               </div>
+              {/*
               <div className="coffee">
               <img className="coffee-break" src={coffee_break} alt="coffee_break"/>
               </div>
               <div className="freela">
               <img className="freelancer" src={freelancer} alt="freelancer"/>
               </div>
-              
+              */}
         </div>
       </div>
       <div className="login">
