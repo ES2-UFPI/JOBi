@@ -2,6 +2,7 @@ name: Backend - DEV - Build
 on:
  push:
    branches:
+     - main
      - dev
 defaults:
   run:
