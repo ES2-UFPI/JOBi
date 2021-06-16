@@ -4,6 +4,7 @@ import './Header.css';
 function Header() {
     return (
       <div className="nav">
+        {/* 
         <Link to="/">Home</Link>
         <Link to="login">Login</Link>
         <Link to="cadastro">Cadastro</Link>
@@ -11,6 +12,7 @@ function Header() {
         <Link to="sobre">Sobre</Link>
         <Link to="contato">Contato</Link>
         <Link to="chat_temp">Chat</Link>
+        */}
       </div>    
     );
   }

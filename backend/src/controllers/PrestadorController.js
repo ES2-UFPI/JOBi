@@ -6,7 +6,7 @@ class PrestadorController {
         try{
             const user = await User.create(req.body)
             const prestador = await Prestador.create({
-                "user_id": novoUser.id
+                "user_id": user.id
             });
 
             res.json({user, prestador});
