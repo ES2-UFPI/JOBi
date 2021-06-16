@@ -9,6 +9,7 @@ branches:
   only:
     - master
     - dev
+    - teste-travis
 script:
   - npm run build
 
