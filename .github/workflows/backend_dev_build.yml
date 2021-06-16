@@ -25,7 +25,7 @@ jobs:
      run: npm install
      
    - name: Build jobi backend
-     run: npm run build
+     run: npm run dev
      
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
