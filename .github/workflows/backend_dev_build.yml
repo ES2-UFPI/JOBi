@@ -26,7 +26,7 @@ jobs:
      run: npm install
      
    - name: Build jobi backend
-     run: node server.js
+     run: sucrase-node server.js
      
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
