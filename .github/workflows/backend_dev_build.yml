@@ -2,8 +2,7 @@ name: Backend - DEV - Build
 on:
  push:
    branches:
-     - main
-     - dev
+     - issue#53
 defaults:
   run:
     working-directory: ./backend
