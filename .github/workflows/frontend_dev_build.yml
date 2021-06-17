@@ -3,6 +3,9 @@ on:
  pull_request:
    branches:
      - issue#53
+defaults:
+  run:
+    working-directory: ./frontend
 jobs:
   build:
    name: Build
