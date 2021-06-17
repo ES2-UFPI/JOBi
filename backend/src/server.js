@@ -1,5 +1,5 @@
 import {server} from './http';
-import './src/websocket/socket';
+import './websocket/socket';
 
 
 //rodar server

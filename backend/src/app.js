@@ -1,16 +1,16 @@
 import dotenv from "dotenv"
 dotenv.config()
 
-import './src/database'
+import './database'
 import express from "express"
 import socketio from "socket.io";
 import http from "http";
-import homeRoutes from "./src/routes/homeRoutes";
-import userRoutes from "./src/routes/userRoutes";
-import contratanteRoutes from "./src/routes/contratanteRoutes";
-import prestadorRoutes from "./src/routes/prestadorRoutes";
-import conexaoRoutes from "./src/routes/conexaoRoutes";
-import mensagemRoutes from "./src/routes/mensagemRoutes";
+import homeRoutes from "./routes/homeRoutes";
+import userRoutes from "./routes/userRoutes";
+import contratanteRoutes from "./routes/contratanteRoutes";
+import prestadorRoutes from "./routes/prestadorRoutes";
+import conexaoRoutes from "./routes/conexaoRoutes";
+import mensagemRoutes from "./routes/mensagemRoutes";
 import cors from 'cors'
 
 class App{

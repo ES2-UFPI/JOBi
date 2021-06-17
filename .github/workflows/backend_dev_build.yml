@@ -1,10 +1,8 @@
-name: Backend - DEV - Build
+name: Backend - TESTE - Build
 on:
  push:
    branches:
-     - main
-     - dev
-     - issue#51
+     - issue#53
 defaults:
   run:
     working-directory: ./backend
@@ -26,8 +24,11 @@ jobs:
    - name: Install Packages
      run: npm install
      
-   - name: Build jobi backend
-     run: node server.js
+   - name: Criar build backend
+     run: npm run build
+    
+  - name: Build jobi backend
+     run: npm start
      
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
