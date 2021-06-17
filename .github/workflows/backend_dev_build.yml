@@ -26,9 +26,6 @@ jobs:
      
    - name: Criar build backend
      run: npm run build
-    
-   - name: Build jobi backend
-     run: npm start
      
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
