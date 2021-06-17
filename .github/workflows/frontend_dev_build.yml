@@ -10,6 +10,8 @@ jobs:
   build:
    name: Build
    runs-on: ubuntu-latest
+   env:
+    CI: false
    strategy:
      matrix:
        node-version: [10.x]
