@@ -2,7 +2,7 @@ name: Frontend - DEV - Build
 on:
  push:
    branches:
-     - issue#53
+     - dev
 defaults:
   run:
     working-directory: ./frontend

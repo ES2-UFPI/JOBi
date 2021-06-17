@@ -1,4 +1,4 @@
-name: Frontend - TESTE - PULL - Build
+name: Frontend - DEV - Build
 on:
  pull_request:
    branches:
@@ -7,26 +7,24 @@ defaults:
   run:
     working-directory: ./frontend
 jobs:
- build:
+  build:
    name: Build
    runs-on: ubuntu-latest
+   env:
+    CI: false
    strategy:
-     matrix: 
-       node-version: [14.x]
+     matrix:
+       node-version: [10.x]
    steps:
    - uses: actions/checkout@v2
-
    - name: Use Node.js ${{ matrix.node-version }}
-     uses: actions/setup-node@v2
+     uses: actions/setup-node@v1
      with:
-       node-version: ${{ matrix.node-version }}  
-       
+       node-version: ${{ matrix.node-version }}
    - name: Install Packages
-     run: npm install
-     
-   - name: Criar build backend
-     run: npm run build
-     
+     run: yarn install   
+   - name: Build project
+     run: yarn build
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
      with:

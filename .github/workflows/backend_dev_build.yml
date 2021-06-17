@@ -2,7 +2,7 @@ name: Backend - TESTE - Build
 on:
  push:
    branches:
-     - issue#53
+     - dev
 defaults:
   run:
     working-directory: ./backend
