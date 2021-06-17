@@ -1,6 +1,6 @@
 name: Frontend - DEV - Build
 on:
- pull_request:
+ push:
    branches:
      - issue#53
 defaults:
