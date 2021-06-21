@@ -11,6 +11,8 @@ import contratanteRoutes from "./routes/contratanteRoutes";
 import prestadorRoutes from "./routes/prestadorRoutes";
 import conexaoRoutes from "./routes/conexaoRoutes";
 import mensagemRoutes from "./routes/mensagemRoutes";
+import vagaRoutes from "./routes/vagaRoutes";
+import candidatoRoutes from "./routes/candidatoRoutes";
 import cors from 'cors'
 
 class App{
@@ -41,12 +43,15 @@ class App{
     }
 
     routes(){
-        this.app.use('/', homeRoutes)
-        this.app.use('/users/', userRoutes)
-        this.app.use('/contratante/', contratanteRoutes)
-        this.app.use('/prestador/', prestadorRoutes)
-        this.app.use('/conexao', conexaoRoutes)
-        this.app.use('/mensagem', mensagemRoutes)
+        this.app.use('/', homeRoutes);
+        this.app.use('/users/', userRoutes);
+        this.app.use('/contratante/', contratanteRoutes);
+        this.app.use('/prestador/', prestadorRoutes);
+        this.app.use('/conexao', conexaoRoutes);
+        this.app.use('/mensagem', mensagemRoutes);
+        this.app.use('/mensagem', mensagemRoutes);
+        this.app.use('/vaga', vagaRoutes);
+        this.app.use('/candidato', candidatoRoutes);
     }
 }
 
