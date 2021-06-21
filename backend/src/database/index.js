@@ -5,11 +5,12 @@ import Contratante from '../models/Contratante';
 import Prestador from '../models/Prestador';
 import Conexao from '../models/Conexao';
 import Mensagem from '../models/Mensagem';
-
-const models = [User, Contratante, Prestador, Conexao, Mensagem]
+import Vaga from '../models/Vaga';
+import Candidato from '../models/Candidato';
+ 
+const models = [User, Contratante, Prestador, Conexao, Mensagem, Vaga, Candidato];
 
 const connection = new Sequelize(databaseConfig);
 
 models.forEach((model) => model.init(connection));
 models.forEach((model) => model.associate && model.associate(connection.models));
-//models.forEach((model) => model.associate_1 && model.associate_1(connection.models));

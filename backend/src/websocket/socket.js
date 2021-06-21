@@ -1,4 +1,4 @@
-import { io } from '../../http';
+import { io } from '../http';
 import Conexao from "../models/Conexao";
 import Mensagem from "../models/Mensagem";
 
