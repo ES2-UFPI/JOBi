@@ -71,12 +71,12 @@ function Cadastro() {
 
     function handleSubmit(event) {
         event.preventDefault();
-
+        
         var route = '';
         if(status === "1"){
             route = '/prestador';
         }else{
-            route = 'contratante';
+            route = '/contratante';
         }
 
         axios.post(route, {
@@ -90,6 +90,23 @@ function Cadastro() {
         .then(function (response) {
             console.log(response);
 
+            var typeUser = { };
+            if(status === "1"){
+                typeUser = {
+                    "typeUser": {
+                        id: response.data.prestador.id,
+                        estrelas: response.data.prestador.estrelas
+                    }
+                }
+            }else{
+                typeUser = {
+                    "typeUser": {
+                        id: response.data.contratante.id,
+                        estrelas: response.data.contratante.estrelas
+                    }
+                }
+            }
+
             let obj = {
                 "user": {
                     id: response.data.user.id,
@@ -101,23 +118,19 @@ function Cadastro() {
                     status: response.data.user.status,
                     img_perfil: response.data.user.img_perfil
                 },
-
-                "typeUser": {
-                    id: response.data.contratante.id,
-                    estrelas: response.data.contratante.estrelas
-                }
+                typeUser
             }
 
             localStorage.setItem('userData', JSON.stringify(obj));
 
             history.push(route);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     }
-
+        
     return (
         <div className="pagina2">
             <div className="titulos">

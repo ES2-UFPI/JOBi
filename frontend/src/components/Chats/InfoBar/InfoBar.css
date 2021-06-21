@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #2979FF;
+  background: #004FC6;
   border-radius: 4px 4px 0 0;
   height: 60px;
   width: 100%;
@@ -16,6 +16,10 @@
   color: white;
 }
 
+.leftInnerContainer h3{
+  margin-left: 10%;
+}
+
 .rightInnerContainer {
   display: flex;
   flex: 0.5;
@@ -25,4 +29,21 @@
 
 .onlineIcon {
   margin-right: 5%;
+}
+
+.circle {
+  background-color: #aaa;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.circle img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
