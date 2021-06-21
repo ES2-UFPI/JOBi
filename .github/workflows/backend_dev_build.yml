@@ -1,4 +1,4 @@
-name: Backend - TESTE - Build
+name: Backend - DEV - Build
 on:
  push:
    branches:

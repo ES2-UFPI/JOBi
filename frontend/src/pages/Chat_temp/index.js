@@ -9,6 +9,7 @@ import Input from '../../components/Input/Input';
 
 const Chat = ({ location }) => {
       const { id } = queryString.parse(location.search);
+      console.log(location);
       console.log(id);
 
       let data = localStorage.getItem('userData');

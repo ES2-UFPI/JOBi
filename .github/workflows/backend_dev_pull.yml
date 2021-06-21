@@ -1,4 +1,4 @@
-name: Backend - TESTE - PULL - Build
+name: Backend - DEV - PULL - Build
 on:
  pull_request:
    branches:
