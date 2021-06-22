@@ -40,7 +40,7 @@ function Contratante() {
                         <strong>Estrelas: </strong>
                         {user.estrelas}
 
-                        <Link to={`chat_temp?id=${user.id}`}>
+                        <Link to={`contratante/chat?id=${user.id}`}>
                             <button>Chat</button>
                         </Link>
                     </h2>

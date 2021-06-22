@@ -1,6 +1,5 @@
 import './App.css';
 
-
 import history from './services/history';
 import Header from './components/Header';
 import Navegation from './components/Navegation/Navegation';
