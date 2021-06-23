@@ -13,6 +13,7 @@ import conexaoRoutes from "./routes/conexaoRoutes";
 import mensagemRoutes from "./routes/mensagemRoutes";
 import vagaRoutes from "./routes/vagaRoutes";
 import candidatoRoutes from "./routes/candidatoRoutes";
+import curriculoRoutes from "./routes/curriculoRoutes";
 import cors from 'cors'
 
 class App{
@@ -52,6 +53,7 @@ class App{
         this.app.use('/mensagem', mensagemRoutes);
         this.app.use('/vaga', vagaRoutes);
         this.app.use('/candidato', candidatoRoutes);
+        this.app.use('/curriculo', curriculoRoutes);
     }
 }
 

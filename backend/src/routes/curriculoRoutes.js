@@ -1,5 +1,7 @@
 import { Router } from "express"
-import curriculoController from "../controllers/CurriculoController"
+
+
+import curriculoController from "../controllers/CurriculoController";
 
 const router = new Router()
 
