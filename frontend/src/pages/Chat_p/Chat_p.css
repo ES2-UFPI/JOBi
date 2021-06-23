@@ -37,6 +37,7 @@
     color: #f5f5f5;
     background-color: #008AEE;
     width: auto;
+    transition: 0.4s;
 }
 
 .list-users p{
@@ -54,10 +55,10 @@
   }
   
 .circle img {
-position: absolute;
-left: 0;
-bottom: 0;
-width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .form-search {
