@@ -55,12 +55,17 @@
     color: #f5f5f5;
     padding: 20px;
     text-decoration: none;
-
+    border-radius: 20px;
 }
 
 .list a:hover:not(.active){
     color: #f5f5f5;
-    border-radius: 20px;
+    background-color: #008AEE;
+    width: auto;
+    transition: 0.2s;
+}
+
+.list .active{
     background-color: #008AEE;
     width: auto;
 }

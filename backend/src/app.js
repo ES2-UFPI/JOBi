@@ -1,16 +1,18 @@
 import dotenv from "dotenv"
 dotenv.config()
 
-import './src/database'
+import './database'
 import express from "express"
 import socketio from "socket.io";
 import http from "http";
-import homeRoutes from "./src/routes/homeRoutes";
-import userRoutes from "./src/routes/userRoutes";
-import contratanteRoutes from "./src/routes/contratanteRoutes";
-import prestadorRoutes from "./src/routes/prestadorRoutes";
-import conexaoRoutes from "./src/routes/conexaoRoutes";
-import mensagemRoutes from "./src/routes/mensagemRoutes";
+import homeRoutes from "./routes/homeRoutes";
+import userRoutes from "./routes/userRoutes";
+import contratanteRoutes from "./routes/contratanteRoutes";
+import prestadorRoutes from "./routes/prestadorRoutes";
+import conexaoRoutes from "./routes/conexaoRoutes";
+import mensagemRoutes from "./routes/mensagemRoutes";
+import vagaRoutes from "./routes/vagaRoutes";
+import candidatoRoutes from "./routes/candidatoRoutes";
 import cors from 'cors'
 
 class App{
@@ -41,12 +43,15 @@ class App{
     }
 
     routes(){
-        this.app.use('/', homeRoutes)
-        this.app.use('/users/', userRoutes)
-        this.app.use('/contratante/', contratanteRoutes)
-        this.app.use('/prestador/', prestadorRoutes)
-        this.app.use('/conexao', conexaoRoutes)
-        this.app.use('/mensagem', mensagemRoutes)
+        this.app.use('/', homeRoutes);
+        this.app.use('/users/', userRoutes);
+        this.app.use('/contratante/', contratanteRoutes);
+        this.app.use('/prestador/', prestadorRoutes);
+        this.app.use('/conexao', conexaoRoutes);
+        this.app.use('/mensagem', mensagemRoutes);
+        this.app.use('/mensagem', mensagemRoutes);
+        this.app.use('/vaga', vagaRoutes);
+        this.app.use('/candidato', candidatoRoutes);
     }
 }
 

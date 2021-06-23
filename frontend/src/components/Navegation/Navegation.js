@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navegation.css';
 import {BsHouseDoor, BsBell, BsEnvelope, BsPerson} from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
 
 function Navegation() {
+    const location = useLocation().pathname;
+
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
     <div className= "navegation">
@@ -19,7 +21,7 @@ function Navegation() {
                     <Link to="/"><BsBell/>Notificações</Link>
                 </div>
                 <div className="list-messages">
-                    <Link to="/"><BsEnvelope/>Mensagens</Link>
+                    <Link to={`../contratante/chat`} className={ (location === "/contratante/chat") ? "active" : ""}><BsEnvelope/>Mensagens</Link>
                 </div>
                 <div className="list-profile">
                     <Link to="/"><BsPerson/>Perfil</Link>
