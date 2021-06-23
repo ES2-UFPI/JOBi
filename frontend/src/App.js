@@ -10,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <Header/>
         <Navegation/>
         <Routes />
       </Router>

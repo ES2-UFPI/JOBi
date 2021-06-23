@@ -1,9 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navegation.css';
-import {BsHouseDoor} from "react-icons/bs";
-import {BsBell} from "react-icons/bs";
-import {BsEnvelope} from "react-icons/bs";
-import {BsPerson} from "react-icons/bs";
+import {BsHouseDoor, BsBell, BsEnvelope, BsPerson} from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
 
 function Navegation() {
