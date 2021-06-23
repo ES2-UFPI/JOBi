@@ -29,12 +29,22 @@ function Login() {
       .then(function (response) {
         console.log(response);
 
-        var typeUser = {};
-        if(response.data.user.status === 1){
-            typeUser = response.data.prestador;
-        }else{
-            typeUser = response.data.contratante;
-        }
+        var typeUser = { };
+            if(response.data.user.status === "1"){
+                typeUser = {
+                    "typeUser": {
+                        id: response.data.prestador.id,
+                        estrelas: response.data.prestador.estrelas
+                    }
+                }
+            }else{
+                typeUser = {
+                    "typeUser": {
+                        id: response.data.contratante.id,
+                        estrelas: response.data.contratante.estrelas
+                    }
+                }
+            }
 
         let obj = { 
           "user": { 
@@ -47,16 +57,19 @@ function Login() {
             status: response.data.user.status,
             img_perfil: response.data.user.img_perfil
           },
-        
-          "typeUser": {
-            id: typeUser.id,
-            estrelas: typeUser.estrelas
-          }
+          typeUser
         }
 
           localStorage.setItem('userData', JSON.stringify(obj));
+
+          var route = '';
+          if(obj.user.status === "1"){
+              route = '/prestador';
+          }else{
+              route = '/contratante';
+          }
           
-          history.push('/contratante');
+          history.push(route);
       })
       .catch(function (error) {
         console.log(error);

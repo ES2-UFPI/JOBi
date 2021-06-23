@@ -98,7 +98,7 @@ input:focus, textarea:focus, select:focus{
 .chat {
     float: right;
     background: #040404;
-    width: 59.9%;
+    width: 54.9%;
     display: flex;
     flex-direction: row;
 }

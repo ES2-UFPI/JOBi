@@ -6,6 +6,10 @@ import { IconContext } from 'react-icons/lib';
 function Navegation() {
     const location = useLocation().pathname;
 
+    let data = localStorage.getItem('userData');
+    data = JSON.parse(data);
+    console.log(data.user.status);
+
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
     <div className= "navegation">
@@ -21,7 +25,7 @@ function Navegation() {
                     <Link to="/"><BsBell/>Notificações</Link>
                 </div>
                 <div className="list-messages">
-                    <Link to={`../contratante/chat`} className={ (location === "/contratante/chat") ? "active" : ""}><BsEnvelope/>Mensagens</Link>
+                    <Link to={ (data.user.status === 1) ? `../prestador/chat` : `../contratante/chat`} className={ (location === "/contratante/chat") || (location === "/prestador/chat") ? "active" : ""}><BsEnvelope/>Mensagens</Link>
                 </div>
                 <div className="list-profile">
                     <Link to="/"><BsPerson/>Perfil</Link>
