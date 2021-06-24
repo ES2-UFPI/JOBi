@@ -30,28 +30,30 @@ class PrestadorController {
             res.status(400).json({ errors: e.errors.map((err) => err.message)})
         }
     }
-    async curriculo(req, res){
+     curriculo(req, res){
         try{
 
-            await upload(req, res, (err) =>{
+             upload(req, res, async (err) =>{
                 if(err){
                     return res.status(400).json({ errors: [errors.code]})
                 }
                 const { filename } = req.file
 
+                const prestador = await Prestador.findByPk(req.body.id)
+
+                if(!req.body.id){
+                    return res.status(400).json({ 
+                        errors: ['ID não enviado']
+                    });
+                }
+                req.body.curriculo = filename
+
+                const prestadorAtualizado = prestador.update(req.body);
+                return res.json(prestadorAtualizado);
+                S
             });
 
-            const prestador = await Prestador.findByPk(req.body.id)
-
-            if(!req.body.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
-            req.body.curriculo = filename
-
-            const prestadorAtualizado = prestador.update(req.body);
-            return res.json(prestadorAtualizado);
+            
 
         }catch(e){
             return res.json(null)
