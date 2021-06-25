@@ -10,7 +10,7 @@ class CandidatoController {
             return res.json(novoCandidato);
         }catch(e){
             console.log(e.errors)
-            return res.status(400).json({ errors: e.errors.map((err) => err.message)})
+            return res.status(400)//.json({ errors: e.errors.map((err) => err.message)})
         }
         
     }

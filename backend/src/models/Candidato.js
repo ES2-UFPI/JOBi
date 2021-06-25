@@ -1,4 +1,4 @@
-import {Sequelize, Model} from "sequelize";
+import {Sequelize, Model} from "sequelize"; 
 
 export default class Candidato extends Model {
     static init(sequelize) {
@@ -7,7 +7,7 @@ export default class Candidato extends Model {
                 type: Sequelize.FLOAT,
                 defaultValue: 1,
             },
-        },{
+        },{ 
             sequelize,
             tableName: 'candidatos',
         });

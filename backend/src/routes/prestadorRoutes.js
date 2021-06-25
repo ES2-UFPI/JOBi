@@ -5,5 +5,6 @@ const router = new Router()
 
 router.post("/", prestadorController.store)
 router.get("/select", prestadorController.index)
+router.post("/curriculo", prestadorController.curriculo)
 
 export default router;

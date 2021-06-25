@@ -12,6 +12,9 @@ export default class Prestador extends Model {
                       },
                 }
             },
+            curriculo: {
+                type: Sequelize.STRING,
+            },
             
         },{
             sequelize,
