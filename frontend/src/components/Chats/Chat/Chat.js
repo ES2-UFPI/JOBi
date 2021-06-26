@@ -33,10 +33,10 @@ const Chat = ({ location }) => {
 
     if(data.status === 1){
       id_p = data.typeUser.id;
-      id_c = id;
+      id_c = parseInt(id);
       isPrest = true;
     }else{
-      id_p = id;
+      id_p = parseInt(id);
       id_c = data.typeUser.id;
       isPrest = false;
     }
@@ -46,6 +46,7 @@ const Chat = ({ location }) => {
 
   useEffect(() => {
     socket.on('message', message => {
+      console.log(message);
       setMessages(messages => [ ...messages, message ]);
     });
     
