@@ -4,13 +4,12 @@ export default class Vaga extends Model {
     static init(sequelize) {
         super.init({
             categoria: {
-                type: Sequelize.STRING,
+                type: Sequelize.INTEGER,
                 defaultValue: '',
                 validate: {
-                    len: {
-                        args: [1, 250],
-                        msg: "Campo nome deve ter entre 1 e 250 caracteres."
-                    }
+                    notEmpty: {
+                        msg: 'Campo não pode ficar vazio',
+                      },
                 }
             },
             num_vagas: {
