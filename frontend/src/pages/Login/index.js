@@ -30,19 +30,15 @@ function Login() {
         console.log(response);
 
         var typeUser = { };
-            if(response.data.user.status === "1"){
+            if(response.data.user.status === 1){
                 typeUser = {
-                    "typeUser": {
-                        id: response.data.prestador.id,
-                        estrelas: response.data.prestador.estrelas
-                    }
+                    id: response.data.prestador.id,
+                    estrelas: response.data.prestador.estrelas
                 }
             }else{
                 typeUser = {
-                    "typeUser": {
-                        id: response.data.contratante.id,
-                        estrelas: response.data.contratante.estrelas
-                    }
+                    id: response.data.contratante.id,
+                    estrelas: response.data.contratante.estrelas
                 }
             }
 
@@ -63,7 +59,7 @@ function Login() {
           localStorage.setItem('userData', JSON.stringify(obj));
 
           var route = '';
-          if(obj.user.status === "1"){
+          if(obj.user.status === 1){
               route = '/prestador';
           }else{
               route = '/contratante';

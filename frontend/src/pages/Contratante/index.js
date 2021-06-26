@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
+import io from "socket.io-client";
 import './Contratante.css';
 
 function Contratante() {
     const [ users, setUsers ] = useState([]);
+    const history = useHistory();
 
     useEffect(()=>{
         async function getPrestadores (){
@@ -27,6 +29,32 @@ function Contratante() {
         getPrestadores();
     }, []);
 
+    const ENDPOINT = 'http://localhost:3333/';
+
+    let socket;
+
+    function iniciarChat(event, id_user){
+        socket = io(ENDPOINT, { autoConnect: true });
+        console.log("XXXXXXXXXXXXXXXXX", id_user);
+
+        let data = localStorage.getItem('userData');
+        data = JSON.parse(data);
+        console.log(data);
+
+        var id_p = id_user;
+        console.log("YYYYYYYY", data.typeUser.id);
+        var id_c = data.typeUser.id;
+
+        //Evento emitido quando é iniciado um chat
+        socket.emit('iniciar_chat', { id_p: id_p, id_c: id_c }, ({ message }) => {
+            console.log(message)
+        });
+
+        let route = `../contratante/chat?id=${id_user}`;
+        history.push(route);
+
+    }
+
     return (
       <div className="nav-contratante">
         <h1>Contratante</h1>
@@ -40,9 +68,10 @@ function Contratante() {
                         <strong>Estrelas: </strong>
                         {user.estrelas}
 
-                        <Link to={`contratante/chat?id=${user.id}`}>
-                            <button>Chat</button>
-                        </Link>
+                            <button onClick={(e) => iniciarChat(e, user.id)}>
+                                Chat
+                            </button>
+                       
                     </h2>
                 </li> 
                 ))}

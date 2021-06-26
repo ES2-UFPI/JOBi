@@ -61,7 +61,7 @@ function Prestador() {
                     <div className="card">
                         <img
                             src = {cardimage}
-                            class='card-img'
+                            className='card-img'
                             alt='card image'
                             />
                             <div className=' card-content'>
