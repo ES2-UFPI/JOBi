@@ -12,6 +12,15 @@ export default class Prestador extends Model {
                       },
                 }
             },
+            categoria: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+                validate: {
+                    notEmpty: {
+                        msg: 'Campo não pode ficar vazio',
+                      },
+                },
+            },
             curriculo: {
                 type: Sequelize.STRING,
             },

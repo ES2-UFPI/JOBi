@@ -1,4 +1,5 @@
 import Vaga from '../models/Vaga'
+import Prestador from '../models/Prestador'
 
 
 class VagasController { 
@@ -15,7 +16,7 @@ class VagasController {
         
     }
    
-    async select(req,res){
+    async select_id(req,res){
         
         try{
 
@@ -25,7 +26,25 @@ class VagasController {
                  });
             }
 
-            const vaga = await Vaga.findByPk(req.params.id);
+            const vaga = await Vaga.findAll({ where: { contratante_id: req.params.id }});
+            return res.json(vaga);
+
+        }catch(e){
+            return res.json(null)
+        }
+    }
+
+    async select_home(req,res){
+        try{
+        
+            if(!req.params.id){
+                return res.status(400).json({ 
+                    errors: ['ID não enviado']
+                 });
+            }
+
+                       
+            const vaga = await Vaga.findAll({ where: { categoria: req.params.categoria } });
             return res.json(vaga);
 
         }catch(e){

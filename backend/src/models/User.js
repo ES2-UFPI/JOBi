@@ -56,7 +56,7 @@ export default class User extends Model {
                 },
             },
             descricao: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 defaultValue: '',
             },
             status: {
@@ -64,7 +64,7 @@ export default class User extends Model {
                 defaultValue: 0,
             },
             img_perfil: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 defaultValue: 'default',
             }, 
         },{
