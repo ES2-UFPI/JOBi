@@ -4,7 +4,7 @@ const {server} = require('./build/http');
 
 
 describe('teste de rotas', () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(30000);
 
     it('teste cadastro de vagas', async () => {
 
