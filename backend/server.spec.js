@@ -1,9 +1,14 @@
 const request = require('supertest');
-const app = require('./build/server');
+
+const {server} = require('./build/http');
+
 
 describe('teste de rotas', () => {
+    jest.setTimeout(10000);
+
     it('teste cadastro de vagas', async () => {
-        const res = await request(app)
+
+        const res = await request(server)
         .post('/vaga')
         .send({
             categoria: 3,
