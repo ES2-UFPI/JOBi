@@ -27,8 +27,6 @@ jobs:
    - name: Criar build backend
      run: npm run build
 
-   - name: testar
-     run: npm test
      
    - name: Upload production-ready build files
      uses: actions/upload-artifact@v2
