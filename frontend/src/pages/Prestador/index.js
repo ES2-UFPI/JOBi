@@ -8,6 +8,8 @@ import Card from 'react-bootstrap/Card'
 import { IconContext } from 'react-icons/lib';
 import Button from 'react-bootstrap/Button'
 
+import Navegation from '../../components/Navegation/Navegation';
+
 function Prestador() {
     const [ users, setUsers ] = useState([]);
     const [ pesquisa, setPesquisa ] = useState('');
@@ -39,48 +41,51 @@ function Prestador() {
         getPrestadores();
     }, []);
 
-    return (
+    return (  
     <IconContext.Provider value={{className:'icons-menu'}}>
-      <div className="pag-prestador">
-          <div className="search">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="Pesquisa">
-                        <input
-                            type="text"
-                            value={pesquisa}
-                            onChange={handlePesquisa}
-                            placeholder="Pesquisar"
-                        />
-                    </label>
-                    <button type="submit"><BsSearch size='15px'/></button>
-                </form>
-          </div>
-          <div className="cards">
-              <Button variant="primary"><BsChevronLeft size='30px'/></Button>{' '}
-              <div className="content-cards">
-                    <div className="card">
-                        <img
-                            src = {cardimage}
-                            class='card-img'
-                            alt='card image'
+    <div className="prestador">
+        <Navegation/>  
+        <div className="pag-prestador">
+            <div className="search">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="Pesquisa">
+                            <input
+                                type="text"
+                                value={pesquisa}
+                                onChange={handlePesquisa}
+                                placeholder="Pesquisar"
                             />
-                            <div className=' card-content'>
-                                <h4>Nome da Vaga<BsFillInfoCircleFill size='20px'/></h4>
-                                <h6>Empresa</h6>
-                                <p size='3px'>Algum texto de exemplo rápido para desenvolver 
-                                    o título do cartão e compor a maior parte do 
-                                    conteúdo do cartão.
-                                </p>
-                            </div>
+                        </label>
+                        <button type="submit"><BsSearch size='15px'/></button>
+                    </form>
+            </div>
+            <div className="cards">
+                <Button variant="primary"><BsChevronLeft size='30px'/></Button>{' '}
+                <div className="content-cards">
+                        <div className="card">
+                            <img
+                                src = {cardimage}
+                                className='card-img'
+                                alt='card image'
+                                />
+                                <div className=' card-content'>
+                                    <h4>Nome da Vaga<BsFillInfoCircleFill size='20px'/></h4>
+                                    <h6>Empresa</h6>
+                                    <p size='3px'>Algum texto de exemplo rápido para desenvolver 
+                                        o título do cartão e compor a maior parte do 
+                                        conteúdo do cartão.
+                                    </p>
+                                </div>
+                        </div>
+                        <div className="buttons-cards">
+                            <Button variant="primary"><BsX size='30px' color='#C10000'/></Button>{' '}
+                            <Button variant="primary"><BsCheck size='30px' color='#025E00'/></Button>{' '}
+                        </div>
                     </div>
-                    <div className="buttons-cards">
-                        <Button variant="primary"><BsX size='30px' color='#C10000'/></Button>{' '}
-                        <Button variant="primary"><BsCheck size='30px' color='#025E00'/></Button>{' '}
-                    </div>
-                </div>
-                <Button variant="primary"><BsChevronRight size='30px'/></Button>{' '}
-          </div>
-      </div>
+                    <Button variant="primary"><BsChevronRight size='30px'/></Button>{' '}
+            </div>
+        </div>
+    </div>
     </IconContext.Provider>
     );
   }

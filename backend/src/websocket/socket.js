@@ -8,17 +8,32 @@ import Mensagem from "../models/Mensagem";
 io.on('connect', (socket) => {
     console.log('Nova conexao', socket.id);
     
+    socket.on('entrar_sala', async(params, callback) => {
+        //O params vai receber o id do contratante, e o id do prestador
+        console.log(params.id_p, params.id_c);
+        try{
+            if(params.id_p != null && params.id_c != null){
+               const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
+               console.log(conexao)
+               socket.join(conexao.id.toString());
+            }else{
+                callback({error: 'Algum parametro passado errado'})
+            }
+        }catch(e){
+            callback({error: e})
+        }
+    })
 
     //Quando o contratante abrir iniciar o chat com o usuário
     socket.on('iniciar_chat', async(params, callback) => {
         //O params vai receber o id do contratante, e o id do prestador
-        //console.log(params.id_p, params.id_c);
+        console.log(params.id_p, params.id_c);
         try{
             if(params.id_p != null && params.id_c != null){
                const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
                console.log(conexao)
                 if(conexao){
-                    socket.join(conexao.id);
+                    socket.join(conexao.id.toString());
                 }else{
                    const new_conexao = await Conexao.create({
                        prestador_id: params.id_p,
@@ -49,11 +64,12 @@ io.on('connect', (socket) => {
          //, e um campo true ou false para saber se quem enviou a mensagem foi o prestador ou o contratante
         console.log(params.id_p, params.id_c);
         try{
-            if(params.id_p =! null && params.id_c != null){
+            if(params.id_p != null && params.id_c != null){
                const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
                 if(conexao){
+                    socket.join(conexao.id.toString());
                     if(params.isPrest == false){
-                        socket.to(conexao.id).emit('message', {user: params.id_c, texto: params.texto});
+                        io.to(conexao.id.toString()).emit('message', {user: params.id_c, texto: params.texto});
                         await Mensagem.create({
                             conexao_id: conexao.id,
                             texto: params.texto,
@@ -61,7 +77,7 @@ io.on('connect', (socket) => {
                             is_prest: 2,
                         })
                     }else{
-                        socket.to(conexao.id).emit('message', {user: params.id_p, texto: params.texto});
+                        io.to(conexao.id.toString()).emit('message', {user: params.id_p, texto: params.texto});
                         await Mensagem.create({
                             conexao_id: conexao.id,
                             texto: params.texto,

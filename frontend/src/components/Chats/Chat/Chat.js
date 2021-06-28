@@ -11,9 +11,12 @@ import './Chat.css';
 const ENDPOINT = 'http://localhost:3333/';
 
 let socket;
+var id_p = 0;
+var id_c = 0;
+var isPrest = true;
 
 const Chat = ({ location }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(0);
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
@@ -22,34 +25,51 @@ const Chat = ({ location }) => {
   useEffect(() => {
     const { id } = queryString.parse(location.search);
     console.log(id);
-    socket = io(ENDPOINT);
+    socket = io(ENDPOINT, { autoConnect: true });
 
-    setRoom('Mizael');
-    setName('Mizael')
+    let data = localStorage.getItem('userData');
+    data = JSON.parse(data);
+    console.log(data);
 
-    socket.emit('join', { name, room }, (error) => {
-      if(error) {
-        alert(error);
-      }
-    });
+    setName(data.typeUser.id);
+
+    if(data.user.status === 1){
+      id_p = data.typeUser.id;
+      id_c = parseInt(id);
+      isPrest = true;
+    }else{
+      id_p = parseInt(id);
+      id_c = data.typeUser.id;
+      isPrest = false;
+    }
+    
+    socket.emit('entrar_sala', { id_p: id_p, id_c: id_c });
+
   }, [ENDPOINT, location]);
   
+
   useEffect(() => {
     socket.on('message', message => {
+      console.log(message);
       setMessages(messages => [ ...messages, message ]);
     });
     
+    /*
     socket.on("roomData", ({ users }) => {
       setUsers(users);
     });
+    */
   }, []);
+
 
   const sendMessage = (event) => {
     event.preventDefault();
 
     if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socket.emit('enviar_mensagem', { id_p: id_p, id_c: id_c, texto: message, isPrest: isPrest }, () => setMessage(''));
     }
+
+    setMessage('');
   }
 
   return (

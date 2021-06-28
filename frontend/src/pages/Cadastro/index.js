@@ -93,17 +93,13 @@ function Cadastro() {
             var typeUser = { };
             if(status === "1"){
                 typeUser = {
-                    "typeUser": {
-                        id: response.data.prestador.id,
-                        estrelas: response.data.prestador.estrelas
-                    }
+                    id: response.data.prestador.id,
+                    estrelas: response.data.prestador.estrelas
                 }
             }else{
                 typeUser = {
-                    "typeUser": {
-                        id: response.data.contratante.id,
-                        estrelas: response.data.contratante.estrelas
-                    }
+                    id: response.data.contratante.id,
+                    estrelas: response.data.contratante.estrelas
                 }
             }
 
