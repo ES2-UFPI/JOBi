@@ -7,7 +7,6 @@ describe('teste de rotas', () => {
     jest.setTimeout(30000);
 
     it('teste cadastro de vagas', async () => {
-
         const res = await request(server)
         .post('/vaga')
         .send({
@@ -20,5 +19,15 @@ describe('teste de rotas', () => {
         })
         expect(res.statusCode).toEqual(200);
         expect(res.body).toHaveProperty('categoria');
+    })
+    it('teste get de vagas', async () => {
+        const res = await request(server)
+        .get('/vaga/2')
+        expect(res.statusCode).toEqual(200);
+    })
+    it('teste get de prestadores', async () => {
+        const res = await request(server)
+        .get('/prestador/select')
+        expect(res.statusCode).toEqual(200);
     })
 })
