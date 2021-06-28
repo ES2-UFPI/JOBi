@@ -30,17 +30,17 @@ function Login() {
         console.log(response);
 
         var typeUser = { };
-            if(response.data.user.status === 1){
-                typeUser = {
-                    id: response.data.prestador.id,
-                    estrelas: response.data.prestador.estrelas
-                }
-            }else{
-                typeUser = {
-                    id: response.data.contratante.id,
-                    estrelas: response.data.contratante.estrelas
-                }
+        if(response.data.user.status === 1){
+            typeUser = {
+              id: response.data.prestador.id,
+              estrelas: response.data.prestador.estrelas
             }
+        }else{
+            typeUser = {
+              id: response.data.contratante.id,
+              estrelas: response.data.contratante.estrelas
+            }
+        }
 
         let obj = { 
           "user": { 

@@ -16,7 +16,7 @@ var id_c = 0;
 var isPrest = true;
 
 const Chat = ({ location }) => {
-  const [name, setName] = useState('');
+  const [name, setName] = useState(0);
   const [room, setRoom] = useState('');
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
@@ -31,7 +31,9 @@ const Chat = ({ location }) => {
     data = JSON.parse(data);
     console.log(data);
 
-    if(data.status === 1){
+    setName(data.typeUser.id);
+
+    if(data.user.status === 1){
       id_p = data.typeUser.id;
       id_c = parseInt(id);
       isPrest = true;
@@ -64,6 +66,8 @@ const Chat = ({ location }) => {
     if(message) {
       socket.emit('enviar_mensagem', { id_p: id_p, id_c: id_c, texto: message, isPrest: isPrest }, () => setMessage(''));
     }
+
+    setMessage('');
   }
 
   return (
