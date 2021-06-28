@@ -1,0 +1,32 @@
+name: Frontend - DEV - PULL - Build
+on:
+ pull_request:
+   branches:
+     - dev
+defaults:
+  run:
+    working-directory: ./frontend
+jobs:
+  build:
+   name: Build
+   runs-on: ubuntu-latest
+   env:
+    CI: false
+   strategy:
+     matrix:
+       node-version: [10.x]
+   steps:
+   - uses: actions/checkout@v2
+   - name: Use Node.js ${{ matrix.node-version }}
+     uses: actions/setup-node@v1
+     with:
+       node-version: ${{ matrix.node-version }}
+   - name: Install Packages
+     run: yarn install   
+   - name: Build project
+     run: yarn build
+   - name: Upload production-ready build files
+     uses: actions/upload-artifact@v2
+     with:
+       name: production-files
+       path: ./build
