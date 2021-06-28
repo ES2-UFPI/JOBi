@@ -5,6 +5,7 @@ import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
 import Prestador from '../pages/Prestador';
 import Contratante_temp from '../pages/Contratante_temp';
+import Contratante from '../pages/Contratante';
 import User from '../pages/User';
 import Chat_p from '../pages/Chat_p';
 import Chat_c from '../pages/Chat_c';

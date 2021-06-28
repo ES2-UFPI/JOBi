@@ -18,7 +18,7 @@ function Navegation() {
             </div>
             <div className="list">
                 <div className="list-home">
-                    <Link to="/"><BsHouseDoor/>Home</Link>
+                    <Link to={ (data.user.status === 1) ? `../prestador` : `../contratante`} className={ (location === "/contratante") || (location === "/prestador") ? "active" : ""}><BsHouseDoor/>Home</Link>
                 </div>
                 <div className="list-notifications">
 

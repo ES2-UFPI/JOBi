@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 
+import Navegation from '../../components/Navegation/Navegation';
 import Chat from '../../components/Chats/Chat/Chat';
 import {MdSearch} from "react-icons/md";
 import { IconContext } from 'react-icons/lib';
@@ -35,6 +36,7 @@ function Chat_c() {
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
         <div className="chat_c">
+            <Navegation/>
 
             <div className= "conversations">
                 <form className="form-search">

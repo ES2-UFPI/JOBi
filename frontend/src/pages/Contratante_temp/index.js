@@ -4,6 +4,8 @@ import axios from '../../services/axios';
 import io from "socket.io-client";
 import './Contratante.css';
 
+import Navegation from '../../components/Navegation/Navegation';
+
 function Contratante() {
     const [ users, setUsers ] = useState([]);
     const history = useHistory();
@@ -56,26 +58,29 @@ function Contratante() {
     }
 
     return (
-      <div className="nav-contratante">
-        <h1>Contratante</h1>
-        
-        <h1>Lista de Usuários</h1>
-            <ul className="users">
-                
-                {users.map(user => (
-                <li key={String(user.id)}>
-                    <h2>
-                        <strong>Estrelas: </strong>
-                        {user.estrelas}
+      <div className="contratante">
+        <Navegation/> 
+        <div className="nav-contratante">
+            <h1>Contratante</h1>
+            
+            <h1>Lista de Usuários</h1>
+                <ul className="users">
+                    
+                    {users.map(user => (
+                    <li key={String(user.id)}>
+                        <h2>
+                            <strong>Estrelas: </strong>
+                            {user.estrelas}
 
-                            <button onClick={(e) => iniciarChat(e, user.id)}>
-                                Chat
-                            </button>
-                       
-                    </h2>
-                </li> 
-                ))}
-            </ul>
+                                <button onClick={(e) => iniciarChat(e, user.id)}>
+                                    Chat
+                                </button>
+                        
+                        </h2>
+                    </li> 
+                    ))}
+                </ul>
+        </div>
       </div>
     );
   }
