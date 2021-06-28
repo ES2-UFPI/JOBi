@@ -42,6 +42,8 @@ const Chat = ({ location }) => {
       id_c = data.typeUser.id;
       isPrest = false;
     }
+    
+    socket.emit('entrar_sala', { id_p: id_p, id_c: id_c });
 
   }, [ENDPOINT, location]);
   

@@ -8,6 +8,21 @@ import Mensagem from "../models/Mensagem";
 io.on('connect', (socket) => {
     console.log('Nova conexao', socket.id);
     
+    socket.on('entrar_sala', async(params, callback) => {
+        //O params vai receber o id do contratante, e o id do prestador
+        console.log(params.id_p, params.id_c);
+        try{
+            if(params.id_p != null && params.id_c != null){
+               const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
+               console.log(conexao)
+               socket.join(conexao.id.toString());
+            }else{
+                callback({error: 'Algum parametro passado errado'})
+            }
+        }catch(e){
+            callback({error: e})
+        }
+    })
 
     //Quando o contratante abrir iniciar o chat com o usuário
     socket.on('iniciar_chat', async(params, callback) => {
@@ -18,7 +33,7 @@ io.on('connect', (socket) => {
                const conexao = await Conexao.findOne({ where: { prestador_id: params.id_p, contratante_id: params.id_c }});
                console.log(conexao)
                 if(conexao){
-                    socket.join(conexao.id);
+                    socket.join(conexao.id.toString());
                 }else{
                    const new_conexao = await Conexao.create({
                        prestador_id: params.id_p,
