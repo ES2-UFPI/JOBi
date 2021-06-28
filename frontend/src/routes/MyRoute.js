@@ -22,6 +22,7 @@ function MyRoute({ component: Component, isClosed, ...rest}) {
   MyRoute.propTypes = {
       component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
       isClosed: PropTypes.bool,
+      location: PropTypes.object
   };
   
   export default MyRoute;
