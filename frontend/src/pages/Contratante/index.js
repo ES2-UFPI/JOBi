@@ -64,7 +64,7 @@ function Contratante() {
                             alt='card image'
                             />
                             <div className=' card-content'>
-                                <h4>Nome do Prestador<BsFillInfoCircleFill size='20px'/></h4>
+                                <h4>Prestador<BsFillInfoCircleFill size='20px'/></h4>
                                 <h6>Função</h6>
                                 <p size='3px'>Algum texto de exemplo rápido para desenvolver 
                                     o título do cartão e compor a maior parte do 
