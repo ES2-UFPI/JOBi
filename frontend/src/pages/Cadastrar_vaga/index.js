@@ -1,5 +1,5 @@
 import './Cadastrar_vaga.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import { Link, useHistory } from 'react-router-dom';
 
@@ -53,8 +53,7 @@ function Cadastrar_vaga() {
         setRemuneracao(event.target.value);
     }
 
-    function handleEstadoChange(event) {
-        setEstado(event.target.value);
+    useEffect(() => {
         console.log("Estado", estado);
         estados.map(est => {
             if(est.sigla === estado){
@@ -63,6 +62,11 @@ function Cadastrar_vaga() {
         }
         )
         console.log("Cidades", cidades)
+        
+      }, [estado]);
+
+    function handleEstadoChange(event) {
+        setEstado(event.target.value);
     }
 
     function handleCidadeChange(event) {
@@ -177,7 +181,7 @@ function Cadastrar_vaga() {
                             
                             <label htmlFor="estado"></label>
                             <select className="select-estado" value={estado} onChange={handleEstadoChange} name="estado" id="estado">
-                                <option value="-1" disabled>Estado</option>
+                                <option value="" disabled>Estado</option>
                                 {estados.map(estado => (
                                     <option key={String(estado.sigla)} value={String(estado.sigla)}>{estado.nome}</option>
                                 ))}
@@ -186,7 +190,7 @@ function Cadastrar_vaga() {
                             
                             <label htmlFor="cidade"></label>
                             <select className="select-cidade" value={cidade} onChange={handleCidadeChange} name="cidade" id="cidade">
-                                <option value="-1" disabled>Cidade</option>
+                                <option value="" disabled>Cidade</option>
                                 {cidades.map(cidade => (
                                     <option key={String(cidade)} value={String(cidade)}>{cidade}</option>
                                 ))}
