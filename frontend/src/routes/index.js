@@ -10,6 +10,7 @@ import User from '../pages/User';
 import Chat_p from '../pages/Chat_p';
 import Chat_c from '../pages/Chat_c';
 import Page404 from '../pages/Page404';
+import Cadastrar_vaga from '../pages/Cadastrar_vaga';
 
 function Routes(){
     return(
@@ -20,6 +21,7 @@ function Routes(){
             <MyRoute exact path="/contratante" component={Contratante}/>
             <MyRoute exact path="/prestador/chat" component={Chat_p} />
             <MyRoute exact path="/contratante/chat" component={Chat_c} />
+            <MyRoute exact path="/contratante/cadastrar_vaga" component={Cadastrar_vaga} />
             <MyRoute exact path="/user" component={User} isClosed />
             <MyRoute path="*" component={Page404} />
         </Switch>
