@@ -12,17 +12,31 @@ export default class Vaga extends Model {
                       },
                 }
             },
+            categoria: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+            },
             num_vagas: {
                 type: Sequelize.INTEGER,
                 defaultValue: 1,
             },
-            descricao: {
-                type: Sequelize.STRING(1234),
+            titulo: {
+                type: Sequelize.STRING,
                 defaultValue: '',
                 validate: {
                     len: {
-                        args: [1, 1234],
-                        msg: "Campo nome deve ter entre 1 e 1234 caracteres."
+                        args: [1, 250],
+                        msg: "Campo nome deve ter entre 1 e 250 caracteres."
+                    }
+                }
+            }, 
+            descricao: {
+                type: Sequelize.STRING,
+                defaultValue: '',
+                validate: {
+                    len: {
+                        args: [1, 250],
+                        msg: "Campo nome deve ter entre 1 e 250 caracteres."
                     }
                 }
             },
@@ -39,6 +53,16 @@ export default class Vaga extends Model {
             horario: {
                 type: Sequelize.INTEGER,
                 defaultValue: 0,
+            },
+            remuneracao: {
+                type: Sequelize.FLOAT,
+                defaultValue: 0,
+            },
+            estado: {
+                type: Sequelize.STRING,
+            }, 
+            cidade: {
+                type: Sequelize.STRING,
             },
         },{
             sequelize,
