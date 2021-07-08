@@ -33,9 +33,9 @@ module.exports = {
       type: Sequelize.FLOAT,  
       allowNull: true,
     },
-    proposta: {
-      type: Sequelize.FLOAT,  
-      allowNull: true,
+    contratado: {
+      type: Sequelize.BOOLEAN,  
+      allowNull: false,
     },
     created_at: {
       type: Sequelize.DATE,

@@ -7,6 +7,10 @@ export default class Candidato extends Model {
                 type: Sequelize.FLOAT,
                 defaultValue: 1,
             },
+            contratado: {
+                type: Sequelize.BOOLEAN,
+                defaultValue: false,
+            },
         },{ 
             sequelize,
             tableName: 'candidatos',
