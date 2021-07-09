@@ -64,7 +64,7 @@ function Contratante() {
                 </form>
           </div>
           <div>
-            <BsPlusCircle className="nova-vaga" size='35px'/>
+          <Link to="contratante/cadastrar_vaga" className="link"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
           </div>
           <div className="cards-contratante">
           {vagas.map(vaga => (

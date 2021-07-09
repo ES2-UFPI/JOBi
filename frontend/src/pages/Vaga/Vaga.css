@@ -1,0 +1,148 @@
+.pag-vaga{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.fechar{
+    color: rgb(197, 57, 57);
+    margin-left: 1100px;
+    margin-top: 30px;
+}
+
+.vaga-card{
+    margin: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.vaga-dados{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.butoes-vagas{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    margin-left: 600px;
+}
+
+.butoes-salvar{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge green;
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: green;
+    
+}
+.butoes-alterar{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge #008AEE;
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: #008AEE;
+}
+
+.butoes-excluir{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge #ec3d1e;
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: #ec3d1e;
+}
+
+.dado{
+    margin-left: 20px;
+    padding: 10px 12px;
+    background-color: #afafaf;
+    color: white
+}
+
+.valor{
+    margin-left: 20px;
+    padding: 10px 50px;
+    background-color: #ffffff;
+    color: white;
+    border: 1px ridge #dddddd;
+    color: black;
+    justify-content: left;
+}
+
+.descricao-vaga{
+    padding: 5px 5px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin:2%;
+    margin-top: 50px;
+    justify-content: left;
+}
+.dado-linha{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+}
+
+.candidatos{
+    justify-content: left;
+    width: 40%;
+    margin-top: 3%;
+}
+
+.accordion {
+    /* Border */
+    
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom-color: transparent;
+    border-radius: 4px;
+}
+
+.accordion__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.accordion__header {
+    /* Center the content horizontally */
+    align-items: center;
+    display: flex;
+
+    cursor: pointer;
+    padding: 16px;
+}
+
+.accordion__toggle {
+    margin-right: 12px;
+}
+
+.accordion__title {
+    /* Take remaining width */
+    flex: 1;
+}
+
+.accordion__content {
+    /* For not selected item */
+    display: none;
+
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    padding: 16px;
+}
+
+.accordion__content--selected {
+    /* For selected item */
+    display: block;
+}
