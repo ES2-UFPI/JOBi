@@ -64,12 +64,12 @@ function Contratante() {
                 </form>
           </div>
           <div>
-            <Link to="/contratante/cadastrar_vaga"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
+          <Link to="contratante/cadastrar_vaga" className="link"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
           </div>
           <div className="cards-contratante">
           {vagas.map(vaga => (
-  
-              <div key={String(vaga.id)} className="content-cards-contratante">
+              <div className="content-cards-contratante">
+                  <Link to="/contratante/vaga?id=1" className="link-vaga">
                     <div className="card-contratante">
                         <div className="img-div-contratante">
                         <img 
@@ -94,8 +94,9 @@ function Contratante() {
                                 </p>
                             </div>
                     </div>
-                    
+                    </Link>
                 </div>
+                
             ))}
           </div>
       </div>
