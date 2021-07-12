@@ -9,7 +9,6 @@ function App() {
   return (
     <div className="App">
       <Router history={history}>
-        <Header />
         <Routes />
       </Router>
     </div>

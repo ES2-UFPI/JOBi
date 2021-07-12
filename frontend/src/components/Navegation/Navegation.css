@@ -60,7 +60,7 @@
 
 .list a:hover:not(.active){
     color: #f5f5f5;
-    background-color: #008AEE;
+    background-color: #02406b;
     width: auto;
     transition: 0.2s;
 }

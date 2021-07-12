@@ -64,17 +64,20 @@
     align-items: left;
     justify-content: center;
     margin-bottom: 10px;
+    text-decoration: none !important;
 }
 .card-contratante{
     padding: 10px;
     border: 1px solid rgb(43, 43, 48);
     border-radius: 3px;
-    background: #f5f5f5;
+    background: #ffffff;
     display: flex;
     flex-direction: row;
     justify-content: left;
     width: 95%;
     height: 80%;
+    
+    
 }
 
 .card-contratante:hover{
@@ -86,16 +89,19 @@
     height: 10%;
     text-align: left;
     color: #008AEE;
+    
 }
 
 .card-content-contratante p{
     margin-top: 20px;
+    
 }
 
 .card-content-contratante h4{
     color:#040404;
     font-size: 20px;
     margin-bottom: 0px;
+    
 }
 
 .img-div-contratante{
@@ -150,4 +156,12 @@
 
 .info-vaga a{
     margin-left: 50px;
+}
+
+.link{
+    color: rgb(0, 0, 0);
+}
+
+.link-vaga{
+    text-decoration: none;
 }
