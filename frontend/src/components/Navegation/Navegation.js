@@ -1,15 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navegation.css';
+import { useState } from "react";
 import {BsHouseDoor, BsBell, BsEnvelope, BsPerson} from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
 
 function Navegation() {
+    
     const location = useLocation().pathname;
 
     let data = localStorage.getItem('userData');
     data = JSON.parse(data);
     console.log(data.user.status);
-
+ 
+    const [ notifications, setNotifications ] = useState(10);
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
     <div className= "navegation">
@@ -21,7 +24,7 @@ function Navegation() {
                     <Link to={ (data.user.status === 1) ? `../prestador` : `../contratante`} className={ (location === "/contratante") || (location === "/prestador") ? "active" : ""}><BsHouseDoor/>Home</Link>
                 </div>
                 <div className="list-notifications">
-
+                    {(notifications>0)&&<div className='not-ball'>{notifications}</div>}
                     <Link to="/"><BsBell/>Notificações</Link>
                 </div>
                 <div className="list-messages">
