@@ -12,10 +12,6 @@ export default class Vaga extends Model {
                       },
                 }
             },
-            categoria: {
-                type: Sequelize.INTEGER,
-                defaultValue: 0,
-            },
             num_vagas: {
                 type: Sequelize.INTEGER,
                 defaultValue: 1,
@@ -39,6 +35,9 @@ export default class Vaga extends Model {
                         msg: "Campo nome deve ter entre 1 e 250 caracteres."
                     }
                 }
+            },
+            imagem: {
+                type: Sequelize.STRING,
             },
             interesses: {
                 type: Sequelize.STRING,

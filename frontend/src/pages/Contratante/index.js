@@ -64,19 +64,19 @@ function Contratante() {
                 </form>
           </div>
           <div>
-            <BsPlusCircle className="nova-vaga" size='35px'/>
+            <Link to="/contratante/cadastrar_vaga"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
           </div>
           <div className="cards-contratante">
           {vagas.map(vaga => (
   
-              <div className="content-cards-contratante">
+              <div key={String(vaga.id)} className="content-cards-contratante">
                     <div className="card-contratante">
-                        <div class="img-div-contratante">
+                        <div className="img-div-contratante">
                         <img 
                             width="150px"
                             height= "150px"
                             src = {cardimage}
-                            class='card-img'
+                            className='card-img'
                             alt='card image'
                             />
                         </div>
@@ -85,7 +85,7 @@ function Contratante() {
                                 <div className="info-button-contratante"><a>12/02/2021</a>
                                 <BsTrash className="lixo-icon" size='18px'/></div>
                                 <div className="info-vaga">
-                                    <t>Categoria: Tecnologia da Informação</t>
+                                    <span>Categoria: Tecnologia da Informação</span>
                                     <a>Status: <span>Aberta</span></a>
                                 </div>
                                 <p size='3px'>Algum texto de exemplo rápido para desenvolver 

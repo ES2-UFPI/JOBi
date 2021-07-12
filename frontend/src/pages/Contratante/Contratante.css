@@ -115,6 +115,8 @@
 
 .nova-vaga{
     margin: 15px;
+    cursor: pointer;
+    color: #040404;
 }
 
 .nova-vaga:hover{
@@ -144,7 +146,7 @@
     color: rgb(5, 145, 98);
 }
 
-.info-vaga t{
+.info-vaga span{
     color: rgb(0, 0, 0);
 }
 
