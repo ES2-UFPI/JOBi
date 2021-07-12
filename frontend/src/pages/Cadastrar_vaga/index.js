@@ -1,7 +1,7 @@
 import './Cadastrar_vaga.css';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import Navegation from '../../components/Navegation/Navegation';
 
@@ -10,6 +10,8 @@ function Cadastrar_vaga() {
     const [num_vagas, setNum_vagas] = useState('');
     const [titulo, setTitulo] = useState('');
     const [descricao, setDescricao] = useState('');
+    const [arquivo_imagem, setArquivo_imagem] = useState();
+    const [imagem, setImagem] = useState('');
     const [interesses, setInteresses] = useState('');
     const [horario, setHorario] = useState('');
     const [remuneracao, setRemuneracao] = useState('');
@@ -39,6 +41,14 @@ function Cadastrar_vaga() {
 
     function handleDescricaoChange(event) {
         setDescricao(event.target.value);
+    }
+
+    function handleImagemChange(event) {
+        var file = event.target.files[0];
+        setArquivo_imagem(file);
+        setImagem(file.name);
+
+        console.log(file);
     }
 
     function handleInteressesChange(event) {
@@ -76,19 +86,37 @@ function Cadastrar_vaga() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        axios.post("route", {
-            "categoria": categoria,
-            "num_vagas": num_vagas,
-            "descricao": descricao
-        })
-            .then(function (response) {
-                console.log(response);
+        let data = localStorage.getItem('userData');
+        data = JSON.parse(data);
+        console.log("ID do contratante: ", data.typeUser.id);
 
-                history.push("route");
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        const config = {     
+            headers: { 'content-type': 'multipart/form-data' }
+        }
+
+        const formData = new FormData();
+        formData.append("contratante_id", data.typeUser.id);
+        formData.append("categoria", categoria);
+        formData.append("num_vagas", num_vagas);
+        formData.append("titulo", titulo);
+        formData.append("descricao", descricao);
+        formData.append("imagem", imagem);
+        formData.append("interesses", interesses);
+        formData.append("horario", horario);
+        formData.append("remuneracao", remuneracao);
+        formData.append("estado", estado);
+        formData.append("cidade", cidade);
+        formData.append("arquivo_imagem", arquivo_imagem);
+
+        axios.post("/vaga", formData, config)
+        .then(function (response) {
+            console.log(response);
+
+            history.push("/contratante");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 
     }
 
@@ -96,16 +124,14 @@ function Cadastrar_vaga() {
         <div className="cadastrar-vaga">
             <div className="pag-cadastrar-vaga">
                 <Navegation />
-                <div className="titulos-pag-cadastrar-vaga">
-                    <div className='titulo1-pag-cadastrar-vaga'>
-                        <h1>Cadastrar vaga</h1>
-                    </div>
+                <div className="titulo-pag-cadastrar-vaga">
+                    <h1>Cadastrar vaga</h1>
                 </div>
 
 
                 <div className="cadastrar_vaga_form">
                     <form onSubmit={handleSubmit}>
-                        <row>
+                        <div className="row">
                             <label htmlFor="categoria"></label>
                             <select className="select-categoria" value={categoria} onChange={handleCategoriaChange} name="categoria" id="categoria">
                                 <option value="-1" disabled>Categoria</option>
@@ -116,15 +142,29 @@ function Cadastrar_vaga() {
 
                             <label htmlFor="num_vagas">
                                 <input
+                                    className="num_vagas"
                                     type="text"
                                     value={num_vagas}
                                     onChange={handleNum_vagasChange}
                                     placeholder="Número de vagas"
                                 />
                             </label>
-                        </row>
+                        </div>
 
-                        <row className="titulo">
+                        <div className="imagem">
+                            <label htmlFor="imagem">
+                                <p>Carregue uma imagem:</p>
+                                <input
+                                    type="file"
+                                    id="imagem"
+                                    name="imagem"
+                                    accept="image/png, image/jpeg"
+                                    onChange={handleImagemChange}
+                                />
+                            </label>
+                        </div>
+                        
+                        <div className="titulo">
                             <label htmlFor="titulo">
                                 <input
                                     type="text"
@@ -133,9 +173,9 @@ function Cadastrar_vaga() {
                                     placeholder="Título"
                                 />
                             </label>
-                        </row>
+                        </div>
 
-                        <row className="descricao">
+                        <div className="descricao">
                             <label htmlFor="descricao">
                                 <textarea
                                     rows="1" cols="100"
@@ -144,9 +184,9 @@ function Cadastrar_vaga() {
                                     placeholder="Descrição"
                                 />
                             </label>
-                        </row>
+                        </div>
 
-                        <row className="interesses">
+                        <div className="interesses">
                             <label htmlFor="interesses">
                                 <input
                                     type="text"
@@ -155,11 +195,12 @@ function Cadastrar_vaga() {
                                     placeholder="Interesses"
                                 />
                             </label>
-                        </row>
+                        </div>
 
-                        <row>
+                        <div className="row">
                             <label htmlFor="horario">
                                 <input
+                                    className="horario"
                                     type="text"
                                     value={horario}
                                     onChange={handleHorarioChange}
@@ -169,15 +210,16 @@ function Cadastrar_vaga() {
 
                             <label htmlFor="remuneracao">
                                 <input
+                                    className="remuneracao"
                                     type="text"
                                     value={remuneracao}
                                     onChange={handleRemuneracaoChange}
                                     placeholder="Remuneracão"
                                 />
                             </label>
-                        </row>
+                        </div>
 
-                        <row>
+                        <div className="row">
                             
                             <label htmlFor="estado"></label>
                             <select className="select-estado" value={estado} onChange={handleEstadoChange} name="estado" id="estado">
@@ -195,9 +237,9 @@ function Cadastrar_vaga() {
                                     <option key={String(cidade)} value={String(cidade)}>{cidade}</option>
                                 ))}
                             </select>
-                        </row>
+                        </div>
 
-                        <row><button type="submit">Cadastrar vaga</button></row>
+                        <div className="row"><button type="submit">Cadastrar vaga</button></div>
                     </form>
                 </div>
             </div>
