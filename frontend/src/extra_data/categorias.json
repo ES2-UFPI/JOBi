@@ -1,2 +1,2 @@
-{"categorias":[{"id":0,"nome":"Tecnologia da Informação"},{"id":1,"nome":"Eletricista"},{"id":2,"nome":"Cabeleireiro"}, {"id":3,"nome":"Faz-Tudo"},
-{"id":4,"nome":"Pedreiro"}, {"id":5,"nome":"Engenheiro"}, {"id":6,"nome":"Estagiário"}]}
+{"categorias":[{"value":0,"label":"Tecnologia da Informação"},{"value":1,"label":"Eletricista"},{"value":2,"label":"Cabeleireiro"}, {"value":3,"label":"Faz-Tudo"},
+{"value":4,"label":"Pedreiro"}, {"value":5,"label":"Engenheiro"}, {"value":6,"label":"Estagiário"}]}

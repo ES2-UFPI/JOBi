@@ -18,7 +18,7 @@ var isPrest = true;
 const Chat = ({ location }) => {
   const [name, setName] = useState(0);
   const [room, setRoom] = useState('');
-  const [users, setUsers] = useState('');
+  //const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
 

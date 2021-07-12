@@ -2,14 +2,18 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import './Contratante.css';
-import {BsSearch, BsChevronLeft, BsChevronRight, BsFillInfoCircleFill, BsCheck, BsX} from "react-icons/bs"
-import cardimage from '../../images/sem-imagem.jpg'
+import {BsSearch, BsFillInfoCircleFill, BsTrash,BsPlusCircle, BsCheck, BsX} from "react-icons/bs"
+import cardimage from '../../images/resized.jpg'
 import Card from 'react-bootstrap/Card'
 import { IconContext } from 'react-icons/lib';
 import Button from 'react-bootstrap/Button'
+//import 'bootstrap/dist/css/bootstrap.min.css';
+
+import Navegation from '../../components/Navegation/Navegation';
 
 function Contratante() {
-    const [ users, setUsers ] = useState([]);
+    const [ vagas, setVagas ] = useState([{id: 0, nome: "Estágio em empresa"},{id: 1, nome: "Estágio em empresa"},
+    {id: 2, nome: "Estágio em empresa"}]);
     const [ pesquisa, setPesquisa ] = useState('');
     function handleSubmit(event) {
         event.preventDefault();
@@ -17,8 +21,10 @@ function Contratante() {
     function handlePesquisa (event) {
         setPesquisa(event.target.value);
       }
+      /*
     useEffect(()=>{
         async function getPrestadores (){
+            
             const response = await axios.get('/prestador/select')
             
             console.log(response.data);
@@ -36,11 +42,14 @@ function Contratante() {
         }
 
         getPrestadores();
+        
     }, []);
+    */
 
     return (
 <IconContext.Provider value={{className:'icons-menu'}}>
       <div className="pag-contratante">
+      <Navegation/>  
           <div className="search">
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="Pesquisa">
@@ -54,32 +63,44 @@ function Contratante() {
                     <button type="submit"><BsSearch size='15px'/></button>
                 </form>
           </div>
-          <div className="cards">
-              <Button variant="primary"><BsChevronLeft size='30px'/></Button>{' '}
-              <div className="content-cards">
-                    <div className="card">
-                        <img
+          <div>
+          <Link to="contratante/cadastrar_vaga" className="link"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
+          </div>
+          <div className="cards-contratante">
+          {vagas.map(vaga => (
+              <div className="content-cards-contratante">
+                  <Link to="/contratante/vaga?id=1" className="link-vaga">
+                    <div className="card-contratante">
+                        <div className="img-div-contratante">
+                        <img 
+                            width="150px"
+                            height= "150px"
                             src = {cardimage}
-                            class='card-img'
+                            className='card-img'
                             alt='card image'
                             />
-                            <div className=' card-content'>
-                                <h4>Prestador<BsFillInfoCircleFill size='20px'/></h4>
-                                <h6>Função</h6>
+                        </div>
+                            <div className='card-content-contratante'>
+                                <h4>Estágio na UFPI</h4>
+                                <div className="info-button-contratante"><a>12/02/2021</a>
+                                <BsTrash className="lixo-icon" size='18px'/></div>
+                                <div className="info-vaga">
+                                    <span>Categoria: Tecnologia da Informação</span>
+                                    <a>Status: <span>Aberta</span></a>
+                                </div>
                                 <p size='3px'>Algum texto de exemplo rápido para desenvolver 
                                     o título do cartão e compor a maior parte do 
                                     conteúdo do cartão.
                                 </p>
                             </div>
                     </div>
-                    <div className="buttons-cards">
-                        <Button variant="primary"><BsX size='30px' color='#C10000'/></Button>{' '}
-                        <Button variant="primary"><BsCheck size='30px' color='#025E00'/></Button>{' '}
-                    </div>
+                    </Link>
                 </div>
-                <Button variant="primary"><BsChevronRight size='30px'/></Button>{' '}
+                
+            ))}
           </div>
       </div>
+      
     </IconContext.Provider>
     );
   }
