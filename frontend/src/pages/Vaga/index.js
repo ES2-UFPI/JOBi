@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import './Vaga.css';
-import {BsXSquare, BsFillCaretDownFill} from "react-icons/bs"
+import {BsXSquare, BsFillCaretDownFill, BsEnvelope, BsXCircle} from "react-icons/bs"
 import cardimage from '../../images/resized.jpg'
 import Card from 'react-bootstrap/Card'
 import { IconContext } from 'react-icons/lib';
@@ -49,7 +49,7 @@ function Vaga() {
     return (
 <IconContext.Provider value={{className:'icons-menu'}}>
     <div className="pag-vaga">
-     <BsXSquare size="30px" className="fechar"></BsXSquare>
+     <Link to="/contratante" className="link"><BsXSquare size="30px" className="fechar"></BsXSquare></Link>
       <div className="vaga-card">
         <div className="vaga-img">
             <img 
@@ -122,9 +122,25 @@ function Vaga() {
 
                     
                     <div class="accordion__content">
-                        Testando o conteúdo apenas para ver hehe
+                    <div className="candidato-dado">
+                        <div className="circle">
+                            <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
+                        </div>
+                        <div className="nome-candidato"><a>Mizael</a></div>
                         
+                        
+                        <div className="candidato-butoes">
+                            <button className="btn-iniciar-chat">
+                                <BsEnvelope size="25px" className="envelope"></BsEnvelope>
+                            </button>
+                            <button className="btn-desaprovar">
+                                <BsXCircle size="25px" className="x-desaprovar"></BsXCircle>
+                            </button>
+
+                        </div>
+                        </div>
                     </div>
+                    
         </div>
     </div>
         </div>

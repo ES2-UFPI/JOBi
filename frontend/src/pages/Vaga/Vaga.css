@@ -20,14 +20,13 @@
     width: 90%;
     display: flex;
     flex-direction: row;
-    align-items: left;
 }
 
 .vaga-dados{
     width: 90%;
     display: flex;
     flex-direction: column;
-    align-items: left;
+    text-align: justify;
 }
 
 .butoes-vagas{
@@ -47,6 +46,18 @@
     color: green;
     
 }
+
+.butoes-salvar:hover{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge rgb(0, 255, 0);
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: rgb(0, 255, 0);
+    
+}
+
 .butoes-alterar{
     margin-left: 50px;
     font-size: 17px;
@@ -55,6 +66,16 @@
     padding: 15px 32px;
     border-radius: 1px;
     color: #008AEE;
+}
+
+.butoes-alterar:hover{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge rgb(0, 0, 255);
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: rgb(0, 0, 255);
 }
 
 .butoes-excluir{
@@ -67,10 +88,20 @@
     color: #ec3d1e;
 }
 
+.butoes-excluir:hover{
+    margin-left: 50px;
+    font-size: 17px;
+    background-color: #ffffff;
+    border: 1px ridge rgb(99, 0, 0);
+    padding: 15px 32px;
+    border-radius: 1px;
+    color: rgb(99, 0, 0);
+}
+
 .dado{
     margin-left: 20px;
     padding: 10px 12px;
-    background-color: #afafaf;
+    background-color: #9c9c9c;
     color: white
 }
 
@@ -89,7 +120,7 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     margin:2%;
     margin-top: 50px;
-    justify-content: left;
+    text-align: justify;
 }
 .dado-linha{
     margin-top: 20px;
@@ -110,6 +141,7 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-bottom-color: transparent;
     border-radius: 4px;
+    margin-bottom: 50px;
 }
 
 .accordion__item {
@@ -136,13 +168,52 @@
 
 .accordion__content {
     /* For not selected item */
-    display: none;
 
     border-top: 1px solid rgba(0, 0, 0, 0.3);
     padding: 16px;
 }
 
-.accordion__content--selected {
-    /* For selected item */
-    display: block;
+.candidato-dado{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.nome-candidato{
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+.nome-candidato a{
+    font-size: 17px;
+}
+
+.candidato-butoes{
+    margin-left: 50%;
+    margin-top: 12px;
+}
+
+.btn-desaprovar{
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 1px;
+    color: #ec3d1e;
+}
+
+.btn-iniciar-chat{
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 1px;
+    color: #008AEE;
+}
+
+.envelope{
+    color: #008AEE;
+}
+
+.x-desaprovar{
+    color: #ec3d1e;
 }

@@ -64,6 +64,7 @@
     align-items: left;
     justify-content: center;
     margin-bottom: 10px;
+    text-decoration: none !important;
 }
 .card-contratante{
     padding: 10px;
@@ -75,6 +76,8 @@
     justify-content: left;
     width: 95%;
     height: 80%;
+    
+    
 }
 
 .card-contratante:hover{
@@ -86,16 +89,19 @@
     height: 10%;
     text-align: left;
     color: #008AEE;
+    
 }
 
 .card-content-contratante p{
     margin-top: 20px;
+    
 }
 
 .card-content-contratante h4{
     color:#040404;
     font-size: 20px;
     margin-bottom: 0px;
+    
 }
 
 .img-div-contratante{
@@ -152,6 +158,10 @@
     margin-left: 50px;
 }
 
-.link {
-    color:rgb(0, 0, 0);
+.link{
+    color: rgb(0, 0, 0);
+}
+
+.link-vaga{
+    text-decoration: none;
 }
