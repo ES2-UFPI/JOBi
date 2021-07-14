@@ -4,9 +4,9 @@ import axios from '../../services/axios';
 import './Contratante.css';
 import {BsSearch, BsFillInfoCircleFill, BsTrash,BsPlusCircle, BsCheck, BsX} from "react-icons/bs"
 import cardimage from '../../images/resized.jpg'
-import Card from 'react-bootstrap/Card'
+
 import { IconContext } from 'react-icons/lib';
-import Button from 'react-bootstrap/Button'
+
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navegation from '../../components/Navegation/Navegation';

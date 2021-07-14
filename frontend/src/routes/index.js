@@ -12,6 +12,7 @@ import Chat_c from '../pages/Chat_c';
 import Page404 from '../pages/Page404';
 import Cadastrar_vaga from '../pages/Cadastrar_vaga';
 import Vaga from '../pages/Vaga';
+import Notificacao from '../pages/Notificacao';
 
 function Routes(){
     return(
@@ -25,6 +26,7 @@ function Routes(){
             <MyRoute exact path="/contratante/cadastrar_vaga" component={Cadastrar_vaga} />
             <MyRoute exact path="/contratante/vaga" component={Vaga} />
             <MyRoute exact path="/user" component={User} isClosed />
+            <MyRoute exact path="/notificacao" component={Notificacao}/>
             <MyRoute path="*" component={Page404} />
         </Switch>
     );
