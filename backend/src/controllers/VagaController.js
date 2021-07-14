@@ -6,7 +6,7 @@ class VagasController {
     async store(req, res){
         try{
             const file = req.files.arquivo_imagem;
-            const newpath = path.join(__dirname, '..', '..', '..', 'frontend', 'src', 'images', 'arquivos_imagem', file.name);
+            const newpath = path.join(__dirname, '..', '..', '..', 'frontend', 'public', 'images', 'imagens_vagas', file.name);
 
             //console.log("Arquivo", file);
             //console.log("Newpath", newpath);
