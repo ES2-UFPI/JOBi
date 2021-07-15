@@ -31,12 +31,13 @@ function Login() {
         if(response.data.user.status === 1){
             typeUser = {
               id: response.data.prestador.id,
-              estrelas: response.data.prestador.estrelas
+              estrelas: response.data.prestador.estrelas,
+              categoria: response.data.prestador.categoria
             }
         }else{
             typeUser = {
               id: response.data.contratante.id,
-              estrelas: response.data.contratante.estrelas
+              estrelas: response.data.contratante.estrelas,
             }
         }
 
