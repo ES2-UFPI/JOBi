@@ -4,6 +4,7 @@ import MyRoute from './MyRoute';
 import Login from '../pages/Login';
 import Cadastro from '../pages/Cadastro';
 import Prestador from '../pages/Prestador';
+import Vagas_prest from '../pages/Vagas_prest';
 import Contratante_temp from '../pages/Contratante_temp';
 import Contratante from '../pages/Contratante';
 import User from '../pages/User';
@@ -20,6 +21,7 @@ function Routes(){
             <MyRoute exact path="/login" component={Login} />
             <MyRoute exact path="/cadastro" component={Cadastro} />
             <MyRoute exact path="/prestador" component={Prestador}/>
+            <MyRoute exact path="/prestador/vagas" component={Vagas_prest} />
             <MyRoute exact path="/contratante" component={Contratante}/>
             <MyRoute exact path="/prestador/chat" component={Chat_p} />
             <MyRoute exact path="/contratante/chat" component={Chat_c} />

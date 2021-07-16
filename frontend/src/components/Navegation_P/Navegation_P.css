@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.navegation_p {
+    justify-content: center;
+    float: left;
+    background: #040404;
+    width: 20%;
+    height: 100vh;
+
+}
+
+.logo_p {
+    width: 160px;
+    text-align: left;
+    height: auto;
+    left: 2%;
+    position: absolute;
+}
+
+.logo_p h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #f5f5f5;
+}
+
+.logo_p span{
+    color: #008AEE;
+}
+
+.list_p {
+    
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+
+    margin: 0 auto;
+    
+    top: 10%;
+    left: 10%;
+    width: 200px;
+    height: auto;
+    position: absolute;
+    transform: translate(-50%, 50%);
+
+
+}
+
+.list_p a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #f5f5f5;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.list_p a:hover:not(.active){
+    color: #f5f5f5;
+    background-color: #008AEE;
+    width: auto;
+    transition: 0.2s;
+}
+
+.list_p .active{
+    background-color: #008AEE;
+    width: auto;
+}
+
+.icons-menu_p{
+    padding-right: 10px;
+}
+.list-notifications_p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.not-ball_p{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 10px;
+    color:#f5f5f5;
+    background: red;
+    padding: 5px;
+    border-radius: 50%;
+}

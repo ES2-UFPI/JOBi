@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card'
 import { IconContext } from 'react-icons/lib';
 import Button from 'react-bootstrap/Button'
 
-import Navegation from '../../components/Navegation/Navegation';
+import Navegation_P from '../../components/Navegation_P/Navegation_P';
 
 function Prestador() {
     const [ users, setUsers ] = useState([]);
@@ -44,7 +44,7 @@ function Prestador() {
     return (  
     <IconContext.Provider value={{className:'icons-menu'}}>
     <div className="prestador">
-        <Navegation/>  
+        <Navegation_P/>  
         <div className="pag-prestador">
             <div className="search">
                     <form onSubmit={handleSubmit}>
