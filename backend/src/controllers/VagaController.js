@@ -1,4 +1,9 @@
 import Vaga from '../models/Vaga'
+import NotificacaoController from '../models/NotificacaoController'
+import Notificacao from '../models/Notificacao'
+import Prestador from '../models/Prestador'
+import Candidato from '../models/Candidato'
+import User from '../models/User'
 import Prestador from '../models/Prestador'
 
 
@@ -73,7 +78,23 @@ class VagasController {
                  });
             }
 
-            const vagaAtualizada = vaga.update(req.body);
+            const vagaAtualizada = await Vaga.update(req.body);
+            const candidatos = await Candidato.findAll({where: {vada_id: vaga.id}})
+            candidatos.map((candidato) => {
+                const prestador = await Candidato.findByPk(candidato.prestador_id)
+                const not = {
+                    nome: vaga.titulo,
+                    descricao: 'Vaga foi alterada',
+                    user_id: prestador.user_id
+                }
+                const novaNot = await Notificacao.create(not);
+                
+            })
+            
+
+            //const notific = Notificacao.findAll({ where: { user_id: prestador.user_id } })
+
+            
             return res.json(vagaAtualizada);
 
         }catch(e){

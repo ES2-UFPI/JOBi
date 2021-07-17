@@ -31,12 +31,12 @@ export default class Vaga extends Model {
                 }
             }, 
             descricao: {
-                type: Sequelize.STRING,
+                type: Sequelize.STRING(1234),
                 defaultValue: '',
                 validate: {
                     len: {
-                        args: [1, 250],
-                        msg: "Campo nome deve ter entre 1 e 250 caracteres."
+                        args: [1, 1234],
+                        msg: "Campo nome deve ter entre 1 e 1234 caracteres."
                     }
                 }
             },
@@ -73,6 +73,8 @@ export default class Vaga extends Model {
     static associate(models) {
         this.belongsTo(models.Contratante, { foreignKey: 'contratante_id' });
         this.hasMany(models.Candidato, { foreignKey: 'vaga_id' })
+        this.hasMany(models.Notificacao, { foreignKey: 'vaga_id' })
+
 
     }
     
