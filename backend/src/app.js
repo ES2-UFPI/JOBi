@@ -13,8 +13,11 @@ import conexaoRoutes from "./routes/conexaoRoutes";
 import mensagemRoutes from "./routes/mensagemRoutes";
 import vagaRoutes from "./routes/vagaRoutes";
 import candidatoRoutes from "./routes/candidatoRoutes";
+import notificacaoRoutes from "./routes/notificacaoRoutes";
+import cors from 'cors'
 import cors from 'cors';
 import fileupload from "express-fileupload";
+
 
 class App{
     constructor(){
@@ -56,6 +59,7 @@ class App{
         this.app.use('/mensagem', mensagemRoutes);
         this.app.use('/vaga', vagaRoutes);
         this.app.use('/candidato', candidatoRoutes);
+        this.app.use('/notificacao', notificacaoRoutes);
     }
 }
 

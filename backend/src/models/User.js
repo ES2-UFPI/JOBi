@@ -75,6 +75,7 @@ export default class User extends Model {
     static associate(models) {
         this.hasMany(models.Contratante, { foreignKey: 'user_id' });
         this.hasMany(models.Prestador, { foreignKey: 'user_id' });
+        this.hasMany(models.Notificacao, { foreignKey: 'user_id' });
       }
     
     //static associate_1(models){
