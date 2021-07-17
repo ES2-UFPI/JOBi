@@ -1,15 +1,18 @@
 import { Link, useLocation } from 'react-router-dom';
 import './Navegation.css';
+import { useState } from "react";
 import {BsHouseDoor, BsBell, BsEnvelope, BsPerson} from "react-icons/bs";
 import { IconContext } from 'react-icons/lib';
 
 function Navegation() {
+    /** 
     const location = useLocation().pathname;
 
     let data = localStorage.getItem('userData');
     data = JSON.parse(data);
     console.log(data.user.status);
-
+ */
+    const [ notifications, setNotifications ] = useState(10);
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
     <div className= "navegation">
@@ -18,14 +21,14 @@ function Navegation() {
             </div>
             <div className="list">
                 <div className="list-home">
-                    <Link to={ (data.user.status === 1) ? `../prestador` : `../contratante`} className={ (location === "/contratante") || (location === "/prestador") ? "active" : ""}><BsHouseDoor/>Home</Link>
+                    <Link to="/"><BsHouseDoor/>Home</Link>
                 </div>
                 <div className="list-notifications">
-
-                    <Link to="/"><BsBell/>Notificações</Link>
+                    <Link to="/notificacao"><BsBell/>Notificações</Link>
+                    {(notifications>0)&&<div className='not-ball'>{notifications}</div>}
                 </div>
                 <div className="list-messages">
-                    <Link to={ (data.user.status === 1) ? `../prestador/chat` : `../contratante/chat`} className={ (location === "/contratante/chat") || (location === "/prestador/chat") ? "active" : ""}><BsEnvelope/>Mensagens</Link>
+                    <Link to="/"><BsEnvelope/>Mensagens</Link>
                 </div>
                 <div className="list-profile">
                     <Link to="/"><BsPerson/>Perfil</Link>

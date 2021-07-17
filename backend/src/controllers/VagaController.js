@@ -5,12 +5,25 @@ import Prestador from '../models/Prestador'
 import Candidato from '../models/Candidato'
 import User from '../models/User'
 import Prestador from '../models/Prestador'
-
+const path = require('path');
 
 class VagasController { 
     async store(req, res){
         try{
+            const file = req.files.arquivo_imagem;
+            const newpath = path.join(__dirname, '..', '..', '..', 'frontend', 'public', 'images', 'imagens_vagas', file.name);
 
+            //console.log("Arquivo", file);
+            //console.log("Newpath", newpath);
+            
+            file.mv(`${newpath}`, (err) => {
+                if (err) {
+                    res.status(500).send({ message: "File upload failed", code: 200 });
+                }else{
+                    res.status(200).send({ message: "File Uploaded", code: 200 });
+                }
+            });
+            
             const novaVaga = await Vaga.create(req.body);
 
             return res.json(novaVaga);

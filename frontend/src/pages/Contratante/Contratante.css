@@ -31,8 +31,8 @@
     font-size: 14px;
     padding: 0 10px;
     border-radius: 20px;
-
 }
+
 .search form button{
     align-items: center;
     justify-content: center;
@@ -53,20 +53,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
 }
 
 .content-cards-contratante{
-    width: 90%;
-    height: 20%;
-    display: grid;
-    flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    margin-bottom: 10px;
-    text-decoration: none !important;
-}
-.card-contratante{
+    width: 85%;
     padding: 10px;
     border: 1px solid rgb(43, 43, 48);
     border-radius: 3px;
@@ -74,10 +64,7 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    width: 95%;
-    height: 80%;
-    
-    
+    margin-bottom: 25px;
 }
 
 .card-contratante:hover{
@@ -85,52 +72,46 @@
 }
 
 .card-content-contratante{
-    margin-top: -20px;
-    height: 10%;
     text-align: left;
     color: #008AEE;
-    
+    margin-top: -20px;
+    word-break: break-word;
 }
 
-.card-content-contratante p{
-    margin-top: 20px;
-    
-}
-
-.card-content-contratante h4{
-    color:#040404;
-    font-size: 20px;
-    margin-bottom: 0px;
-    
+.card-content-contratante .resumo-vaga{
+    margin-bottom: auto;
+    text-align: justify;
 }
 
 .img-div-contratante{
     margin-bottom: 10px;
     margin-right: 10px;
+    display: inline-block;
 }
+
 .info-button-contratante {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
 }
 
-.info-button-contratante a{
+.info-button-contratante h4{
+    color:#040404;
+    font-size: 20px;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 500px;
+}
+
+.info-button-contratante p{
     color:black;
-    margin-top: -25px;
-    margin-left: 400px;
-}
-
-.nova-vaga{
-    margin: 15px;
-}
-
-.nova-vaga:hover{
-    color: #838383;
+    margin-left: 2px;
+    display: inline-block;
 }
 
 .lixo-icon{
     color:rgb(231, 89, 89);
-    margin-top: -25px;
-    margin-left: 200px;
+    margin-left: 120px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 .lixo-icon:hover{
@@ -138,24 +119,30 @@
 
 }
 
-.info-vaga{
-    margin-top: 20px;
+.nova-vaga{
+    margin: 15px;
+    cursor: pointer;
+    color: #040404;
 }
 
-.info-vaga a {
-    color:rgb(0, 0, 0);
+.nova-vaga:hover{
+    color: #838383;
 }
 
-.info-vaga a span{
-    color: rgb(5, 145, 98);
-}
 
-.info-vaga t{
+.info-vaga .categoria-vaga{
     color: rgb(0, 0, 0);
+    display: inline-block;
+    width: 500px;
 }
 
-.info-vaga a{
-    margin-left: 50px;
+.info-vaga .status-vaga{
+    color: rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.info-vaga .status-vaga span{
+    color: rgb(5, 145, 98);
 }
 
 .link{
