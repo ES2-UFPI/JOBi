@@ -111,7 +111,7 @@ function Contratante() {
                             <p className="status-vaga">Status: <span>Aberta {/*vaga.status*/} </span></p>
                         </div>
                         
-                        <p className="resumo-vaga">{vaga.descricao.split('.')[0] + '...'}</p>
+                        <p className="resumo-vaga">{vaga.descricao.substring(0,100) + '...'}</p>
                     </div>
 
                 </div>
