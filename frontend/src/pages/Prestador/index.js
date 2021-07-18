@@ -35,6 +35,32 @@ function Prestador() {
         }
     }
 
+    function newCandidato(event){
+        let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
+
+            console.log(data)
+            
+            let route = `/candidato`;
+            
+
+            axios.post(route, {
+                vaga_id: vagas[indice].id,
+                prestador_id: data.typeUser.id,
+                proposta: vagas[indice].remuneracao,
+                contratado: 0
+            }).then(function (response) {
+                console.log(response);
+                if(indice != vagas.length-1){
+                    setIndice(indice + 1);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            
+    }
+
     useEffect(()=>{
         async function getVagas(){
 
@@ -104,7 +130,7 @@ function Prestador() {
                         </div>
                         <div className="buttons-cards">
                             <button className="btn-nope"><BsX size='30px' color='#C10000'/></button>
-                            <button className="btn-ok"><BsCheck size='30px' color='#025E00'/></button>
+                            <button className="btn-ok"><BsCheck size='30px' color='#025E00' onClick={newCandidato}/></button>
                         </div>
                     </div>
                     <Button variant="primary" onClick={handlePass}><BsChevronRight size='30px'/></Button>{' '}

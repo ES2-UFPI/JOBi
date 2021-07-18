@@ -6,12 +6,23 @@ import User from '../models/User'
 class CandidatoController {
     async store(req, res){
         try{
-
+            console.log(req.body)
+            /**/
+            
+            const exist_candidato = await Candidato.findOne({ where: { vaga_id: req.body.vaga_id, prestador_id: req.body.prestador_id }});
+            
+            if(exist_candidato){
+                return res.json(exist_candidato);
+            }
+            
             const novoCandidato = await Candidato.create(req.body);
-
+            
+            console.log(novoCandidato)
+            
             return res.json(novoCandidato);
+
+            
         }catch(e){
-            console.log(e.errors)
             return res.status(400)//.json({ errors: e.errors.map((err) => err.message)})
         }
         
