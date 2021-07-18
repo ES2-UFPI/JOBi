@@ -1,4 +1,6 @@
 import Candidato from '../models/Candidato'
+import Prestador from '../models/Prestador'
+import User from '../models/User'
 
  
 class CandidatoController {
@@ -26,7 +28,11 @@ class CandidatoController {
             }
 
             const candidato = await Candidato.findByPk(req.params.id);
-            return res.json(vaga);
+            const prestador = await Prestador.findByPk(candidato.prestador_id);
+            const user = await User.findByPk(prestador.user_id);
+            const obj = {candidato, prestador, user}
+            
+            return res.json(obj);
 
         }catch(e){
             return res.json(null)

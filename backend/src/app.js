@@ -1,8 +1,8 @@
 import dotenv from "dotenv"
 dotenv.config()
 
-import './database';
-import express from "express";
+import './database'
+import express from "express"
 import socketio from "socket.io";
 import http from "http";
 import homeRoutes from "./routes/homeRoutes";
@@ -14,9 +14,7 @@ import mensagemRoutes from "./routes/mensagemRoutes";
 import vagaRoutes from "./routes/vagaRoutes";
 import candidatoRoutes from "./routes/candidatoRoutes";
 import notificacaoRoutes from "./routes/notificacaoRoutes";
-import cors from 'cors';
-import fileupload from "express-fileupload";
-
+import cors from 'cors'
 
 class App{
     constructor(){
@@ -43,9 +41,6 @@ class App{
             this.app.use(cors());
             next();
         });
-
-        this.app.use(fileupload());
-        this.app.use(express.static("files"));
     }
 
     routes(){

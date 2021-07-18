@@ -20,13 +20,20 @@ class NotificacaoController {
         
         try{
 
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
-
+            
             const not = await Notificacao.findAll({ where: { user_id: req.params.id }});
+            return res.json(not);
+
+        }catch(e){
+            return res.json(null)
+        }
+    }
+    async select_toSee(req,res){
+        
+        try{
+
+            
+            const not = await Notificacao.findAll({ where: { user_id: req.params.id, visualizado: 0 }});
             return res.json(not);
 
         }catch(e){
@@ -38,16 +45,16 @@ class NotificacaoController {
     async update(req, res){
         try{
 
-            const not = await Notificacao.findByPk(req.params.id)
+            const not = await Notificacao.findAll({where: {user_id: req.params.id, visualizado: 0}})
 
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
+            not.map( async (notificacao)=> {
+                const modificada = await notificacao.update({ 
+                    visualizado: 1
+                })
+            })
 
-            const notAtualizada = not.update(req.body);
-            return res.json(notAtualizada);
+
+            return res.send("modificado");
 
         }catch(e){
             return res.json(null)
