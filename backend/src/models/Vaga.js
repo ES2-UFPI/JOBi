@@ -12,6 +12,10 @@ export default class Vaga extends Model {
                       },
                 }
             },
+            status: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+            },
             num_vagas: {
                 type: Sequelize.INTEGER,
                 defaultValue: 1,
