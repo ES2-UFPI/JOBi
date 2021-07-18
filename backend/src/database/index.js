@@ -7,8 +7,9 @@ import Conexao from '../models/Conexao';
 import Mensagem from '../models/Mensagem';
 import Vaga from '../models/Vaga';
 import Candidato from '../models/Candidato';
+import Notificacao from '../models/Notificacao'
  
-const models = [User, Contratante, Prestador, Conexao, Mensagem, Vaga, Candidato];
+const models = [User, Contratante, Prestador, Conexao, Mensagem, Vaga, Candidato, Notificacao];
 
 const connection = new Sequelize(databaseConfig);
 

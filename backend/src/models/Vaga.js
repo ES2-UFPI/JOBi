@@ -12,7 +12,7 @@ export default class Vaga extends Model {
                       },
                 }
             },
-            categoria: {
+            status: {
                 type: Sequelize.INTEGER,
                 defaultValue: 0,
             },
