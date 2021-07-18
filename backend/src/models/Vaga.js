@@ -40,6 +40,9 @@ export default class Vaga extends Model {
                     }
                 }
             },
+            imagem: {
+                type: Sequelize.STRING,
+            },
             interesses: {
                 type: Sequelize.STRING,
                 defaultValue: '',

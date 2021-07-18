@@ -4,50 +4,57 @@ import axios from '../../services/axios';
 import './Contratante.css';
 import {BsSearch, BsFillInfoCircleFill, BsTrash,BsPlusCircle, BsCheck, BsX} from "react-icons/bs"
 import cardimage from '../../images/resized.jpg'
-import Card from 'react-bootstrap/Card'
+
 import { IconContext } from 'react-icons/lib';
-import Button from 'react-bootstrap/Button'
+
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navegation from '../../components/Navegation/Navegation';
 
 function Contratante() {
-    const [ vagas, setVagas ] = useState([{id: 0, nome: "Estágio em empresa"},{id: 1, nome: "Estágio em empresa"},
-    {id: 2, nome: "Estágio em empresa"}]);
+    const [ vagas, setVagas ] = useState([]);
     const [ pesquisa, setPesquisa ] = useState('');
+
+    const { categorias } = require('../../extra_data/categorias.json');
+
     function handleSubmit(event) {
         event.preventDefault();
     }
-    function handlePesquisa (event) {
+
+    function handlePesquisa(event) {
         setPesquisa(event.target.value);
-      }
-      /*
+    }
+
+    function handleClickLixoIcon(vaga_id) {
+        let route = `/vaga/${vaga_id}`;
+
+        const response = axios.delete(route);
+        console.log("Dentro do delete!")
+    }
+    
     useEffect(()=>{
-        async function getPrestadores (){
+        async function getVagas(){
+
+            let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
             
-            const response = await axios.get('/prestador/select')
+            let route = `/vaga/${data.typeUser.id}`;
+
+            const response = await axios.get(route);
             
             console.log(response.data);
 
-            setUsers(response.data);
-            console.log(users);
-
-            let obj = { 
-                id: response.data.id,
-                estrelas: response.data.estrelas
-            }
-               
-            localStorage.setItem('userDataChat', JSON.stringify(obj));
+            setVagas(response.data);
+            console.log(vagas);
             
         }
 
-        getPrestadores();
+        getVagas();
         
     }, []);
-    */
 
     return (
-<IconContext.Provider value={{className:'icons-menu'}}>
+    <IconContext.Provider value={{className:'icons-menu'}}>
       <div className="pag-contratante">
       <Navegation/>  
           <div className="search">
@@ -63,40 +70,51 @@ function Contratante() {
                     <button type="submit"><BsSearch size='15px'/></button>
                 </form>
           </div>
+
           <div>
-          <Link to="contratante/cadastrar_vaga" className="link"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
+            <Link to="contratante/cadastrar_vaga" className="link"><BsPlusCircle className="nova-vaga" size='35px'/></Link>
           </div>
+
           <div className="cards-contratante">
           {vagas.map(vaga => (
-              <div className="content-cards-contratante">
-                  <Link to="/contratante/vaga?id=1" className="link-vaga">
-                    <div className="card-contratante">
-                        <div class="img-div-contratante">
-                        <img 
-                            width="150px"
-                            height= "150px"
-                            src = {cardimage}
-                            class='card-img'
-                            alt='card image'
+                <div key={String(vaga.id)} className="content-cards-contratante">
+
+                    <div className="img-div-contratante">
+                        <Link to={`/contratante/vaga?id=${vaga.id}`} className="link-vaga">
+                            <img 
+                                width="150px"
+                                height= "150px"
+                                src = {`images/imagens_vagas/${vaga.imagem}`}
+                                className='card-img'
+                                alt='card vaga'
                             />
-                        </div>
-                            <div className='card-content-contratante'>
-                                <h4>Estágio na UFPI</h4>
-                                <div className="info-button-contratante"><a>12/02/2021</a>
-                                <BsTrash className="lixo-icon" size='18px'/></div>
-                                <div className="info-vaga">
-                                    <t>Categoria: Tecnologia da Informação</t>
-                                    <a>Status: <span>Aberta</span></a>
-                                </div>
-                                <p size='3px'>Algum texto de exemplo rápido para desenvolver 
-                                    o título do cartão e compor a maior parte do 
-                                    conteúdo do cartão.
-                                </p>
-                            </div>
+                        </Link>
                     </div>
-                    </Link>
+
+                    <div className='card-content-contratante'>
+                        <div className="info-button-contratante">
+                            <Link to={`/contratante/vaga?id=${vaga.id}`} className="link-vaga">
+                                <h4>{vaga.titulo}</h4>
+                            </Link>
+                            
+                            <p>{vaga.updatedAt.split('T')[0].split('-').reverse().join('/')}</p>
+                        
+                            <BsTrash className="lixo-icon" type="button" onClick = { ( ) => handleClickLixoIcon(vaga.id) }/>
+                        </div>
+
+                        <div className="info-vaga">
+                            <p className="categoria-vaga">Categoria: {categorias.map(cat => (
+                                (cat.value === vaga.categoria) ? cat.label : ''
+                            ))}
+                            </p>
+
+                            <p className="status-vaga">Status: <span>Aberta {/*vaga.status*/} </span></p>
+                        </div>
+                        
+                        <p className="resumo-vaga">{vaga.descricao.split('.')[0] + '...'}</p>
+                    </div>
+
                 </div>
-                
             ))}
           </div>
       </div>

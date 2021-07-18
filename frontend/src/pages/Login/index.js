@@ -3,8 +3,6 @@ import { useState } from "react";
 import axios from '../../services/axios';
 import { Link, useHistory } from 'react-router-dom';
 import  work_chat  from '../../images/work_chat2.svg';
-import  coffee_break  from '../../images/coffee_break.svg';
-import  freelancer  from '../../images/freelancer.svg';
 
 function Login() {
   const [ email, setNome ] = useState('');
