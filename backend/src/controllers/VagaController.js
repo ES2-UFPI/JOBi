@@ -51,12 +51,8 @@ class VagasController {
 
     async select_home(req,res){
         try{
-        
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
+
+            console.log(req.params.categoria)
 
                        
             const vaga = await Vaga.findAll({ where: { categoria: req.params.categoria } });

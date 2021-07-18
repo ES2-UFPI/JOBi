@@ -98,7 +98,7 @@
     font-size: 20px;
     margin-bottom: 0px;
     display: inline-block;
-    width: 500px;
+    width: 60%;
 }
 
 .info-button-contratante p{
@@ -133,7 +133,7 @@
 .info-vaga .categoria-vaga{
     color: rgb(0, 0, 0);
     display: inline-block;
-    width: 500px;
+    width: 60%;
 }
 
 .info-vaga .status-vaga{

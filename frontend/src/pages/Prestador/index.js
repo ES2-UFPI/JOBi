@@ -11,34 +11,51 @@ import Button from 'react-bootstrap/Button'
 import Navegation from '../../components/Navegation/Navegation';
 
 function Prestador() {
-    const [ users, setUsers ] = useState([]);
+    const [ vagas, setVagas ] = useState([]);
     const [ pesquisa, setPesquisa ] = useState('');
+    const [indice, setIndice] = useState(0);
+    const [iniciou, setIniciou] = useState(false);
+
     function handleSubmit(event) {
         event.preventDefault();
     }
     function handlePesquisa (event) {
         setPesquisa(event.target.value);
-      }
+    }
+
+    function handlePass(event){
+        if(indice != vagas.length-1){
+            setIndice(indice + 1);
+        }
+    }
+
+    function handleBack(event){
+        if(indice != 0){
+            setIndice(indice - 1);
+        }
+    }
 
     useEffect(()=>{
-        async function getPrestadores (){
-            const response = await axios.get('/prestador/select')
+        async function getVagas(){
+
+            let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
+
+            console.log(data)
+            
+            let route = `/vaga/home/${data.typeUser.categoria}`;
+
+
+            const response = await axios.get(route);
             
             console.log(response.data);
 
-            setUsers(response.data);
-            console.log(users);
-
-            let obj = { 
-                id: response.data.id,
-                estrelas: response.data.estrelas
-            }
-               
-            localStorage.setItem('userDataChat', JSON.stringify(obj));
+            setVagas(response.data);
+            setIniciou(true);
             
         }
 
-        getPrestadores();
+        getVagas();
     }, []);
 
     return (  
@@ -59,32 +76,40 @@ function Prestador() {
                         <button type="submit"><BsSearch size='15px'/></button>
                     </form>
             </div>
+            {iniciou && vagas.length > 0 ?  
             <div className="cards">
-                <Button variant="primary"><BsChevronLeft size='30px'/></Button>{' '}
+                <Button onClick={handleBack}><BsChevronLeft size='30px'/></Button>
                 <div className="content-cards">
                         <div className="card">
-                            <img
+                            {vagas[indice].imagem != null ?
+                                <img
+                                src = {`images/imagens_vagas/${vagas[indice].imagem}`}
+                                className='card-img'
+                                alt='card image'
+                                />
+                                :
+                                <img
                                 src = {cardimage}
                                 className='card-img'
                                 alt='card image'
                                 />
+                            }
+                            
                                 <div className=' card-content'>
-                                    <h4>Nome da Vaga<BsFillInfoCircleFill size='20px'/></h4>
-                                    <h6>Empresa</h6>
-                                    <p size='3px'>Algum texto de exemplo rápido para desenvolver 
-                                        o título do cartão e compor a maior parte do 
-                                        conteúdo do cartão.
+                                    <h4>{vagas[indice].titulo}<BsFillInfoCircleFill className="btn-info" size='20px'/></h4>
+                                    <h6>{vagas[indice].interesses}</h6>
+                                    <p size='3px'>{vagas[indice].descricao.substring(0,100) + '...'}
                                     </p>
                                 </div>
                         </div>
                         <div className="buttons-cards">
-                            <Button variant="primary"><BsX size='30px' color='#C10000'/></Button>{' '}
-                            <Button variant="primary"><BsCheck size='30px' color='#025E00'/></Button>{' '}
+                            <button className="btn-nope"><BsX size='30px' color='#C10000'/></button>
+                            <button className="btn-ok"><BsCheck size='30px' color='#025E00'/></button>
                         </div>
                     </div>
-                    <Button variant="primary"><BsChevronRight size='30px'/></Button>{' '}
-            </div>
-        </div>
+                    <Button variant="primary" onClick={handlePass}><BsChevronRight size='30px'/></Button>{' '}
+            </div> : <div></div>}
+        </div> 
     </div>
     </IconContext.Provider>
     );
