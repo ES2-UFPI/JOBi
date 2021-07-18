@@ -76,20 +76,29 @@ function Prestador() {
                         <button type="submit"><BsSearch size='15px'/></button>
                     </form>
             </div>
-            {iniciou ?  
+            {iniciou && vagas.length > 0 ?  
             <div className="cards">
                 <Button onClick={handleBack}><BsChevronLeft size='30px'/></Button>
                 <div className="content-cards">
                         <div className="card">
-                            <img
+                            {vagas[indice].imagem != null ?
+                                <img
+                                src = {`images/imagens_vagas/${vagas[indice].imagem}`}
+                                className='card-img'
+                                alt='card image'
+                                />
+                                :
+                                <img
                                 src = {cardimage}
                                 className='card-img'
                                 alt='card image'
                                 />
+                            }
+                            
                                 <div className=' card-content'>
-                                    <h4>{vagas[indice].titulo}<BsFillInfoCircleFill size='20px'/></h4>
+                                    <h4>{vagas[indice].titulo}<BsFillInfoCircleFill className="btn-info" size='20px'/></h4>
                                     <h6>{vagas[indice].interesses}</h6>
-                                    <p size='3px'>{vagas[indice].descricao}
+                                    <p size='3px'>{vagas[indice].descricao.substring(0,100) + '...'}
                                     </p>
                                 </div>
                         </div>
