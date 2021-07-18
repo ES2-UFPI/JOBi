@@ -1,10 +1,6 @@
 import Vaga from '../models/Vaga'
-import NotificacaoController from '../models/NotificacaoController'
 import Notificacao from '../models/Notificacao'
-import Prestador from '../models/Prestador'
 import Candidato from '../models/Candidato'
-import User from '../models/User'
-import Prestador from '../models/Prestador'
 const path = require('path');
 
 class VagasController { 
@@ -91,9 +87,10 @@ class VagasController {
                  });
             }
 
-            const vagaAtualizada = await Vaga.update(req.body);
+            const vagaAtualizada = await vaga.update(req.body);
             const candidatos = await Candidato.findAll({where: {vada_id: vaga.id}})
-            candidatos.map((candidato) => {
+            candidatos.map(async (candidato) => {
+                console.log("entrou")
                 const prestador = await Candidato.findByPk(candidato.prestador_id)
                 const not = {
                     nome: vaga.titulo,

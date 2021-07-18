@@ -46,7 +46,7 @@ class NotificacaoController {
                  });
             }
 
-            const notAtualizada = Notificacao.update(req.body);
+            const notAtualizada = not.update(req.body);
             return res.json(notAtualizada);
 
         }catch(e){
