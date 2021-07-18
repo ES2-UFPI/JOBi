@@ -15,7 +15,6 @@ import vagaRoutes from "./routes/vagaRoutes";
 import candidatoRoutes from "./routes/candidatoRoutes";
 import notificacaoRoutes from "./routes/notificacaoRoutes";
 import cors from 'cors'
-import cors from 'cors';
 import fileupload from "express-fileupload";
 
 
