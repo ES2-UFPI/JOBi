@@ -111,10 +111,20 @@
     color: #E4E4E4;
 }
 
+.card-content{
+    height: 40%;
+    text-align: left;
+    color: #E4E4E4;
+}
+
 .card-content h6{
-    margin-top: -25px;
+    margin-top: 5%;
 }
 
 .card-content p{
-    margin-top: -25px;
+    margin-top: 0%;
+}
+
+.card-content .btn-info{
+    margin-left: 3%;
 }
