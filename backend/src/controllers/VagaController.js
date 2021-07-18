@@ -1,6 +1,7 @@
 import Vaga from '../models/Vaga'
 import Notificacao from '../models/Notificacao'
 import Candidato from '../models/Candidato'
+import Prestador from '../models/Prestador'
 const path = require('path');
 
 class VagasController { 
@@ -62,11 +63,11 @@ class VagasController {
         }
     }
 
-    async index(req, res){
+
+    async select(req, res){
         try{
-            const vagas = await Vaga.findAll({ where: { contratante_id: req.params.id }})
-        
-                res.json(vagas);
+            const vaga = await Vaga.findByPk(req.params.id)
+                res.json(vaga);
         }catch(e){
             res.status(400).json({ errors: e.errors.map((err) => err.message)})
         }
@@ -84,14 +85,16 @@ class VagasController {
             }
 
             const vagaAtualizada = await vaga.update(req.body);
-            const candidatos = await Candidato.findAll({where: {vada_id: vaga.id}})
+            const candidatos = await Candidato.findAll({where: {vaga_id: vaga.id}})
             candidatos.map(async (candidato) => {
                 console.log("entrou")
-                const prestador = await Candidato.findByPk(candidato.prestador_id)
+                const prestador = await Prestador.findByPk(candidato.prestador_id)
                 const not = {
-                    nome: vaga.titulo,
+                    titulo: vaga.titulo,
+                    vaga_id: vaga.id,
                     descricao: 'Vaga foi alterada',
-                    user_id: prestador.user_id
+                    user_id: prestador.user_id,
+    
                 }
                 const novaNot = await Notificacao.create(not);
                 
