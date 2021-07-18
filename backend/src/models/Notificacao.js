@@ -23,7 +23,7 @@ export default class Notificacao extends Model {
                     }
                 }
             },
-            viualizado: {
+            visualizado: {
                 type: Sequelize.BOOLEAN,
                 defaultValue: false,
             },
