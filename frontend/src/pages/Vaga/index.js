@@ -66,7 +66,7 @@ function Vaga() {
     const ENDPOINT = 'http://localhost:3333/';
     let socket;
 
-    function iniciarChat(event, id_user){
+    function iniciarChat(event, id_user, prestador_nome){
         socket = io(ENDPOINT, { autoConnect: true });
         console.log("XXXXXXXXXXXXXXXXX", id_user);
 
@@ -79,11 +79,11 @@ function Vaga() {
         var id_c = data.typeUser.id;
 
         //Evento emitido quando é iniciado um chat
-        socket.emit('iniciar_chat', { id_p: id_p, id_c: id_c }, ({ message }) => {
+        socket.emit('iniciar_chat', { id_p: id_p, id_c: id_c, nome_c: data.user.nome, nome_p: prestador_nome}, ({ message }) => {
             console.log(message)
         });
 
-        let route = `../contratante/chat?id=${id_user}`;
+        let route = `../contratante/chat?id=${id_user}&nome=${prestador_nome}`;
         history.push(route);
     }
     
@@ -181,7 +181,7 @@ function Vaga() {
                                 <button className="btn-aprovar">
                                     <BsCheck size='25px' className="check-aprovar"></BsCheck>
                                 </button>
-                                <button onClick={(e) => iniciarChat(e, candidato.prestador_id)} className="btn-iniciar-chat">
+                                <button onClick={(e) => iniciarChat(e, candidato.prestador_id, candidato.nome)} className="btn-iniciar-chat">
                                     <BsEnvelope size="25px" className="envelope"></BsEnvelope>
                                 </button>
                                 <button className="btn-desaprovar">

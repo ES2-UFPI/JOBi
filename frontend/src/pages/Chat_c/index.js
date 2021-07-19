@@ -10,27 +10,31 @@ import { IconContext } from 'react-icons/lib';
 
 function Chat_c() {
     const location = useLocation().pathname;
-    const [ users, setUsers ] = useState([]);
+    const [ conexoes, setConexoes ] = useState([]);
 
     useEffect(()=>{
-        async function getPrestadores (){
-            const response = await axios.get('/prestador/select')
+        async function getConexoes (){
+            let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
+        
+            const response = await axios.get(`/conexao/chats_contratante/${data.typeUser.id}`)
             
             console.log(response.data);
 
-            setUsers(response.data);
-            console.log(users);
+            setConexoes(response.data);
+            console.log(conexoes);
 
+            /*
             let obj = { 
                 id: response.data.id,
                 estrelas: response.data.estrelas
             }
                
             localStorage.setItem('userDataChat', JSON.stringify(obj));
-            
+            */
         }
 
-        getPrestadores();
+        getConexoes();
     }, []);
 
     return (
@@ -49,13 +53,13 @@ function Chat_c() {
                 </form>
 
                 <div className="list-conversations">
-                    {users.map(user => (
-                    <div key={String(user.id)} className="list-users">
-                        <Link to={`${location}?id=${user.id}`}>
+                    {conexoes.map(con => (
+                    <div key={String(con.id)} className="list-users">
+                        <Link to={`${location}?id=${con.prestador_id}&nome=${con.prestador_nome}`}>
                         <div className="circle">
                             <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
                         </div>
-                        <p>User {user.id}</p>
+                        <p>{con.prestador_nome}</p>
                         </Link>
                     </div>   
                     ))}

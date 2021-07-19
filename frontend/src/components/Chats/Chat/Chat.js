@@ -23,7 +23,7 @@ const Chat = ({ location }) => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    const { id } = queryString.parse(location.search);
+    const { id, nome } = queryString.parse(location.search);
     console.log(id);
     socket = io(ENDPOINT, { autoConnect: true });
 
@@ -32,28 +32,29 @@ const Chat = ({ location }) => {
     console.log(data);
 
     setName(data.typeUser.id);
+    setRoom(nome);
 
-    if(data.user.status === 1){
+    if (data.user.status === 1) {
       id_p = data.typeUser.id;
       id_c = parseInt(id);
       isPrest = true;
-    }else{
+    } else {
       id_p = parseInt(id);
       id_c = data.typeUser.id;
       isPrest = false;
     }
-    
+
     socket.emit('entrar_sala', { id_p: id_p, id_c: id_c });
 
   }, [ENDPOINT, location]);
-  
+
 
   useEffect(() => {
     socket.on('message', message => {
       console.log(message);
-      setMessages(messages => [ ...messages, message ]);
+      setMessages(messages => [...messages, message]);
     });
-    
+
     /*
     socket.on("roomData", ({ users }) => {
       setUsers(users);
@@ -65,7 +66,7 @@ const Chat = ({ location }) => {
   const sendMessage = (event) => {
     event.preventDefault();
 
-    if(message) {
+    if (message) {
       socket.emit('enviar_mensagem', { id_p: id_p, id_c: id_c, texto: message, isPrest: isPrest }, () => setMessage(''));
     }
 
@@ -75,9 +76,9 @@ const Chat = ({ location }) => {
   return (
     <div className="outerContainer">
       <div className="container-chat">
-          <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+        <InfoBar room={room} />
+        <Messages messages={messages} name={name} />
+        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
     </div>
   );
