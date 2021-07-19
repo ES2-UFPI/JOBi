@@ -1,39 +1,156 @@
-.nav-contratante {
+.search{
     display: flex;
-    flex-direction: column;
-    color: #f5f5f5;
-    width: 30%;
-    height: 100%;
-    background: #f5f5f5;
+    flex-direction: row;
     font-family: 'Montserrat', sans-serif;
-    text-align: left;
+    height: 10%;
+    padding: 5px;
 }
 
-.nav-contratante .users{
-    color: black;
-}
-
-.nav-contratante h1{
+.search form{
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    text-align: center;
+    flex-direction: row;
+    align-items: center;
+}
+.search form label {
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
 }
 
-.nav-contratante button{
+.search form input{
     font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
-    border-radius: 15px;
-    border: 1px solid #008AEE;
-    background-color: #008AEE;
-    height: 50px;
-    color: #f5f5f5;
+    font-weight: 500;
+    background: #E4E4E4;
+    color: #040404;
+    border: 1px solid #E4E4E4;
+    height: 30px;
+    width: 100%;
+    font-size: 14px;
+    padding: 0 10px;
+    border-radius: 20px;
+}
+
+.search form button{
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    border-radius: 17.5px;
+    border: 1px solid #E4E4E4;
+    background-color: #E4E4E4;
+    height: 35px;
+    width: 35px;
+    margin-left: 5px;
+    color: #040404;
     cursor: pointer;
+}
+
+.cards-contratante {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-cards-contratante{
+    width: 85%;
+    padding: 10px;
+    border: 1px solid rgb(43, 43, 48);
+    border-radius: 3px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-bottom: 25px;
+}
+
+.card-contratante:hover{
+    background: #eeeeee;
+}
+
+.card-content-contratante{
+    text-align: left;
+    color: #008AEE;
+    margin-top: -20px;
+    word-break: break-word;
+}
+
+.card-content-contratante .resumo-vaga{
+    margin-bottom: auto;
+    text-align: justify;
+}
+
+.img-div-contratante{
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.info-button-contratante {
     width: 100%;
 }
 
-.nav-contratante button:hover{
-    background-color: #008beee0;
+.info-button-contratante h4{
+    color:#040404;
+    font-size: 20px;
+    margin-bottom: 0px;
+    display: inline-block;
+    width: 500px;
+}
+
+.info-button-contratante p{
+    color:black;
+    display: inline-block;
+}
+
+.lixo-icon{
+    color:rgb(231, 89, 89);
+    margin-left: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.lixo-icon:hover{
+    color:rgb(255, 0, 0);
+}
+
+.nova-vaga{
+    margin: 15px;
+    cursor: pointer;
+    color: #040404;
+}
+
+.nova-vaga:hover{
+    color: #838383;
+}
+
+
+.info-vaga .categoria-vaga{
+    color: rgb(0, 0, 0);
+    display: inline-block;
+    width: 500px;
+}
+
+.info-vaga .status-vaga{
+    color: rgb(0, 0, 0);
+    display: inline-block;
+}
+
+.info-vaga .status-vaga .open{
+    color: rgb(5, 145, 98);
+}
+
+.info-vaga .status-vaga .closed{
+    color: rgb(238, 76, 76);
+}
+
+.link{
+    color: rgb(0, 0, 0);
+}
+
+.link-vaga{
+    text-decoration: none;
 }

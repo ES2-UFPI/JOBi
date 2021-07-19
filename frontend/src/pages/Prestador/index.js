@@ -2,52 +2,149 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import './Prestador.css';
+import {BsSearch, BsChevronLeft, BsChevronRight, BsFillInfoCircleFill, BsCheck, BsX} from "react-icons/bs"
+import cardimage from '../../images/resized.jpg'
+import Card from 'react-bootstrap/Card'
+import { IconContext } from 'react-icons/lib';
+import Button from 'react-bootstrap/Button'
+
+import Navegation from '../../components/Navegation/Navegation';
 
 function Prestador() {
-    const [ users, setUsers ] = useState([]);
+    const [ vagas, setVagas ] = useState([]);
+    const [ pesquisa, setPesquisa ] = useState('');
+    const [indice, setIndice] = useState(0);
+    const [iniciou, setIniciou] = useState(false);
+
+    function handleSubmit(event) {
+        event.preventDefault();
+    }
+    function handlePesquisa (event) {
+        setPesquisa(event.target.value);
+    }
+
+    function handlePass(event){
+        if(indice != vagas.length-1){
+            setIndice(indice + 1);
+        }
+    }
+
+    function handleBack(event){
+        if(indice != 0){
+            setIndice(indice - 1);
+        }
+    }
+
+    function newCandidato(event){
+        let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
+
+            console.log(data)
+            
+            let route = `/candidato`;
+
+            axios.post(route, {
+                vaga_id: vagas[indice].id,
+                prestador_id: data.typeUser.id,
+                proposta: vagas[indice].remuneracao,
+                contratado: 0,
+                nome: data.user.nome,
+                email: data.user.email,
+                telefone: data.user.telefone,
+                descricao: data.user.descricao,
+                img_perfil: data.user.img_perfil,
+                estrelas: data.typeUser.estrelas,
+                categoria: data.typeUser.categoria
+            }).then(function (response) {
+                console.log(response);
+                alert("Você se candidatou à vaga com sucesso!");
+                if(indice != vagas.length-1){
+                    setIndice(indice + 1);
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+            
+    }
 
     useEffect(()=>{
-        async function getPrestadores (){
-            const response = await axios.get('/prestador/select')
+        async function getVagas(){
+
+            let data = localStorage.getItem('userData');
+            data = JSON.parse(data);
+
+            console.log(data)
+            
+            let route = `/vaga/home/${data.typeUser.categoria}`;
+
+
+            const response = await axios.get(route);
             
             console.log(response.data);
 
-            setUsers(response.data);
-            console.log(users);
-
-            let obj = { 
-                id: response.data.id,
-                estrelas: response.data.estrelas
-            }
-               
-            localStorage.setItem('userDataChat', JSON.stringify(obj));
+            setVagas(response.data);
+            setIniciou(true);
             
         }
 
-        getPrestadores();
+        getVagas();
     }, []);
 
-    return (
-      <div className="nav-prestador">
-        <h1>Prestador</h1>
-        
-        <h1>Lista de Usuários</h1>
-            <ul className="users">
-                
-                {users.map(user => (
-                <li key={String(user.id)}>
-                    <h2>
-                        <strong>Estrelas: </strong>
-                        {user.estrelas}
-
-                        <Link to={`chat_temp?id=${user.id}`}>
-                            <button>Chat</button>
-                        </Link>
-                    </h2>
-                </li> 
-                ))}
-            </ul>
-      </div>
+    return (  
+    <IconContext.Provider value={{className:'icons-menu'}}>
+    <div className="prestador">
+        <Navegation/>  
+        <div className="pag-prestador">
+            <div className="search">
+                    <form onSubmit={handleSubmit}>
+                        <label htmlFor="Pesquisa">
+                            <input
+                                type="text"
+                                value={pesquisa}
+                                onChange={handlePesquisa}
+                                placeholder="Pesquisar"
+                            />
+                        </label>
+                        <button type="submit"><BsSearch size='15px'/></button>
+                    </form>
+            </div>
+            {iniciou && vagas.length > 0 ?  
+            <div className="cards">
+                <Button onClick={handleBack}><BsChevronLeft size='30px'/></Button>
+                <div className="content-cards">
+                        <div className="card">
+                            {vagas[indice].imagem != null ?
+                                <img
+                                src = {`images/imagens_vagas/${vagas[indice].imagem}`}
+                                className='card-img'
+                                alt='card image'
+                                />
+                                :
+                                <img
+                                src = {cardimage}
+                                className='card-img'
+                                alt='card image'
+                                />
+                            }
+                            
+                                <div className=' card-content'>
+                                    <h4>{vagas[indice].titulo}<BsFillInfoCircleFill className="btn-info" size='20px'/></h4>
+                                    <h6>{vagas[indice].interesses}</h6>
+                                    <p size='3px'>{vagas[indice].descricao.substring(0,100) + '...'}
+                                    </p>
+                                </div>
+                        </div>
+                        <div className="buttons-cards">
+                            <button className="btn-nope"><BsX size='30px' color='#C10000'/></button>
+                            <button className="btn-ok"><BsCheck size='30px' color='#025E00' onClick={newCandidato}/></button>
+                        </div>
+                    </div>
+                    <Button variant="primary" onClick={handlePass}><BsChevronRight size='30px'/></Button>{' '}
+            </div> : <div></div>}
+        </div> 
+    </div>
+    </IconContext.Provider>
     );
   }
   

@@ -3,8 +3,6 @@ import { useState } from "react";
 import axios from '../../services/axios';
 import { Link, useHistory } from 'react-router-dom';
 import  work_chat  from '../../images/work_chat2.svg';
-import  coffee_break  from '../../images/coffee_break.svg';
-import  freelancer  from '../../images/freelancer.svg';
 
 function Login() {
   const [ email, setNome ] = useState('');
@@ -29,11 +27,18 @@ function Login() {
       .then(function (response) {
         console.log(response);
 
-        var typeUser = {};
+        var typeUser = { };
         if(response.data.user.status === 1){
-            typeUser = response.data.prestador;
+            typeUser = {
+              id: response.data.prestador.id,
+              estrelas: response.data.prestador.estrelas,
+              categoria: response.data.prestador.categoria
+            }
         }else{
-            typeUser = response.data.contratante;
+            typeUser = {
+              id: response.data.contratante.id,
+              estrelas: response.data.contratante.estrelas,
+            }
         }
 
         let obj = { 
@@ -47,16 +52,19 @@ function Login() {
             status: response.data.user.status,
             img_perfil: response.data.user.img_perfil
           },
-        
-          "typeUser": {
-            id: typeUser.id,
-            estrelas: typeUser.estrelas
-          }
+          typeUser
         }
 
           localStorage.setItem('userData', JSON.stringify(obj));
+
+          var route = '';
+          if(obj.user.status === 1){
+              route = '/prestador';
+          }else{
+              route = '/contratante';
+          }
           
-          history.push('/contratante');
+          history.push(route);
       })
       .catch(function (error) {
         console.log(error);

@@ -1,0 +1,52 @@
+.infoBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #004FC6;
+  border-radius: 4px 4px 0 0;
+  height: 60px;
+  width: 100%;
+}
+
+.leftInnerContainer {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  color: white;
+}
+
+.leftInnerContainer p{
+  margin-left: 5%;
+  font-weight: 600;
+  text-align: left;
+  width: 200px;
+}
+
+.rightInnerContainer {
+  display: flex;
+  flex: 0.5;
+  justify-content: flex-end;
+  margin-right: 5%;
+}
+
+.onlineIcon {
+  margin-right: 5%;
+}
+
+.circle {
+  background-color: #aaa;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  
+}
+
+.circle img {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}

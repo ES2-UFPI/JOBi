@@ -56,7 +56,7 @@ export default class User extends Model {
                 },
             },
             descricao: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 defaultValue: '',
             },
             status: {
@@ -64,7 +64,7 @@ export default class User extends Model {
                 defaultValue: 0,
             },
             img_perfil: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 defaultValue: 'default',
             }, 
         },{
@@ -75,6 +75,7 @@ export default class User extends Model {
     static associate(models) {
         this.hasMany(models.Contratante, { foreignKey: 'user_id' });
         this.hasMany(models.Prestador, { foreignKey: 'user_id' });
+        this.hasMany(models.Notificacao, { foreignKey: 'user_id' });
       }
     
     //static associate_1(models){

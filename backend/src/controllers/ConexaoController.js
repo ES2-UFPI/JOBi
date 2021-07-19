@@ -23,8 +23,9 @@ class ConexaoController {
     }
     async chats_prestador(req,res){
         try{
-            const conexao = await Conexao.findAll({ where: {prestador_id: req.body.id} });
-            return res.json(conexao);
+            const conexoes = await Conexao.findAll({ where: {prestador_id: req.params.id} });
+            
+            return res.json(conexoes);
 
         }catch(e){
             return res.json(null)
@@ -33,7 +34,7 @@ class ConexaoController {
 
     async chats_contratante(req,res){
         try{
-            const conexao = await Conexao.findAll({ where: {contratante_id: req.body.id} });
+            const conexao = await Conexao.findAll({ where: {contratante_id: req.params.id} });
             return res.json(conexao);
 
         }catch(e){
