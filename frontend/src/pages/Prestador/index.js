@@ -48,9 +48,17 @@ function Prestador() {
                 vaga_id: vagas[indice].id,
                 prestador_id: data.typeUser.id,
                 proposta: vagas[indice].remuneracao,
-                contratado: 0
+                contratado: 0,
+                nome: data.user.nome,
+                email: data.user.email,
+                telefone: data.user.telefone,
+                descricao: data.user.descricao,
+                img_perfil: data.user.img_perfil,
+                estrelas: data.typeUser.estrelas,
+                categoria: data.typeUser.categoria
             }).then(function (response) {
                 console.log(response);
+                alert("Você se candidatou á vaga com sucesso!");
                 if(indice != vagas.length-1){
                     setIndice(indice + 1);
                 }
