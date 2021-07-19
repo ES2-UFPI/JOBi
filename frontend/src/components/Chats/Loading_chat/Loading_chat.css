@@ -7,14 +7,8 @@
   width: 100%;
 }
 
-.container-chat-alt {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: #FFFFFF;
-  border-radius: 8px;
-  height: 85%;
-  width: 55%;
+.container-chat-alt h4{
+  color: aliceblue;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {
@@ -41,6 +35,7 @@
   border-top-color: #51d4db;
   height: 50px;
   width: 50px;
+  margin-left: 30%;
 }
 
 @keyframes is-rotating {
