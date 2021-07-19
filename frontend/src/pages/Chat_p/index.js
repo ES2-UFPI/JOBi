@@ -5,11 +5,13 @@ import axios from '../../services/axios';
 
 import Navegation from '../../components/Navegation/Navegation';
 import Chat from '../../components/Chats/Chat/Chat';
+import Loading_chat from '../../components/Chats/Loading_chat/Loading_chat';
 import {MdSearch} from "react-icons/md";
 import { IconContext } from 'react-icons/lib';
 
 function Chat_p() {
-    const location = useLocation().pathname;
+    const location = useLocation();
+    var search = location.search;
     const [ conexoes, setConexoes ] = useState([]);
 
     useEffect(()=>{
@@ -55,7 +57,7 @@ function Chat_p() {
                 <div className="list-conversations">
                 {conexoes.map(con => (
                     <div key={String(con.id)} className="list-users">
-                        <Link to={`${location}?id=${con.contratante_id}&nome=${con.contratante_nome}`}>
+                        <Link to={`${location.pathname}?id=${con.contratante_id}&nome=${con.contratante_nome}`}>
                         <div className="circle">
                             <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
                         </div>
@@ -66,9 +68,15 @@ function Chat_p() {
                 </div>
             </div>
 
-            <div className="chat">
-                <Chat location={useLocation()}/>
-            </div>
+            {(search != '') ?                 
+                <div className="chat">
+                    <Chat location={location}/>
+                </div>
+            :
+                <div className="chat">
+                    <Loading_chat/>
+                </div>
+            }
         </div>
         </IconContext.Provider>  
     );

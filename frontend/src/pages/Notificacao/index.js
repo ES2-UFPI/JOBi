@@ -9,9 +9,6 @@ import cardimage from '../../images/resized.jpg'
 
 function Notificacao(){
     const [ notifications, setNotifications ] = useState([]);
-    const [ notificacoes, setNotificacao ] = useState([{id: 0, nome: "Estágio em empresa"},{id: 1, nome: "Estágio em empresa"},
-    {id: 2, nome: "Estágio em empresa"}, {id: 3, nome: "Estágio em empresa"}, {id: 4, nome: "Estágio em empresa"}, 
-    {id: 5, nome: "Estágio em empresa"}, {id: 6, nome: "Estágio em empresa"}]);
     const [ pesquisa, setPesquisa ] = useState('');
     
     useEffect(()=>{
@@ -31,37 +28,36 @@ function Notificacao(){
     }
         setNotificacao();
     }, []);
-
-    
     
     function handleSubmit(event) {
         event.preventDefault();
     }
     function handlePesquisa (event) {
         setPesquisa(event.target.value);
-      }
+    }
+
     return (
         <div className="pag-notificacao"> 
-        <Navegation/>
+            <Navegation/>
             <div className='titulo-not'>
-                <h1>Notificação</h1>
+                <h1>Notificações</h1>
             </div>
+
             {notifications!=null ?
                 <div className='corpo-not'>
-
-            {notifications.map(notificacao => (
-                <div key={notificacao.id} className='card-content-notificacao'>
-                    <div className="img-div-notificacao">
-                        <BsFillExclamationTriangleFill size='30px'/>
-                    </div>
-                    <div className="content-card-notification">
-                        <div className="info-button-notificacao"><h4>{notificacao.titulo}</h4><a>Data/Horario</a></div>
-                        <p>{notificacao.descricao}</p>
-                    </div>
+                    {notifications.map(notificacao => (
+                        <div key={notificacao.id} className='card-content-notificacao'>
+                            <div className="img-div-notificacao">
+                                <BsFillExclamationTriangleFill size='30px'/>
+                            </div>
+                            <div className="content-card-notification">
+                                <div className="info-button-notificacao"><h4>{notificacao.titulo}</h4><a>Data/Horario</a></div>
+                                <p>{notificacao.descricao}</p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
-                ))}
-            </div> :
-            <div></div>}
+            :<div></div>}
             
         </div>
       );

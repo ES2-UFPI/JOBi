@@ -42,7 +42,6 @@ function Prestador() {
             console.log(data)
             
             let route = `/candidato`;
-            
 
             axios.post(route, {
                 vaga_id: vagas[indice].id,
@@ -58,7 +57,7 @@ function Prestador() {
                 categoria: data.typeUser.categoria
             }).then(function (response) {
                 console.log(response);
-                alert("Você se candidatou á vaga com sucesso!");
+                alert("Você se candidatou à vaga com sucesso!");
                 if(indice != vagas.length-1){
                     setIndice(indice + 1);
                 }

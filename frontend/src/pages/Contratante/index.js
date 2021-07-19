@@ -42,7 +42,7 @@ function Contratante() {
 
             const response = await axios.get(route);
             
-            console.log(response.data);
+            console.log(response.data.reverse());
 
             setVagas(response.data);
             console.log(vagas);
