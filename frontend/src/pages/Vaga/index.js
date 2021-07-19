@@ -1,151 +1,200 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import './Vaga.css';
-import {BsXSquare, BsFillCaretDownFill, BsEnvelope, BsXCircle} from "react-icons/bs"
+import {BsXSquare, BsFillCaretDownFill, BsEnvelope, BsXCircle, BsCheck} from "react-icons/bs"
 import cardimage from '../../images/resized.jpg'
-import Card from 'react-bootstrap/Card'
 import { IconContext } from 'react-icons/lib';
 import Button from 'react-bootstrap/Button'
-//import 'bootstrap/dist/css/bootstrap.min.css';
+import queryString from 'query-string';
+import io from "socket.io-client";
 
 import Navegation from '../../components/Navegation/Navegation';
 
 function Vaga() {
-    const [ vagas, setVagas ] = useState([{id: 0, nome: "Estágio em empresa"},{id: 1, nome: "Estágio em empresa"},
-    {id: 2, nome: "Estágio em empresa"}]);
+    const [ candidatos, setCandidatos ] = useState([]);
+    const [ vaga, setVaga ] = useState([]);
     const [ pesquisa, setPesquisa ] = useState('');
-    function handleSubmit(event) {
+    var location = useLocation();
+    const history = useHistory();
+    console.log("Location: ", location);
+
+    const { categorias } = require('../../extra_data/categorias.json');
+    const imagem = require('../../extra_data/categorias.json');
+
+    function handleSubmit(event){
         event.preventDefault();
     }
-    function handlePesquisa (event) {
+
+    function handlePesquisa (event){
         setPesquisa(event.target.value);
-      }
-      /*
-    useEffect(()=>{
-        async function getPrestadores (){
-            
-            const response = await axios.get('/prestador/select')
-            
-            console.log(response.data);
+    }
 
-            setUsers(response.data);
-            console.log(users);
+    async function getVaga(){
+        const { id } = queryString.parse(location.search);
+        console.log("ID da vaga: ", id);
 
-            let obj = { 
-                id: response.data.id,
-                estrelas: response.data.estrelas
-            }
-               
-            localStorage.setItem('userDataChat', JSON.stringify(obj));
-            
-        }
-
-        getPrestadores();
+        let route = `/vaga/vaga/${id}`;
+        const response = await axios.get(route);
         
+        console.log("Resposta da Vaga: ", response.data);
+
+        setVaga(response.data);
+        console.log(vaga);
+    }
+
+    async function getCandidatos(){
+        const { id } = queryString.parse(location.search);
+        console.log("ID da vaga: ", id);
+
+        let route = `/candidato/vaga/${id}`;
+        const response = await axios.get(route);
+        
+        console.log("Resposta: ", response.data);
+
+        setCandidatos(response.data);
+        console.log(candidatos);
+    }
+    
+    useEffect(()=>{
+        getVaga();
+
+        getCandidatos();
+
     }, []);
-    */
+
+    const ENDPOINT = 'http://localhost:3333/';
+    let socket;
+
+    function iniciarChat(event, id_user){
+        socket = io(ENDPOINT, { autoConnect: true });
+        console.log("XXXXXXXXXXXXXXXXX", id_user);
+
+        let data = localStorage.getItem('userData');
+        data = JSON.parse(data);
+        console.log(data);
+
+        var id_p = id_user;
+        console.log("YYYYYYYY", data.typeUser.id);
+        var id_c = data.typeUser.id;
+
+        //Evento emitido quando é iniciado um chat
+        socket.emit('iniciar_chat', { id_p: id_p, id_c: id_c }, ({ message }) => {
+            console.log(message)
+        });
+
+        let route = `../contratante/chat?id=${id_user}`;
+        history.push(route);
+    }
+    
 
     return (
-<IconContext.Provider value={{className:'icons-menu'}}>
+    <IconContext.Provider value={{className:'icons-menu'}}>
     <div className="pag-vaga">
-     <Link to="/contratante" className="link"><BsXSquare size="30px" className="fechar"></BsXSquare></Link>
+        <Link to="/contratante" className="link"><BsXSquare size="30px" className="fechar"></BsXSquare></Link>
       <div className="vaga-card">
         <div className="vaga-img">
             <img 
                 width="300px"
                 height= "300px"
-                src = {cardimage}
-                class='vag-img'
-                alt='card image'
+                src = {`../images/imagens_vagas/${vaga.imagem}`}
+                className='vag-img'
+                alt='card vaga'
             />
         </div>
         <div className="vaga-dados">
             <div className="dado-linha">
-            <div className="dado">Nome: </div>
-            <div className="valor">Estágio UFPI</div>
-            <div className="dado">Categoria: </div>
-            <div className="valor">Tecnologia</div>
-            <div className="dado">Nº Vagas: </div>
-            <div className="valor">3</div>
+                <div className="dado">Título: </div>
+                <div className="valor">{vaga.titulo}</div>
+                <div className="dado">Categoria: </div>
+                <div className="valor">
+                    {categorias.map(cat => (
+                        (cat.value === vaga.categoria) ? cat.label : ''
+                    ))}
+                </div>
+            </div>
+
+            <div className="dado-linha">
+                <div className="dado">Nº Vagas: </div>
+                <div className="valor">{vaga.num_vagas}</div>
+                <div className="dado">Horario: </div>
+                <div className="valor">{vaga.horario}</div>
+            </div>
+
+            <div className="dado-linha">
+                <div className="dado">Cidade: </div>
+                <div className="valor">{vaga.cidade}</div>
+                <div className="dado">Estado: </div>
+                <div className="valor">{vaga.estado}</div>
             </div>
             <div className="dado-linha">
-            <div className="dado">Horario: </div>
-            <div className="valor">8h ás 12h</div>
-            <div className="dado">Cidade: </div>
-            <div className="valor">Teresina</div>
-            <div className="dado">Estado: </div>
-            <div className="valor">Piauí</div>
+                <div className="dado">Interesses: </div>
+                <div className="valor">{vaga.interesses}</div>
+                <div className="dado">Status: </div>
+                <div className="valor">
+                    {(vaga.status === 1) ? <span className="open">Aberta</span> : <span className="closed">Fechada</span>}
+                </div>
             </div>
+
             <div className="dado-linha">
-            <div className="dado">Interesses: </div>
-            <div className="valor">Estágio UFPI</div>
-            <div className="dado">Status: </div>
-            <div className="valor">Estágio UFPI</div>
-            <div className="dado">Remuneração: </div>
-            <div className="valor">Estágio UFPI</div>
+                <div className="dado">Descrição: </div>
+                <div className="valor-descricao-oculta"></div>
+                <div className="dado">Remuneração: </div>
+                <div className="valor">{vaga.remuneracao}</div>
             </div>
-            <div className="descricao-vaga">
-            Testando descricao Testando descricao Testando descricao Testando descricao Testando descricao 
-            ando descricao Testando 
-            descricao Testando descricao Testando descricao 
-            Testando descricao Testando descricao Testando descricao Testando descricao Testando 
-            descricao Testando descricao Testando descricao Testando descricao 
-        </div>
+
+            <div className="descricao-vaga">{vaga.descricao}</div>
+            
         </div>
         
-        
       </div>
-      <div>
-          <div className="butoes-vagas">
-            <div className="btn-excluir"><Button className="butoes-excluir">Excluir</Button></div>
-            <div className="btn-alterar"><Button className="butoes-alterar">Alterar</Button></div>
-            <div className="btn-salvar"><Button className="butoes-salvar">Salvar</Button></div>
-          </div>
-      </div>
+
+        <div className="butoes-vagas">
+            <div className="btn-excluir"><Button>Excluir</Button></div>
+            <div className="btn-alterar"><Button>Alterar</Button></div>
+            <div className="btn-salvar"><Button>Salvar</Button></div>
+        </div>
+
       <div className="candidatos">
-            <div class="accordion">
+            <div className="accordion">
                 
-                <div class="accordion__item">
-                    
-                    <div class="accordion__header">
-                        
-                        <div class="accordion__toggle">
+                <div className="accordion__item">
+                    <div className="accordion__header">
+                        <div className="accordion__toggle">
                             <BsFillCaretDownFill></BsFillCaretDownFill>
+                        </div>
+                        
+                        <div className="accordion__title">
+                            Candidatos ({candidatos.length})
+                        </div>
+                    </div>
+                    
+                    <div className="accordion__content">
+                        {candidatos.map(candidato => (
+                        <div key={String(candidato.id)} className="candidato-dado">
+                            <div className="circle">
+                                <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
                             </div>
-
-                        
-                        <div class="accordion__title">
-                            Candidatos (6)
+                            <p className="nome-candidato">{candidato.nome}</p>
+                            
+                            <div className="candidato-butoes">
+                                <button className="btn-aprovar">
+                                    <BsCheck size='25px' className="check-aprovar"></BsCheck>
+                                </button>
+                                <button onClick={(e) => iniciarChat(e, candidato.prestador_id)} className="btn-iniciar-chat">
+                                    <BsEnvelope size="25px" className="envelope"></BsEnvelope>
+                                </button>
+                                <button className="btn-desaprovar">
+                                    <BsXCircle size="25px" className="x-desaprovar"></BsXCircle>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-
-                    
-                    <div class="accordion__content">
-                    <div className="candidato-dado">
-                        <div className="circle">
-                            <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
-                        </div>
-                        <div className="nome-candidato"><a>Mizael</a></div>
-                        
-                        
-                        <div className="candidato-butoes">
-                            <button className="btn-iniciar-chat">
-                                <BsEnvelope size="25px" className="envelope"></BsEnvelope>
-                            </button>
-                            <button className="btn-desaprovar">
-                                <BsXCircle size="25px" className="x-desaprovar"></BsXCircle>
-                            </button>
-
-                        </div>
-                        </div>
-                    </div>
-                    
+                        ))}
+                    </div>  
+                </div>
+            </div>
         </div>
     </div>
-        </div>
-    
-      </div>
       
     </IconContext.Provider>
     );
