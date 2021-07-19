@@ -98,25 +98,23 @@
     font-size: 20px;
     margin-bottom: 0px;
     display: inline-block;
-    width: 60%;
+    width: 500px;
 }
 
 .info-button-contratante p{
     color:black;
-    margin-left: 2px;
     display: inline-block;
 }
 
 .lixo-icon{
     color:rgb(231, 89, 89);
-    margin-left: 120px;
+    margin-left: 30px;
     display: inline-block;
     cursor: pointer;
 }
 
 .lixo-icon:hover{
     color:rgb(255, 0, 0);
-
 }
 
 .nova-vaga{
@@ -133,7 +131,7 @@
 .info-vaga .categoria-vaga{
     color: rgb(0, 0, 0);
     display: inline-block;
-    width: 60%;
+    width: 500px;
 }
 
 .info-vaga .status-vaga{
@@ -141,8 +139,12 @@
     display: inline-block;
 }
 
-.info-vaga .status-vaga span{
+.info-vaga .status-vaga .open{
     color: rgb(5, 145, 98);
+}
+
+.info-vaga .status-vaga .closed{
+    color: rgb(238, 76, 76);
 }
 
 .link{

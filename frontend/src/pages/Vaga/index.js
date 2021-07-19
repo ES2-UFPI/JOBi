@@ -2,7 +2,7 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import axios from '../../services/axios';
 import './Vaga.css';
-import {BsXSquare, BsFillCaretDownFill, BsEnvelope, BsXCircle} from "react-icons/bs"
+import {BsXSquare, BsFillCaretDownFill, BsEnvelope, BsXCircle, BsCheck} from "react-icons/bs"
 import cardimage from '../../images/resized.jpg'
 import { IconContext } from 'react-icons/lib';
 import Button from 'react-bootstrap/Button'
@@ -17,7 +17,10 @@ function Vaga() {
     const [ pesquisa, setPesquisa ] = useState('');
     var location = useLocation();
     const history = useHistory();
-    console.log("Lacation: ", location);
+    console.log("Location: ", location);
+
+    const { categorias } = require('../../extra_data/categorias.json');
+    const imagem = require('../../extra_data/categorias.json');
 
     function handleSubmit(event){
         event.preventDefault();
@@ -31,7 +34,7 @@ function Vaga() {
         const { id } = queryString.parse(location.search);
         console.log("ID da vaga: ", id);
 
-        let route = `/vaga/${1}`;
+        let route = `/vaga/vaga/${id}`;
         const response = await axios.get(route);
         
         console.log("Resposta da Vaga: ", response.data);
@@ -44,7 +47,7 @@ function Vaga() {
         const { id } = queryString.parse(location.search);
         console.log("ID da vaga: ", id);
 
-        let route = `/candidato/vaga/${1}`;
+        let route = `/candidato/vaga/${id}`;
         const response = await axios.get(route);
         
         console.log("Resposta: ", response.data);
@@ -94,51 +97,53 @@ function Vaga() {
             <img 
                 width="300px"
                 height= "300px"
-                src = {cardimage}
+                src = {`../images/imagens_vagas/${vaga.imagem}`}
                 className='vag-img'
                 alt='card vaga'
             />
         </div>
         <div className="vaga-dados">
             <div className="dado-linha">
-                <div className="dado">Nome: </div>
-                <div className="valor">Estágio UFPI</div>
+                <div className="dado">Título: </div>
+                <div className="valor">{vaga.titulo}</div>
                 <div className="dado">Categoria: </div>
-                <div className="valor">Tecnologia</div>
+                <div className="valor">
+                    {categorias.map(cat => (
+                        (cat.value === vaga.categoria) ? cat.label : ''
+                    ))}
+                </div>
             </div>
 
             <div className="dado-linha">
                 <div className="dado">Nº Vagas: </div>
-                <div className="valor">3</div>
+                <div className="valor">{vaga.num_vagas}</div>
                 <div className="dado">Horario: </div>
-                <div className="valor">8h ás 12h</div>
+                <div className="valor">{vaga.horario}</div>
             </div>
 
             <div className="dado-linha">
                 <div className="dado">Cidade: </div>
-                <div className="valor">Teresina</div>
+                <div className="valor">{vaga.cidade}</div>
                 <div className="dado">Estado: </div>
-                <div className="valor">Piauí</div>
+                <div className="valor">{vaga.estado}</div>
             </div>
             <div className="dado-linha">
                 <div className="dado">Interesses: </div>
-                <div className="valor">Estágio UFPI</div>
+                <div className="valor">{vaga.interesses}</div>
                 <div className="dado">Status: </div>
-                <div className="valor">Estágio UFPI</div>
+                <div className="valor">
+                    {(vaga.status === 1) ? <span className="open">Aberta</span> : <span className="closed">Fechada</span>}
+                </div>
             </div>
 
             <div className="dado-linha">
                 <div className="dado">Descrição: </div>
                 <div className="valor-descricao-oculta"></div>
                 <div className="dado">Remuneração: </div>
-                <div className="valor">Estágio UFPI</div>
+                <div className="valor">{vaga.remuneracao}</div>
             </div>
 
-            <div className="descricao-vaga">
-                Testando descricao Testando descricao Testando descricao Testando descricao Testando descricao ando descricao Testando descricao Testando descricao Testando descricao 
-                Testando descricao Testando descricao Testando descricao Testando descricao Testando 
-                descricao Testando descricao Testando descricao Testando descricao 
-            </div>
+            <div className="descricao-vaga">{vaga.descricao}</div>
             
         </div>
         
@@ -166,13 +171,16 @@ function Vaga() {
                     
                     <div className="accordion__content">
                         {candidatos.map(candidato => (
-                        <div className="candidato-dado">
+                        <div key={String(candidato.id)} className="candidato-dado">
                             <div className="circle">
                                 <img src="https://i.stack.imgur.com/atUuf.png" alt="Usuário"/>
                             </div>
-                            <div className="nome-candidato">Nome(ID){candidato.prestador_id}</div>
+                            <p className="nome-candidato">{candidato.nome}</p>
                             
                             <div className="candidato-butoes">
+                                <button className="btn-aprovar">
+                                    <BsCheck size='25px' className="check-aprovar"></BsCheck>
+                                </button>
                                 <button onClick={(e) => iniciarChat(e, candidato.prestador_id)} className="btn-iniciar-chat">
                                     <BsEnvelope size="25px" className="envelope"></BsEnvelope>
                                 </button>

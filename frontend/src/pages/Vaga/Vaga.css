@@ -23,6 +23,10 @@
     flex-direction: row;
 }
 
+.vag-img{
+    margin-top: 5%;
+}
+
 .vaga-dados{
     width: 90%;
     display: flex;
@@ -30,10 +34,78 @@
     text-align: justify;
 }
 
+.dado-linha{
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    display: inline-block;
+}
+
+.dado{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #9c9c9c;
+    color: white;
+    width: 100px;
+    display: inline-block;
+}
+
+.valor{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #dddddd;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
+.open{
+    color: rgb(5, 145, 98);
+}
+
+.closed{
+    color: rgb(238, 76, 76);
+}
+
+.valor-descricao-oculta{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
+.descricao-vaga{
+    padding: 15px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin-left: 2%;
+    margin-top: 2.5%;
+    text-align: justify;
+    width: 83.5%;
+    display: inline-block;
+}
+
+.valor-descricao-oculta{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
 .butoes-vagas{
     display: flex;
     flex-direction: row;
-    margin-left: 42%;
+    justify-content: flex-end;
 }
 
 .btn-salvar button{
@@ -86,52 +158,6 @@
     color: rgb(99, 0, 0);
 }
 
-.dado{
-    margin-left: 2%;
-    padding: 10px 12px;
-    background-color: #9c9c9c;
-    color: white;
-    width: 120px;
-    display: inline-block;
-}
-
-.valor{
-    margin-left: 2%;
-    padding: 10px 50px;
-    background-color: #ffffff;
-    border: 1px ridge #dddddd;
-    color: black;
-    justify-content: left;
-    width: 120px;
-    display: inline-block;
-}
-
-.descricao-vaga{
-    padding: 15px 15px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    margin-left: 2%;
-    margin-top: 2.5%;
-    text-align: justify;
-    width: 83%;
-    display: inline-block;
-}
-
-.valor-descricao-oculta{
-    margin-left: 2%;
-    padding: 10px 50px;
-    background-color: #ffffff;
-    width: 120px;
-    display: inline-block;
-}
-
-.dado-linha{
-    margin-top: 2.5%;
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-    display: inline-block;
-}
-
 .candidatos{
     justify-content: left;
     width: 40%;
@@ -155,65 +181,64 @@
     /* Center the content horizontally */
     align-items: center;
     display: flex;
-
     cursor: pointer;
     padding: 16px;
 }
 
-.accordion__toggle {
-    margin-right: 12px;
-}
-
 .accordion__title {
     /* Take remaining width */
-    flex: 1;
+   flex: auto;
 }
 
 .accordion__content {
     /* For not selected item */
-
     border-top: 1px solid rgba(0, 0, 0, 0.3);
     padding: 16px;
 }
 
 .candidato-dado{
     margin-bottom: 5%;
-    margin-left: 20px;
+    margin-left: 2%;
     display: flex;
     flex-direction: row;
 }
 .nome-candidato{
-    width: 10%;
     margin-left: 5%;
     margin-top: 3%;
     font-size: 17px;
-    display: inline-block;
+    text-align: left;
 }
 
 .candidato-butoes{
-    margin-left: 50%;
-    margin-top: 12px;
+    margin-left: auto;
+    margin-top: 3%;
+    display: inline-block;
+}
+
+.btn-aprovar{
+    background-color: #ffffff;
+    border: none;
+    color: #025E00;
     display: inline-block;
 }
 
 .btn-desaprovar{
     background-color: #ffffff;
-    border: 1px ridge #ffffff;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 1px;
+    border: none;
     color: #ec3d1e;
     display: inline-block;
 }
 
 .btn-iniciar-chat{
     background-color: #ffffff;
-    border: 1px ridge #ffffff;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 1px;
+    border: none;
     color: #008AEE;
     display: inline-block;
+}
+
+.check-aprovar{
+    color: #025E00;
+    cursor: pointer;
 }
 
 .envelope{
