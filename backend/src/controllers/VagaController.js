@@ -35,11 +35,6 @@ class VagasController {
         
         try{
 
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
 
             const vaga = await Vaga.findAll({ where: { contratante_id: req.params.id }});
             return res.json(vaga);
