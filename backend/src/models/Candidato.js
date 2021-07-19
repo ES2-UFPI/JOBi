@@ -24,9 +24,6 @@ export default class Candidato extends Model {
             email: {
                 type: Sequelize.STRING,
                 defaultValue: '',
-                unique: {
-                    msg: "Email já existe!"
-                },
                 validate: {
                     isEmail: {
                         msg: "Email inválido!"
