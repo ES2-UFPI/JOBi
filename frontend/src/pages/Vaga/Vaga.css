@@ -9,17 +9,22 @@
 
 .fechar{
     color: rgb(197, 57, 57);
-    margin-left: 1100px;
     margin-top: 30px;
+    position: absolute;
+    right: 4%;
 }
 
 .vaga-card{
     margin: 5%;
-    margin-top: 2%;
+    margin-top: 5%;
     margin-bottom: 2%;
     width: 90%;
     display: flex;
     flex-direction: row;
+}
+
+.vag-img{
+    margin-top: 5%;
 }
 
 .vaga-dados{
@@ -29,104 +34,128 @@
     text-align: justify;
 }
 
+.dado-linha{
+    margin-top: 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    display: inline-block;
+}
+
+.dado{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #9c9c9c;
+    color: white;
+    width: 100px;
+    display: inline-block;
+}
+
+.valor{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #dddddd;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
+.open{
+    color: rgb(5, 145, 98);
+}
+
+.closed{
+    color: rgb(238, 76, 76);
+}
+
+.valor-descricao-oculta{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
+.descricao-vaga{
+    padding: 15px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    margin-left: 2%;
+    margin-top: 2.5%;
+    text-align: justify;
+    width: 83.5%;
+    display: inline-block;
+}
+
+.valor-descricao-oculta{
+    margin-left: 2%;
+    padding: 10px 12px;
+    background-color: #ffffff;
+    border: 1px ridge #ffffff;
+    color: black;
+    justify-content: left;
+    width: 220px;
+    display: inline-block;
+}
+
 .butoes-vagas{
     display: flex;
     flex-direction: row;
-    align-items: right;
-    margin-left: 600px;
+    justify-content: flex-end;
 }
 
-.butoes-salvar{
-    margin-left: 50px;
+.btn-salvar button{
+    margin-left: 40%;
     font-size: 17px;
     background-color: #ffffff;
     border: 1px ridge green;
     padding: 15px 32px;
     border-radius: 1px;
     color: green;
-    
+    display: inline-block;
+    cursor: pointer;
 }
 
-.butoes-salvar:hover{
-    margin-left: 50px;
-    font-size: 17px;
-    background-color: #ffffff;
+.btn-salvar button:hover{
     border: 1px ridge rgb(0, 255, 0);
-    padding: 15px 32px;
-    border-radius: 1px;
-    color: rgb(0, 255, 0);
-    
+    color: rgb(0, 210, 0);
 }
 
-.butoes-alterar{
-    margin-left: 50px;
+.btn-alterar button{
+    margin-left: 20%;
     font-size: 17px;
     background-color: #ffffff;
     border: 1px ridge #008AEE;
     padding: 15px 32px;
     border-radius: 1px;
     color: #008AEE;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.butoes-alterar:hover{
-    margin-left: 50px;
-    font-size: 17px;
-    background-color: #ffffff;
+.btn-alterar button:hover{
     border: 1px ridge rgb(0, 0, 255);
-    padding: 15px 32px;
-    border-radius: 1px;
     color: rgb(0, 0, 255);
 }
 
-.butoes-excluir{
-    margin-left: 50px;
+.btn-excluir button{
     font-size: 17px;
     background-color: #ffffff;
     border: 1px ridge #ec3d1e;
     padding: 15px 32px;
     border-radius: 1px;
     color: #ec3d1e;
+    display: inline-block;
+    cursor: pointer;
 }
 
-.butoes-excluir:hover{
-    margin-left: 50px;
-    font-size: 17px;
-    background-color: #ffffff;
+.btn-excluir button:hover{
     border: 1px ridge rgb(99, 0, 0);
-    padding: 15px 32px;
-    border-radius: 1px;
     color: rgb(99, 0, 0);
-}
-
-.dado{
-    margin-left: 20px;
-    padding: 10px 12px;
-    background-color: #9c9c9c;
-    color: white
-}
-
-.valor{
-    margin-left: 20px;
-    padding: 10px 50px;
-    background-color: #ffffff;
-    color: white;
-    border: 1px ridge #dddddd;
-    color: black;
-    justify-content: left;
-}
-
-.descricao-vaga{
-    padding: 5px 5px;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    margin:2%;
-    margin-top: 50px;
-    text-align: justify;
-}
-.dado-linha{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: left;
 }
 
 .candidatos{
@@ -152,68 +181,72 @@
     /* Center the content horizontally */
     align-items: center;
     display: flex;
-
     cursor: pointer;
     padding: 16px;
 }
 
-.accordion__toggle {
-    margin-right: 12px;
-}
-
 .accordion__title {
     /* Take remaining width */
-    flex: 1;
+   flex: auto;
 }
 
 .accordion__content {
     /* For not selected item */
-
     border-top: 1px solid rgba(0, 0, 0, 0.3);
     padding: 16px;
 }
 
 .candidato-dado{
-    margin-left: 20px;
+    margin-bottom: 5%;
+    margin-left: 2%;
     display: flex;
     flex-direction: row;
 }
 .nome-candidato{
-    margin-left: 30px;
-    margin-top: 15px;
-}
-
-.nome-candidato a{
+    margin-left: 5%;
+    margin-top: 3%;
     font-size: 17px;
+    text-align: left;
 }
 
 .candidato-butoes{
-    margin-left: 50%;
-    margin-top: 12px;
+    margin-left: auto;
+    margin-top: 3%;
+    display: inline-block;
+}
+
+.btn-aprovar{
+    background-color: #ffffff;
+    border: none;
+    color: #025E00;
+    display: inline-block;
 }
 
 .btn-desaprovar{
     background-color: #ffffff;
-    border: 1px ridge #ffffff;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 1px;
+    border: none;
     color: #ec3d1e;
+    display: inline-block;
 }
 
 .btn-iniciar-chat{
     background-color: #ffffff;
-    border: 1px ridge #ffffff;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-radius: 1px;
+    border: none;
     color: #008AEE;
+    display: inline-block;
+}
+
+.check-aprovar{
+    color: #025E00;
+    cursor: pointer;
 }
 
 .envelope{
     color: #008AEE;
+    cursor: pointer;
 }
 
 .x-desaprovar{
     color: #ec3d1e;
+    cursor: pointer;
 }

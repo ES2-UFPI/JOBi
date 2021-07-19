@@ -78,7 +78,6 @@ export default class Vaga extends Model {
         this.hasMany(models.Candidato, { foreignKey: 'vaga_id' })
         this.hasMany(models.Notificacao, { foreignKey: 'vaga_id' })
 
-
     }
     
 }

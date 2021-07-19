@@ -96,7 +96,7 @@ function Contratante() {
                             <Link to={`/contratante/vaga?id=${vaga.id}`} className="link-vaga">
                                 <h4>{vaga.titulo}</h4>
                             </Link>
-                            
+                           
                             <p>{vaga.updatedAt.split('T')[0].split('-').reverse().join('/')}</p>
                         
                             <BsTrash className="lixo-icon" type="button" onClick = { ( ) => handleClickLixoIcon(vaga.id) }/>
@@ -108,7 +108,10 @@ function Contratante() {
                             ))}
                             </p>
 
-                            <p className="status-vaga">Status: <span>Aberta {/*vaga.status*/} </span></p>
+                            <p className="status-vaga">
+                                Status:
+                                {(vaga.status === 1) ? <span className="open"> Aberta</span> : <span className="closed"> Fechada</span>}
+                            </p>
                         </div>
                         
                         <p className="resumo-vaga">{vaga.descricao.substring(0,100) + '...'}</p>

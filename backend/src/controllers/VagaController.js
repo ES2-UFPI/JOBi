@@ -10,8 +10,8 @@ class VagasController {
             const file = req.files.arquivo_imagem;
             const newpath = path.join(__dirname, '..', '..', '..', 'frontend', 'public', 'images', 'imagens_vagas', file.name);
 
-            //console.log("Arquivo", file);
-            //console.log("Newpath", newpath);
+            console.log("Arquivo", file);
+            console.log("Newpath", newpath);
             
             file.mv(`${newpath}`, (err) => {
                 if (err) {

@@ -90,19 +90,20 @@ function Cadastrar_vaga() {
         data = JSON.parse(data);
         console.log("ID do contratante: ", data.typeUser.id);
 
-        const config = {     
-            headers: { 'content-type': 'multipart/form-data' }
+        const config = {  
+            headers: { 'Content-Type': 'multipart/form-data' }
         }
 
         const formData = new FormData();
-        formData.append("contratante_id", data.typeUser.id);
-        formData.append("categoria", categoria);
-        formData.append("num_vagas", num_vagas);
+        formData.append('contratante_id', data.typeUser.id);
+        formData.append('categoria', categoria);
+        formData.append('num_vagas', num_vagas);
         formData.append("titulo", titulo);
         formData.append("descricao", descricao);
         formData.append("imagem", imagem);
         formData.append("interesses", interesses);
         formData.append("horario", horario);
+        formData.append("status", 1);
         formData.append("remuneracao", remuneracao);
         formData.append("estado", estado);
         formData.append("cidade", cidade);
