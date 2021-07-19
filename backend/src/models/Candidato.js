@@ -11,6 +11,64 @@ export default class Candidato extends Model {
                 type: Sequelize.BOOLEAN,
                 defaultValue: false,
             },
+            nome: {
+                type: Sequelize.STRING,
+                defaultValue: '',
+                validate: {
+                    len: {
+                        args: [3, 255],
+                        msg: "Campo nome deve ter entre 3 e 255 caracteres."
+                    }
+                }
+            },
+            email: {
+                type: Sequelize.STRING,
+                defaultValue: '',
+                unique: {
+                    msg: "Email já existe!"
+                },
+                validate: {
+                    isEmail: {
+                        msg: "Email inválido!"
+                    }
+                },
+            },
+            telefone: {
+                type: Sequelize.STRING,
+                defaultValue: '',
+                validate: {
+                    len: {
+                        args: [8, 255],
+                        msg: "Campo telefone deve ter mais de 8 caracteres."
+                    }
+                },
+            },
+            descricao: {
+                type: Sequelize.STRING,
+                defaultValue: '',
+            },
+            img_perfil: {
+                type: Sequelize.STRING,
+                defaultValue: 'default',
+            },
+            estrelas: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+                validate: {
+                    notEmpty: {
+                        msg: 'Campo não pode ficar vazio',
+                      },
+                }
+            },
+            categoria: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
+                validate: {
+                    notEmpty: {
+                        msg: 'Campo não pode ficar vazio',
+                      },
+                },
+            },
         },{ 
             sequelize,
             tableName: 'candidatos',

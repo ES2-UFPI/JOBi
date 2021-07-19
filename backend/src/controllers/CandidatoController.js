@@ -21,11 +21,7 @@ class CandidatoController {
         
         try{
 
-            if(!req.params.id){
-                return res.status(400).json({ 
-                    errors: ['ID não enviado']
-                 });
-            }
+           
 
             const candidato = await Candidato.findByPk(req.params.id);
             const prestador = await Prestador.findByPk(candidato.prestador_id);
@@ -41,11 +37,15 @@ class CandidatoController {
 
     async index(req, res){
         try{
-            const candidato = await Candidato.findAll({ where: { vaga_id: req.params.id }})
+            const candidatos = await Candidato.findAll({ where: { vaga_id: req.params.id }})
         
-                res.json(candidato);
+           
+            return res.json(candidatos);
+           
+           
         }catch(e){
-            res.status(400).json({ errors: e.errors.map((err) => err.message)})
+            console.log(e)
+            res.status(400).json(e)
         }
     }
 
