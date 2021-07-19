@@ -17,7 +17,7 @@ import Notificacao from '../pages/Notificacao';
 function Routes(){
     return(
         <Switch>
-            <MyRoute exact path="/login" component={Login} />
+            <MyRoute exact path="/" component={Login} />
             <MyRoute exact path="/cadastro" component={Cadastro} />
             <MyRoute exact path="/prestador" component={Prestador}/>
             <MyRoute exact path="/contratante" component={Contratante}/>
@@ -26,7 +26,7 @@ function Routes(){
             <MyRoute exact path="/contratante/cadastrar_vaga" component={Cadastrar_vaga} />
             <MyRoute exact path="/contratante/vaga" component={Vaga} />
             <MyRoute exact path="/user" component={User} isClosed />
-            <MyRoute exact path="/notificacao" component={Notificacao}/>
+            <MyRoute exact path="/prestador/notificacao" component={Notificacao}/>
             <MyRoute path="*" component={Page404} />
         </Switch>
     );

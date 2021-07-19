@@ -7,8 +7,14 @@ import { IconContext } from 'react-icons/lib';
 
 function Navegation() {
     const [ notifications, setNotifications ] = useState([]);
-    useEffect(()=>{
 
+    const location = useLocation().pathname;
+
+    let data = localStorage.getItem('userData');
+    data = JSON.parse(data);
+    console.log(data.user.status);
+
+    useEffect(()=>{
         async function setNotificacao() {
             let data = localStorage.getItem('userData');
             data = JSON.parse(data);
@@ -22,45 +28,44 @@ function Navegation() {
     }
         setNotificacao();
     }, []);
-    /** 
-    const location = useLocation().pathname;
-
-    let data = localStorage.getItem('userData');
-    data = JSON.parse(data);
-    console.log(data.user.status);
- */
+    
     return (
         <IconContext.Provider value={{className:'icons-menu', size: '20px'}}>
     <div className= "navegation">
             <div className="logo">
-                <h1>JOB<span>i</span></h1>
+                <Link to="/"><h1>JOB<span>i</span></h1></Link>
             </div>
+            
             <div className="list">
                 <div className="list-home">
-                    <Link to="/"><BsHouseDoor/>Home</Link>
+                    <Link to={ (data.user.status === 1) ? `../prestador` : `../contratante`} className={ (location === "/contratante") || (location === "/prestador") ? "active" : ""}><BsHouseDoor/>Home</Link>
                 </div>
-                
-                <div className="list-notifications">
-                    
-                <Link to="/notificacao"><BsBell/>Notificações</Link>
-                {notifications ?
-                notifications.length>0 ?
-                <div className='not-ball'>{notifications.length}</div>
-                :
-                <div></div>
-                :
-                <div></div>}
 
+                <div className="list-notifications">
+                    <Link to={ (data.user.status === 1) ? `../prestador/notificacao` : `../contratante/notificacao`} className={ (location === "/contratante/notificacao") || (location === "/prestador/notificacao") ? "active" : ""}><BsBell/>Notificações
+                    
+                    {notifications ?
+                        notifications.length>0 ?
+                        <div className='not-ball'>{notifications.length}</div>
+                        :
+                        <div></div>
+                    :
+                    <div></div>}
+
+                    </Link>
+                    
                 </div>
-                
-                
+
                 <div className="list-messages">
-                    <Link to="/"><BsEnvelope/>Mensagens</Link>
+                    <Link to={ (data.user.status === 1) ? `../prestador/chat` : `../contratante/chat`} className={ (location === "/contratante/chat") || (location === "/prestador/chat") ? "active" : ""}><BsEnvelope/>Mensagens</Link>
                 </div>
+
                 <div className="list-profile">
-                    <Link to="/"><BsPerson/>Perfil</Link>
+                    <Link to="/user"><BsPerson/>Perfil</Link>
                 </div>
             </div>    
+
+
         </div>
     </IconContext.Provider>
     );
