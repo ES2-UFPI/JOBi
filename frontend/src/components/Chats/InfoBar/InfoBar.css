@@ -16,8 +16,11 @@
   color: white;
 }
 
-.leftInnerContainer h3{
-  margin-left: 10%;
+.leftInnerContainer p{
+  margin-left: 5%;
+  font-weight: 600;
+  text-align: left;
+  width: 200px;
 }
 
 .rightInnerContainer {
