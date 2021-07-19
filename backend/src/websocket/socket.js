@@ -37,7 +37,9 @@ io.on('connect', (socket) => {
                 }else{
                    const new_conexao = await Conexao.create({
                        prestador_id: params.id_p,
-                       contratante_id: params.id_c
+                       contratante_id: params.id_c,
+                       contratante_nome: params.nome_c,
+                        prestador_nome: params.nome_p
                    });
                    console.log(new_conexao.id);
                    socket.join(new_conexao.id);
