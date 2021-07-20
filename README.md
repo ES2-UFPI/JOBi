@@ -21,6 +21,10 @@
 </p>
 
 ## :pencil: Design do Projeto
+<h1 align="center">
+    <img alt="jobi" title="jobi" src="https://github.com/manassesss/try-repo/blob/main/JOBi-page.svg" width="600"/>
+</h1>
+
 <p align="justify">
     O design do projeto foi desenvolvido na ferramenta Figma e pode ser encontrado no link abaixo:
 </p>
