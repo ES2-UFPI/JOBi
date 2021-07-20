@@ -1,7 +1,7 @@
 # JOBi
 
 <h1 align="center">
-    <img alt="logo" title="logo" src="https://github.com/manassesss/try-repo/blob/main/JOBi.svg" width="200"/>
+    <img alt="logo" title="logo" src="https://github.com/manassesss/try-repo/blob/main/JOBi-3.png" width="200"/>
 </h1>
 
 
@@ -22,7 +22,7 @@
 
 ## :pencil: Design do Projeto
 <h1 align="center">
-    <img alt="jobi" title="jobi" src="https://github.com/manassesss/try-repo/blob/main/JOBi-page.svg" width="600"/>
+    <img alt="jobi" title="jobi" src="https://github.com/manassesss/try-repo/blob/main/JOBi-page.svg"/>
 </h1>
 
 <p align="justify">
