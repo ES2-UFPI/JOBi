@@ -13,6 +13,7 @@ import Page404 from '../pages/Page404';
 import Cadastrar_vaga from '../pages/Cadastrar_vaga';
 import Vaga from '../pages/Vaga';
 import Notificacao from '../pages/Notificacao';
+import Dashboard from '../pages/Dashboard';
 
 function Routes(){
     return(
@@ -27,6 +28,7 @@ function Routes(){
             <MyRoute exact path="/contratante/vaga" component={Vaga} />
             <MyRoute exact path="/user" component={User} isClosed />
             <MyRoute exact path="/prestador/notificacao" component={Notificacao}/>
+            <MyRoute exact path="/dashboard" component={Dashboard}/>
             <MyRoute path="*" component={Page404} />
         </Switch>
     );
