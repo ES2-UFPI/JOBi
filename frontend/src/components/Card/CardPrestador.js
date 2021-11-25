@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { AiOutlineTwitter, AiOutlineLink, } from "react-icons/ai";
-const CardPrestador = () => {
+const CardPrestador = ({prestadores, ...props}) => {
   return (
     <Flex
       bg="black"
@@ -20,6 +20,7 @@ const CardPrestador = () => {
       w="full"
       alignItems="center"
       justifyContent="center"
+      margin="20px"
     >
       <Box
         w="full"
@@ -51,12 +52,14 @@ const CardPrestador = () => {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>1</Td>
-                <Td>Pedro Lucca</Td>
-                <Td>Maná</Td>
-                <Td>Maná</Td>
-              </Tr>
+            {prestadores.map(prestador => (
+                <Tr>
+                  <Td>{prestador.Prestador}</Td>
+                  <Td>{prestador.Email}</Td>
+                  <Td>{prestador.Categoria}</Td>
+                  <Td>{prestador.Estrelas}</Td>
+                </Tr>
+              ))}
             </Tbody>
           </Table>
         </Box>

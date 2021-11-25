@@ -11,7 +11,8 @@ import {
 } from "@chakra-ui/react";
 
 import { AiOutlineTwitter, AiOutlineLink, } from "react-icons/ai";
-const CardVagas = ({tituloTable, vagasFechadas, ...props }) => {
+const CardVagas = ({tituloTable, vagasFechadas, Remuneracao, ...props }) => {
+  //console.log(Remuneracao);
   return (
     <Flex
       bg="black"
@@ -20,6 +21,7 @@ const CardVagas = ({tituloTable, vagasFechadas, ...props }) => {
       w="full"
       alignItems="center"
       justifyContent="center"
+      margin="20px"
     >
       <Box
         w="full"
@@ -48,20 +50,34 @@ const CardVagas = ({tituloTable, vagasFechadas, ...props }) => {
                 <Th>Descricao</Th>
                 <Th>Remuneracao</Th>
                 <Th>Localizacao</Th>
+                {(Remuneracao !== undefined) &&
+                <Th>Remuneracao Total</Th>
+          }
               </Tr>
             </Thead>
             <Tbody>
-              {vagasFechadas.map(vaga => {
+              {vagasFechadas.map(vaga => (
                 <Tr>
                   <Td>{vaga.Titulos}</Td>
-                  <Td>{vaga.Descricao}</Td>
+                  <Td>{vaga.Descricao.slice(0,100)}...</Td>
                   <Td>{vaga.Remuneracao}</Td>
                   <Td>{vaga.Localizacao}</Td>
                 </Tr>
-              })}
+              ))}
+              
             </Tbody>
           </Table>
         </Box>
+        <div>
+        {(Remuneracao !== undefined) && <div>
+                
+                {Remuneracao.map(rem => (
+                
+                <p>Remuneração Total: {rem.remuneracao_total_vagas_fechadas}</p>
+                ))}
+                
+                </div>}
+        </div>
       </Box>
     </Flex>
   );
