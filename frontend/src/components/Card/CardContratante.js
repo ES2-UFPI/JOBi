@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { AiOutlineTwitter, AiOutlineLink, } from "react-icons/ai";
-const Card = ({ conexao, contratante, prestador, ...props }) => {
+const CardContratante = ({contratante, email, estrelas, ...props}) => {
   return (
     <Flex
       bg="black"
@@ -39,21 +39,21 @@ const Card = ({ conexao, contratante, prestador, ...props }) => {
             mt={2}
             color={useColorModeValue("gray.800", "white")}
           >
-            Conexões
+            Contratantes
           </chakra.h1>
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th>Conexão</Th>
                 <Th>Contratante</Th>
-                <Th>Prestador</Th>
+                <Th>Email</Th>
+                <Th>Estrelas</Th>
               </Tr>
             </Thead>
             <Tbody>
               <Tr>
-                <Td>{conexao}</Td>
                 <Td>{contratante}</Td>
-                <Td>{prestador}</Td>
+                <Td>{email}</Td>
+                <Td>{estrelas}</Td>
               </Tr>
             </Tbody>
           </Table>
@@ -63,4 +63,4 @@ const Card = ({ conexao, contratante, prestador, ...props }) => {
   );
 };
 
-export default Card;
+export default CardContratante;

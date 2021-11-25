@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 
 import { AiOutlineTwitter, AiOutlineLink, } from "react-icons/ai";
-const Card = ({ conexao, contratante, prestador, ...props }) => {
+const CardVagas = ({tituloTable, vagasFechadas, ...props }) => {
   return (
     <Flex
       bg="black"
@@ -39,22 +39,26 @@ const Card = ({ conexao, contratante, prestador, ...props }) => {
             mt={2}
             color={useColorModeValue("gray.800", "white")}
           >
-            Conexões
+            {tituloTable}
           </chakra.h1>
           <Table variant="simple">
             <Thead>
               <Tr>
-                <Th>Conexão</Th>
-                <Th>Contratante</Th>
-                <Th>Prestador</Th>
+                <Th>Titulos</Th>
+                <Th>Descricao</Th>
+                <Th>Remuneracao</Th>
+                <Th>Localizacao</Th>
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <Td>{conexao}</Td>
-                <Td>{contratante}</Td>
-                <Td>{prestador}</Td>
-              </Tr>
+              {vagasFechadas.map(vaga => {
+                <Tr>
+                  <Td>{vaga.Titulos}</Td>
+                  <Td>{vaga.Descricao}</Td>
+                  <Td>{vaga.Remuneracao}</Td>
+                  <Td>{vaga.Localizacao}</Td>
+                </Tr>
+              })}
             </Tbody>
           </Table>
         </Box>
@@ -63,4 +67,4 @@ const Card = ({ conexao, contratante, prestador, ...props }) => {
   );
 };
 
-export default Card;
+export default CardVagas;
