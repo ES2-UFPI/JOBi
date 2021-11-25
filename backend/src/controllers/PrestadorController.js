@@ -18,7 +18,8 @@ class PrestadorController {
 
             res.json({user, prestador});
         }catch(e){
-            res.status(400).json({ errors: e.errors.map((err) => err.message)})
+            console.log(e);
+            res.status(400).json({ errors: e })
         }
     }
     async index(req, res){

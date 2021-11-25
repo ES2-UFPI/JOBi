@@ -1,7 +1,7 @@
 import {Sequelize, Model} from "sequelize";
 
-export default class Vaga extends Model {
-    static init(sequelize) {
+export default class Vaga extends Model{
+    static init(sequelize){
         super.init({
             categoria: {
                 type: Sequelize.INTEGER,

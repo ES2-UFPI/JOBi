@@ -1,0 +1,80 @@
+'use strict';
+
+module.exports = {
+  up: async (queryInterface, Sequelize) => {
+    return await queryInterface.createTable('vagas', { 
+    id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    contratante_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'contratantes',
+        key: 'id',
+      }, 
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE',
+    },
+    categoria: {
+      type: Sequelize.INTEGER,  
+      allowNull: false,
+    },
+    num_vagas: {
+      type: Sequelize.INTEGER,  
+      allowNull: false,
+    },
+    titulo: {
+      type: Sequelize.STRING,  
+      allowNull: false,
+    },
+    descricao: {
+      type: Sequelize.STRING(1234),  
+      allowNull: false,
+    },
+    imagem: {
+      type: Sequelize.STRING,  
+      allowNull: true,
+    },
+    interesses: {
+      type: Sequelize.STRING,  
+      allowNull: false,
+    },
+    horario: {
+      type: Sequelize.INTEGER,  
+      allowNull: false,
+    },
+    status: {
+      type: Sequelize.INTEGER,  
+      allowNull: false,
+    },
+    remuneracao: {
+      type: Sequelize.FLOAT,  
+      allowNull: true,
+    },
+    estado: {
+      type: Sequelize.STRING,  
+      allowNull: false,
+    },
+    cidade: {
+      type: Sequelize.STRING,  
+      allowNull: false,
+    },
+    created_at: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updated_at: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    });
+  },
+
+  down: async (queryInterface, Sequelize) => {
+     return await queryInterface.dropTable('vagas');
+  }
+};
