@@ -32,7 +32,10 @@ function Dashboard() {
 
     return (
         <div className="dashboard">
-            <Heading>Relatórios</Heading>
+            <div className="dash_head">
+            <h1 style={{fontFamily: 'Montserrat, sans-serif', fontSize: 30}}>JOB<span style={{color: '#008AEE'}}>i</span></h1>
+            </div>
+            <Heading style={{fontSize: 40}}>Relatórios</Heading>
             {console.log(dados)}
             <Box w="full" p={4}>
                 <SimpleGrid columns={1} spacing={40}>

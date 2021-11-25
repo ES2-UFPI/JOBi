@@ -24,6 +24,7 @@ const CardVagas = ({tituloTable, vagasFechadas, Remuneracao, ...props }) => {
       margin="20px"
     >
       <Box
+        style={{width: 700}}
         w="full"
         maxW="sm"
         mx="auto"
@@ -34,7 +35,7 @@ const CardVagas = ({tituloTable, vagasFechadas, Remuneracao, ...props }) => {
         shadow="md"
         rounded="md"
       >
-        <Box>
+        <Box >
           <chakra.h1
             fontSize="lg"
             fontWeight="bold"
@@ -43,23 +44,20 @@ const CardVagas = ({tituloTable, vagasFechadas, Remuneracao, ...props }) => {
           >
             {tituloTable}
           </chakra.h1>
-          <Table variant="simple">
+          <Table variant="simple" style={{width: 700, fontSize: 17}}>
             <Thead>
               <Tr>
                 <Th>Titulos</Th>
                 <Th>Descricao</Th>
                 <Th>Remuneracao</Th>
                 <Th>Localizacao</Th>
-                {(Remuneracao !== undefined) &&
-                <Th>Remuneracao Total</Th>
-          }
               </Tr>
             </Thead>
             <Tbody>
               {vagasFechadas.map(vaga => (
                 <Tr>
                   <Td>{vaga.Titulos}</Td>
-                  <Td>{vaga.Descricao.slice(0,100)}...</Td>
+                  <Td>{vaga.Descricao.slice(0,50)}...</Td>
                   <Td>{vaga.Remuneracao}</Td>
                   <Td>{vaga.Localizacao}</Td>
                 </Tr>
