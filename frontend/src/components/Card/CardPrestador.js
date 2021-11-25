@@ -23,6 +23,7 @@ const CardPrestador = ({prestadores, ...props}) => {
       margin="20px"
     >
       <Box
+        style={{width: 700}}
         w="full"
         maxW="sm"
         mx="auto"
@@ -42,7 +43,7 @@ const CardPrestador = ({prestadores, ...props}) => {
           >
             Prestadores
           </chakra.h1>
-          <Table variant="simple">
+          <Table variant="simple" style={{width: 700, fontSize: 18}}>
             <Thead>
               <Tr>
                 <Th>Prestador</Th>
